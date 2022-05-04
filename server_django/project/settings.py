@@ -16,8 +16,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "rest_framework",
-    "rest_framework.authtoken",
     "main.apps.AppConfig",
 ]
 
@@ -63,7 +61,7 @@ STATIC_URL = urljoin(BASE_URL, "static/")  # noqa: F405
 STATIC_ROOT = os.path.join(BASE_DIR, "_static/")
 
 MEDIA_URL = urljoin(BASE_URL, "media/")  # noqa: F405
-MEDIA_ROOT = os.path.join(BASE_DIR, "_media/")
+MEDIA_ROOT = os.path.join(BASE_DIR, "_local/media/")
 
 AUTH_PASSWORD_VALIDATORS = []
 
@@ -80,11 +78,12 @@ logger.setLevel(LOGLEVEL)
 logger.addHandler(fileHandler)
 logger.addHandler(consoleHandler)
 
-REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        # 'rest_framework.authentication.BasicAuthentication',
-        "rest_framework.authentication.SessionAuthentication",
-        "rest_framework.authentication.TokenAuthentication",
-    ),
+IMAGE = {
+    "SIZE": 1024,
+    "EXTENSION": "jpg",
+    "QUALITY": 75,
+    "TMP_DIR": "image_tmp",
+    "DIR": "img",
 }
+
+DOWNLOAD_XLSX_FILENAME = "Projekte.xlsx"

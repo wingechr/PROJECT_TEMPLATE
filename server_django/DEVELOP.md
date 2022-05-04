@@ -1,8 +1,8 @@
 ```bash
-python3 manage.py makemigrations
-python3 manage.py migrate
-python3 manage.py createsuperuser
-python3 manage.py collectstatic
-python3 manage.py test
-python3 manage.py runserver
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py collectstatic
+python manage.py test
+python manage.py runserver
 ```

@@ -1,2 +1,4 @@
-_local
-!_local/settings.example.py
+_local/**
+!_local/*.example.py
+
+_static
