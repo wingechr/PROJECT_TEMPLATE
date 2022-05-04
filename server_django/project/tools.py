@@ -1,16 +1,15 @@
 # coding: utf-8
 import logging  # noqa
 
-from rest_framework import generics, permissions, serializers
-from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer
-from rest_framework.views import Response, status
-
 from django.conf import settings
 from django.contrib import admin
 from django.db import models  # noqa
 from django.db.models.query_utils import DeferredAttribute
 from django.forms import ValidationError
 from django.urls import include, path, re_path, reverse  # noqa
+from rest_framework import generics, permissions, serializers
+from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer
+from rest_framework.views import Response, status
 
 # TODO https://docs.djangoproject.com/en/2.1/ref/models/instances/#get-absolute-url
 

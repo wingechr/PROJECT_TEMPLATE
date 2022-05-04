@@ -26,13 +26,6 @@ class Client:
         token = r.json()["token"]
         return token
 
-    # def get_list(self):
-    #    url = self.url + 'get_list/?format=json'
-    #    r = requests.get(url, headers=self.headers)
-    #    self._check_response(r)
-    #    data = r.json()
-    #    return data
-
     def get_objects(self, object):
         url = self.url + object + "/"
 

@@ -1,15 +1,14 @@
 # coding: utf-8
 import logging  # noqa
 
-from project.tools import get_api_create_url, get_api_details_url, register_model
-from rest_framework import status
-from rest_framework.test import APIClient
-
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.utils import IntegrityError  # noqa
 from django.forms import ValidationError  # noqa
 from django.test import TestCase
+from project.tools import get_api_create_url, get_api_details_url, register_model
+from rest_framework import status
+from rest_framework.test import APIClient
 
 
 class Test(models.Model):
