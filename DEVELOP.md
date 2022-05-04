@@ -14,3 +14,8 @@ python setup.py sdist
 twine upload --repository testpypi dist/*
 twine upload dist/*
 ```
+
+## Tasks
+
+- register add https://readthedocs.org
+- register add https://app.snyk.io
