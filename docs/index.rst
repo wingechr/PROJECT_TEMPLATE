@@ -1,4 +1,4 @@
-Table of content
+PROJECT_TEMPLATE
 ================
 
 .. toctree::

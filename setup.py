@@ -29,5 +29,5 @@ if __name__ == "__main__":
             "Operating System :: OS Independent",
         ],
         entry_points={"console_scripts": ["project-cmd = MODULE.__main__:main"]},
-        package_data={"test": ["data/**"]},
+        package_data={"WINGECHR_PACKAGE_TEMPLATE.test": ["data/**"]},
     )

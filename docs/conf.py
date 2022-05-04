@@ -1,8 +1,8 @@
-project = "PROJECT_TEMPLATE"
+project = "WINGECHR_PROJECT_TEMPLATE"
 version = "0.0.0"
 
 release = version
-html_search_language = "en"
+html_search_language = "en-US"
 html_show_copyright = False
 todo_include_todos = False
 add_module_names = False
@@ -22,6 +22,8 @@ html_logo = "_static/logo.svg"
 html_favicon = "_static/favicon.ico"
 templates_path = ["_templates"]
 html_static_path = ["_static"]
+html_css_files = ["main.css"]
+html_js_files = ["main.js"]
 exclude_dirs = []  # do not include in autodoc
 nitpicky = False
 html_use_index = True
