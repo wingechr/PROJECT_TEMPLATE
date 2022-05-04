@@ -3,9 +3,9 @@
 // const $ = require("jquery"); // defined externally
 // const _ = require("lodash"); // imported
 
-const plusOne = require("./lib/mylib.js").plusOne;
+const examplePlusOne = require("./lib/mylib.js").examplePlusOne;
 
 // expose to main library
 module.exports = {
-  plusOne: plusOne,
+  examplePlusOne: examplePlusOne,
 };

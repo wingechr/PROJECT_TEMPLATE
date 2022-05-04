@@ -7,10 +7,10 @@
 const chai = require("chai");
 chai.use(require("chai-almost")());
 
-let main = require('./build/js/main.js');
+let main = require('../src/js/__main__.js');
 
-describe('Example', function() {
-  it("Example", function() {
-    chai.expect(main.plusOne(1)).to.be.almost.equals(2);
+describe('main', function() {
+  it("examplePlusOne", function() {
+    chai.expect(main.examplePlusOne(1)).to.be.almost.equals(2);
   });
 });

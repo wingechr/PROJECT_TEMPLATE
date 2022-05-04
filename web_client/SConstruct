@@ -11,7 +11,7 @@ env = Environment(
     TMP="temp",
     BLD="build",
     SRC="src",
-    DEBUG=True
+    DEBUG=False
 )
 
 env.Decider('MD5-timestamp')
@@ -22,3 +22,4 @@ SConscript(env.GetBuildPath('#/$SRC/js/SConscript'))
 SConscript(env.GetBuildPath('#/$SRC/css/SConscript'))
 SConscript(env.GetBuildPath('#/$SRC/html/SConscript'))
 SConscript(env.GetBuildPath('#/$SRC/static/SConscript'))
+SConscript(env.GetBuildPath('#/$SRC/favicon/SConscript'))

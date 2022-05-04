@@ -1,7 +1,7 @@
 "use strict";
 let c = 1;
-const plusConst = (x) => c + x;
+const examplePlusOne = (x) => c + x;
 
 module.exports = {
-  plusOne: plusConst,
+  examplePlusOne: examplePlusOne,
 };
