@@ -11,5 +11,6 @@ bumpversion --allow-dirty patch
 python -m unittest
 
 python setup.py sdist
+twine upload --repository testpypi dist/*
 twine upload dist/*
 ```
