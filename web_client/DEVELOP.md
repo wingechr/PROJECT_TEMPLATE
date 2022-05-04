@@ -1,10 +1,11 @@
 # Commands
 
 ```bash
-npm audit --fix # --force
 npm install
-npm prune
 npm update
+npm prune
 npm shrinkwrap
+npm audit --fix # --force
+
 mocha
 ```

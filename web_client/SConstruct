@@ -14,9 +14,6 @@ env = Environment(
     DEBUG=True
 )
 
-if not Virtualenv():
-    logging.warning('VIRTUAL_ENV not activated')
-
 env.Decider('MD5-timestamp')
 env.Clean('all', ['$TMP', '$BLD'])
 

@@ -4,8 +4,9 @@
   },
   "language": "en-US",
   "title": "TITLE",
-  "previewImageUrl": "TODO",
-  "keywords": ["k1"],
+  "description": "DESCRIPTION",
+  "previewImageUrl": "img/preview.png",
+  "keywords": ["KEYWORD"],
   "url": "TODO",
   "themeColorDark": "#a0a0a0",
   "author": "AUTHOR"

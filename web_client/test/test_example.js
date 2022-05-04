@@ -7,7 +7,7 @@
 const chai = require("chai");
 chai.use(require("chai-almost")());
 
-let main = require('../build/js/main.js');
+let main = require('./build/js/main.js');
 
 describe('Example', function() {
   it("Example", function() {
