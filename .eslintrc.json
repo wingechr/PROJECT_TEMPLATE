@@ -23,6 +23,7 @@
         "named": "never",
         "asyncArrow": "never"
       }
-    ]
+    ],
+    "linebreak-style": 0
   }
 }
