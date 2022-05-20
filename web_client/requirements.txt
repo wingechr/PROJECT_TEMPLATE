@@ -1,0 +1,3 @@
+scons>=3.0,<4.0
+pystache-cli
+bumpversion
