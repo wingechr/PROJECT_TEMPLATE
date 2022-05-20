@@ -1,5 +1,7 @@
-@import './lib/mylib.scss';
+@import "./colors.scss"
 
-body{
-  background: $cWhite;
-}
+/* BOOTSTRAP: https://getbootstrap.com/docs/4.0/customize/sass/ */
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+
+@import "./breakpoints.scss"
