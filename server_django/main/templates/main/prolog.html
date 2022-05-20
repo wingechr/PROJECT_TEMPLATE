@@ -1,0 +1,11 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{language}}">
+<head>
+    <title>{{title}}</title>
+    {% include "main/head-meta.html" %}
+    {% include "main/head-vendor-css.html" %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+</head>
+<body>
+<main class="container">

@@ -49,29 +49,38 @@ TEMPLATES = [
     }
 ]
 
+# add node_modules folders: prefix => path
+STATICFILES_DIRS = [
+    ("vendor", "node_modules/jquery/dist"),
+    ("vendor", "node_modules/bootstrap/dist"),
+    ("vendor", "node_modules/bootstrap-icons/font"),
+    ("vendor", "node_modules/bootstrap-select/dist"),
+]
+
+
 ROOT_URLCONF = "project.urls"
 WSGI_APPLICATION = "project.wsgi.application"
 
 if "test" in sys.argv:
-    DATABASES = {"default": TEST_DATABASE}  # noqa: F405
+    DATABASES = {"default": TEST_DATABASE}  # noqa: F405: local setting
 else:
-    DATABASES = {"default": DEFAULT_DATABASE}  # noqa: F405
+    DATABASES = {"default": DEFAULT_DATABASE}  # noqa: F405: local setting
 
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-STATIC_URL = urljoin(BASE_URL, "static/")  # noqa: F405
+STATIC_URL = urljoin(BASE_URL, "static/")  # noqa: F405: local setting
 STATIC_ROOT = os.path.join(BASE_DIR, "_static/")
 
-MEDIA_URL = urljoin(BASE_URL, "media/")  # noqa: F405
+MEDIA_URL = urljoin(BASE_URL, "media/")  # noqa: F405: local setting
 MEDIA_ROOT = os.path.join(BASE_DIR, "_local/media/")
 
 AUTH_PASSWORD_VALIDATORS = []
 
 AUTHENTICATION_BACKENDS = ("django.contrib.auth.backends.ModelBackend",)
 
-LOGLEVEL = logging.INFO if DEBUG else logging.WARNING  # noqa: F405
+LOGLEVEL = logging.INFO if DEBUG else logging.WARNING  # noqa: F405: local setting
 logger = logging.getLogger()
 logFormatter = logging.Formatter("%(asctime)s [%(levelname)s %(funcName)s] %(message)s")
 fileHandler = logging.FileHandler(os.path.join(BASE_DIR, "_local", "log.txt"))
