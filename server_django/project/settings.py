@@ -5,7 +5,11 @@ import os
 import sys
 from urllib.parse import urljoin
 
-from _local.settings import *  # noqa: F403
+try:
+    from _local.settings import *  # noqa: F403
+except ImportError:
+    logging.error("_local/settings.py does not exist, copy settings.example.py")
+    from _local.settings_example import *  # noqa: F403
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -77,13 +81,3 @@ consoleHandler.setFormatter(logFormatter)
 logger.setLevel(LOGLEVEL)
 logger.addHandler(fileHandler)
 logger.addHandler(consoleHandler)
-
-IMAGE = {
-    "SIZE": 1024,
-    "EXTENSION": "jpg",
-    "QUALITY": 75,
-    "TMP_DIR": "image_tmp",
-    "DIR": "img",
-}
-
-DOWNLOAD_XLSX_FILENAME = "Projekte.xlsx"
