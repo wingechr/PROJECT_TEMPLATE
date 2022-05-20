@@ -1,5 +1,6 @@
 "use strict";
 
+// require("@babel/polyfill"); // old browser compatibility
 // const $ = require("jquery"); // defined externally
 // const _ = require("lodash"); // imported
 

@@ -5,7 +5,8 @@
       {
         "useBuiltIns": "entry",
         "corejs": "2",
-        "targets": "> 0.25%, not dead"
+        "targets": "> 0.25%, not dead",
+        "_comment": "remove target for max compatibility"
       }
     ]
   ],
