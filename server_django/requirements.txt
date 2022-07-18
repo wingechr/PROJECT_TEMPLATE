@@ -1,4 +1,7 @@
 django
 djangorestframework
+coreapi
 requests
+django-plotly-dash
+django-guardian
 # django_auth_ldap

@@ -1,4 +1,4 @@
 _local/**
 !_local/*_example.py
-
-/_static
+_static
+node_modules

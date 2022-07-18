@@ -1,0 +1,12 @@
+{% load static %}
+
+<!-- REST API -->
+<script src="{% static 'rest_framework/js/coreapi-0.1.1.js' %}"></script>
+<script src="{% url 'api-docs:schema-js' %}"></script>
+<script>
+var auth = new coreapi.auth.SessionAuthentication({
+    csrfCookieName: 'csrftoken',
+    csrfHeaderName: 'X-CSRFToken',
+});
+var client = new coreapi.Client({auth: auth});
+</script>
