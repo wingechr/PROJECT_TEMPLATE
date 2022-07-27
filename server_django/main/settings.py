@@ -3,7 +3,6 @@
 import logging
 import os
 import sys
-from urllib.parse import urljoin
 
 from _local.settings import *  # noqa: F403
 
@@ -19,7 +18,6 @@ INSTALLED_APPS = [
     # 3rd party
     "rest_framework",
     "rest_framework.authtoken",
-    "guardian",  # object based permissions
     # apps
     "main.apps.AppConfig",
 ]
@@ -34,15 +32,25 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# https://www.django-rest-framework.org/api-guide/permissions/
+
+# TODO https://www.django-rest-framework.org/community/3.10-announcement/
+# remove coreapi ==> openapi
+
 REST_FRAMEWORK = {
+    # https://www.django-rest-framework.org/api-guide/permissions/
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",
+        # "rest_framework.permissions.IsAuthenticated",
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly",
     ],
-    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+    # "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+    "DEFAULT_SCHEMA_CLASS": "main.api.ApiSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.TokenAuthentication",
         "rest_framework.authentication.SessionAuthentication",
+    ],
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+        # 'rest_framework.renderers.BrowsableAPIRenderer',
     ],
 }
 
@@ -84,25 +92,26 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-STATIC_URL = urljoin(BASE_URL, "static/")  # noqa: F405: local setting
-STATIC_ROOT = os.path.join(BASE_DIR, "_static/")
+LOCAL_ROOT = BASE_DIR + "/_local"
 
-MEDIA_URL = urljoin(BASE_URL, "media/")  # noqa: F405: local setting
-MEDIA_ROOT = os.path.join(BASE_DIR, "_local/media/")
+# all must end in slash
+STATIC_URL = BASE_URL + "static/"  # noqa: F405: local setting
+STATIC_ROOT = LOCAL_ROOT + "/static/"
 
+MEDIA_URL = BASE_URL + "media/"  # noqa: F405: local setting
+MEDIA_ROOT = LOCAL_ROOT + "/media/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_PASSWORD_VALIDATORS = []
 
-AUTHENTICATION_BACKENDS = (
-    "django.contrib.auth.backends.ModelBackend",  # default
-    "guardian.backends.ObjectPermissionBackend",
-)
+AUTHENTICATION_BACKENDS = ["django.contrib.auth.backends.ModelBackend"]  # default
 
 LOGLEVEL = logging.INFO if DEBUG else logging.WARNING  # noqa: F405: local setting
 logger = logging.getLogger()
-logFormatter = logging.Formatter("%(asctime)s [%(levelname)s %(funcName)s] %(message)s")
+logFormatter = logging.Formatter(
+    "[%(asctime)s %(levelname)7s] %(message)s", datefmt="%Y-%m-%d %H:%M:%S"
+)
 fileHandler = logging.FileHandler(os.path.join(BASE_DIR, "_local", "log.txt"))
 fileHandler.setFormatter(logFormatter)
 consoleHandler = logging.StreamHandler()

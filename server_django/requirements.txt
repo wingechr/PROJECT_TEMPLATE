@@ -1,7 +1,15 @@
-django
+# very old verions not cmpatible with latest python
+# -r performance-distribution-tools/requirements.txt
+pandas
+matplotlib
+numpy
+seaborn
+ipywidgets # for some reasons, using seaborn in django requires seaborn
+PyYAML
+shortcountrynames
+countrygroups
+
+# django
+django<4
 djangorestframework
 coreapi
-requests
-django-plotly-dash
-django-guardian
-# django_auth_ldap
