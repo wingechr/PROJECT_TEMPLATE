@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = []
 
 AUTHENTICATION_BACKENDS = ["django.contrib.auth.backends.ModelBackend"]  # default
 
-LOGLEVEL = logging.INFO if DEBUG else logging.WARNING  # noqa: F405: local setting
+LOGLEVEL = logging.WARNING if DEBUG else logging.WARNING  # noqa: F405: local setting
 logger = logging.getLogger()
 logFormatter = logging.Formatter(
     "[%(asctime)s %(levelname)7s] %(message)s", datefmt="%Y-%m-%d %H:%M:%S"

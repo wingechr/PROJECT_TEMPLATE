@@ -1,36 +1,39 @@
 # from django.urls import path, include
-from django.contrib.auth.models import User
-from rest_framework import serializers, viewsets
+from django.http import JsonResponse  # noqa
+from main.settings import BASE_URL
+from rest_framework import serializers, viewsets  # noqa
+from rest_framework.schemas import coreapi
 
-from .models import Example
+from . import models  # noqa
 
 
-# Serializers define the API representation.
-class ExampleSerializer(serializers.HyperlinkedModelSerializer):
+class ApiSchema(coreapi.AutoSchema):
+    """create schema js for client"""
+
+    def get_link(self, path, method, base_url):
+        return super().get_link(path, method, BASE_URL)
+
+
+"""
+class ExampleModelSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Example
+        model = models.Example
         # fields = []
         exclude = []
 
 
 # ViewSets define the view behavior.
-class ExampleViewSet(viewsets.ModelViewSet):
-    queryset = Example.objects.all()
-    serializer_class = ExampleSerializer
+class ExampleModelViewSet(viewsets.ModelViewSet):
+    queryset = models.Example.objects.all()
+    serializer_class = ExampleModelSerializer
 
+class DummyViewset(viewsets.ViewSet):
+    def list(self, request):  # GET on instance root
+        return JsonResponse([{"id": 1}], safe=False)
 
-# Serializers define the API representation.
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        # fields = []
-        exclude = []
+"""
 
-
-# ViewSets define the view behavior.
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-routes = [("main/example", ExampleViewSet), ("auth/user", UserViewSet)]
+routes = [
+    # ("main/example", ExampleModelViewSet),
+    # ("main/dummy", DummyViewset, "dummy")
+]

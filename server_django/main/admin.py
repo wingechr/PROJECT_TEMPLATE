@@ -1,10 +1,11 @@
-from django.contrib import admin
+from django.contrib import admin  # noqa
 
-from . import models
+from . import models  # noqa
 
-
+"""
 class ExampleAdmin(admin.ModelAdmin):
     pass
 
 
 admin.site.register(models.Example, ExampleAdmin)
+"""

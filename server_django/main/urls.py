@@ -49,21 +49,28 @@ if settings.DEBUG:  # also serve static files from media
 
 
 # REST API: extend routers from apps
+# REST API: extend routers from apps
 api_router = routers.DefaultRouter()
 
-for prefix, view in api.routes:
-    api_router.register(prefix, view)
+for route in api.routes:  # route, view, [basename]
+    if len(route) == 2:
+        route, view = route
+        api_router.register(route, view)
+    elif len(route) == 3:
+        route, view, basename = route
+        api_router.register(route, view, basename=basename)
+    else:
+        raise NotImplementedError()
 
-
+# NOTE: returns forbidden if no api url registered
 urlpatterns += [
     path("api/", include("rest_framework.urls", namespace="rest_framework")),
-    path("api/", include_docs_urls(title="My API service"), name="api-docs"),
-    path("api/", include(api_router.urls)),
+    path("api/docs/", include_docs_urls(title=settings.SITE_TITLE), name="api-docs"),
+    path("api/v1/", include(api_router.urls)),
 ]
 
 # MAIN APP
 
 urlpatterns += [
     path("", views.index, name="index"),
-    path("_index.html", views._index, name="_index"),
 ]
