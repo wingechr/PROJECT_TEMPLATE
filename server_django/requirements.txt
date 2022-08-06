@@ -1,5 +1,5 @@
 # django
-django<4
+django<4,>=3
 djangorestframework
 coreapi
 mistune>=2.0.3 # not directly required, pinned by Snyk to avoid a vulnerability
