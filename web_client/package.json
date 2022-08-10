@@ -23,7 +23,7 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
-    "bootstrap": "4.6.1",
+    "bootstrap": "4.6.2",
     "bootstrap-icons": "^1.8",
     "bootstrap-select": "1.13.18",
     "jquery": "^3.5"
