@@ -112,7 +112,9 @@ logger = logging.getLogger()
 logFormatter = logging.Formatter(
     "[%(asctime)s %(levelname)7s] %(message)s", datefmt="%Y-%m-%d %H:%M:%S"
 )
-fileHandler = logging.FileHandler(os.path.join(BASE_DIR, "_local", "log.txt"))
+fileHandler = logging.FileHandler(
+    os.path.join(BASE_DIR, "_local", "log.txt"), encoding="utf-8"
+)
 fileHandler.setFormatter(logFormatter)
 consoleHandler = logging.StreamHandler()
 consoleHandler.setFormatter(logFormatter)
