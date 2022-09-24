@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "eslint": ">=8.24",
+    "eslint-config-google": ">=0.14",
+    "eslint-config-standard": ">=17.0",
+    "eslint-plugin-jsdoc": ">=39.3",
+    "chai": ">=4.3",
+    "chai-almost": ">=1.0",
+    "mocha": ">=10.0",
+    "prettier": ">=2.7",
+    "sass": ">=1.55"
+  }
+}
