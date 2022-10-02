@@ -27,6 +27,9 @@ node_modules
 # Excel
 ~*
 
+# cache
+.parcel-cache
+
 # build dirs
 temp
 temp
