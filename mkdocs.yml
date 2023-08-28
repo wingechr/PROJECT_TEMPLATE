@@ -29,5 +29,6 @@ markdown_extensions:
 plugins:
   #- mkdocs-jupyter:
   #    execute: false
+  - mkdocstrings
   - search:
       lang: en
