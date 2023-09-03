@@ -1,13 +1,12 @@
-# coding: utf-8
-# coding: utf-8
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.urls import include, path  # noqa
-from rest_framework import routers
-from rest_framework.documentation import include_docs_urls
+from django.urls import include, path
+from django.views.generic import TemplateView
+from rest_framework.renderers import JSONOpenAPIRenderer
+from rest_framework.schemas import get_schema_view
 
 from . import api, views
 
@@ -48,25 +47,26 @@ if settings.DEBUG:  # also serve static files from media
     urlpatterns += staticfiles_urlpatterns()
 
 
-# REST API: extend routers from apps
-# REST API: extend routers from apps
-api_router = routers.DefaultRouter()
+class MyJSONOpenAPIRenderer(JSONOpenAPIRenderer):
+    pass
 
-for route in api.routes:  # route, view, [basename]
-    if len(route) == 2:
-        route, view = route
-        api_router.register(route, view)
-    elif len(route) == 3:
-        route, view, basename = route
-        api_router.register(route, view, basename=basename)
-    else:
-        raise NotImplementedError()
 
 # NOTE: returns forbidden if no api url registered
 urlpatterns += [
-    path("api/", include("rest_framework.urls", namespace="rest_framework")),
-    path("api/docs/", include_docs_urls(title=settings.SITE_TITLE), name="api-docs"),
-    path("api/v1/", include(api_router.urls)),
+    path("api/v1/", include(api.api_router.urls)),
+    path(
+        "openapi.json",
+        get_schema_view(renderer_classes=[MyJSONOpenAPIRenderer]),
+        name="openapi-schema",
+    ),
+    path(
+        "apidoc/",
+        TemplateView.as_view(
+            template_name="main/apidoc.html",
+            extra_context={"schema_url": "openapi-schema"},
+        ),
+        name="apidoc",
+    ),
 ]
 
 # MAIN APP

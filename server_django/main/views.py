@@ -1,4 +1,3 @@
-# coding: utf-8
 import logging  # noqa
 
 from django.conf import settings

@@ -1,5 +1,3 @@
-# coding: utf-8
-
 import logging
 import os
 import sys
@@ -42,8 +40,7 @@ REST_FRAMEWORK = {
         # "rest_framework.permissions.IsAuthenticated",
         "rest_framework.permissions.IsAuthenticatedOrReadOnly",
     ],
-    # "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
-    "DEFAULT_SCHEMA_CLASS": "main.api.ApiSchema",
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.openapi.AutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.TokenAuthentication",
         "rest_framework.authentication.SessionAuthentication",
@@ -77,6 +74,8 @@ STATICFILES_DIRS = [
     ("vendor", "node_modules/bootstrap/dist"),
     ("vendor", "node_modules/bootstrap-icons/font"),
     ("vendor", "node_modules/bootstrap-select/dist"),
+    ("vendor", "node_modules/swagger-ui/dist"),
+    ("vendor", "node_modules/swagger-client/dist"),
 ]
 
 

@@ -3,9 +3,16 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py createsuperuser
 
+
+npx parcel build --target main
+
+python manage.py generateschema  --format=openapi-json --file main/static/openapi.schema.json
+
 python manage.py collectstatic --no-input
 python manage.py test
 python manage.py runserver
+
+
 ```
 
 ```config

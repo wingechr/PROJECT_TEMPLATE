@@ -4,6 +4,32 @@
     "bootstrap-icons": "^1.9.1",
     "bootstrap-select": "^1.13.18",
     "jquery": "^3.5",
-    "popper.js": "^1.16.1"
+    "popper.js": "^1.16.1",
+    "swagger-client": "^3.20.0",
+    "swagger-ui": "^5.4.2"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.9.3",
+    "parcel": "^2.9.3"
+  },
+  "targets": {
+    "default": {
+      "source": [
+        "src/main.js",
+        "src/main.scss"
+      ],
+      "distDir": "main/static",
+      "engines": {
+        "browsers": "> 0.5%, last 2 versions, not dead"
+      },
+      "sourceMap": false,
+      "optimize": true,
+      "context": "browser",
+      "outputFormat": "global",
+      "isLibrary": false,
+      "includeNodeModules": {
+        "jquery": false
+      }
+    }
   }
 }

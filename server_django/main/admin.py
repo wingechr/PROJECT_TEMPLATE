@@ -1,11 +1,9 @@
 from django.contrib import admin  # noqa
+from django.contrib.contenttypes.models import ContentType
 
-from . import models  # noqa
 
-"""
-class ExampleAdmin(admin.ModelAdmin):
+class ContentTypeAdmin(admin.ModelAdmin):
     pass
 
 
-admin.site.register(models.Example, ExampleAdmin)
-"""
+admin.site.register(ContentType, ContentTypeAdmin)
