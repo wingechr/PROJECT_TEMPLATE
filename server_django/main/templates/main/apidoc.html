@@ -34,6 +34,7 @@
 
     <script type="text/javascript" src="{% static 'vendor/swagger-client.browser.min.js' %}"></script>
     <script>
+        var CLI;
         SwaggerClient({
             url: "{% url schema_url %}",
             requestInterceptor: (request) => {
@@ -42,7 +43,8 @@
                 return request
             }
         }).then((cli) => {
-            console.log(cli.apis.api)
+            CLI = cli
+            console.log(cli)
         })
 
 
@@ -52,6 +54,7 @@
     <script type="text/javascript" src="{% static 'vendor/jquery.js' %}"></script>
     <script>
         $.ajax({ url: "/api/v1/main/simple/" }).then(function (res) { console.log(res) })
+        $.ajax({ url: "/api/v2/" }).then(function (res) { console.log(res) })
     </script>
 
 

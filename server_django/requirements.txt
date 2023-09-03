@@ -2,9 +2,4 @@
 django<4,>=3
 djangorestframework>=3.10
 mistune>=2.0.3 # not directly required, pinned by Snyk to avoid a vulnerability
-
-# https://www.django-rest-framework.org/api-guide/schemas/
-coreapi
-# coreapi-cli
 uritemplate
-pyaml

@@ -26,18 +26,3 @@ class Simple(viewsets.ViewSet):
 
 api_router.register("main/simple", Simple, basename="simple")
 # api_router.register("main/content_type", ContentTypeModelViewSet)
-
-
-class Example:
-    detail = {"s": 34}
-    kwargs = {"fg": 23}
-    url_path = "sd"
-    url_name = "xa"
-    mapping = {"a": "b"}
-
-    @classmethod
-    def get_extra_actions(cls):
-        return [cls]
-
-
-api_router.register("main/example", Example, basename="example")
