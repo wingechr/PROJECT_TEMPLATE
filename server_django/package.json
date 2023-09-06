@@ -13,7 +13,7 @@
     "parcel": "^2.9.3"
   },
   "targets": {
-    "default": {
+    "browser": {
       "source": [
         "src/main.js",
         "src/main.scss"
@@ -25,7 +25,7 @@
       "sourceMap": false,
       "optimize": true,
       "context": "browser",
-      "outputFormat": "global",
+      "outputFormat": "commonjs",
       "isLibrary": false,
       "includeNodeModules": {
         "jquery": false

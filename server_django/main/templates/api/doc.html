@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{language}}">
+
+<head>
+    <title>{{title}}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/swagger-ui.css' %}" />
+</head>
+
+<body>
+    <main class="container">
+        <div id="swagger-ui"></div>
+    </main>
+
+    <script type="text/javascript" src="{% static 'vendor/swagger-ui-bundle.js' %}"></script>
+
+
+    <script>
+        const ui = SwaggerUIBundle({
+            url: "{{ schema_url }}",
+            dom_id: '#swagger-ui',
+            presets: [
+                SwaggerUIBundle.presets.apis,
+                SwaggerUIBundle.SwaggerUIStandalonePreset
+            ],
+            layout: "BaseLayout",
+            requestInterceptor: (request) => {
+                request.headers['X-CSRFToken'] = "{{ csrf_token }}";
+                request.headers['Accept'] = "application/json";
+                return request;
+            }
+        })
+    </script>
+
+    <script type="text/javascript" src="{% static 'vendor/swagger-client.browser.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'main.js' %}"></script>
+    <script>
+        /* example api usage */
+        /*
+        getApiClient("/static/api/api-schema.json").then((a) => a.apis.api.example({ "value": 1 })).then((r) => console.log(r.body["value"]))
+
+        getApiClient("/static/api/restapi-schema.json").then((a) => a.apis.api.listVersions()).then((r) => console.log(r.body))
+            */
+
+        //getApiClient("/static/api/restapi-schema.json").then((a) => a.apis.api.createVersion({ "requestBody": { "version": "v3" } })).then((r) => console.log(r.body))
+
+
+        const url = "/api/rest/version/"; // Replace with your API endpoint
+        const data = {
+            version: "version9"
+        };
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json", // Specify the content type as JSON
+                'X-CSRFToken': "{{ csrf_token }}"
+            },
+            body: JSON.stringify(data), // Convert the data to JSON string
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("HTTP error, status = " + response.status);
+                }
+                return response.json();
+            })
+            .then((responseData) => {
+                console.log("POST Response:", responseData);
+            })
+            .catch((error) => {
+                console.error("Fetch POST Error:", error);
+            });
+
+    </script>
+
+
+
+</body>
+
+</html>

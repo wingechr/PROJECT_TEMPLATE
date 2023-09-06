@@ -4,9 +4,12 @@ python manage.py migrate
 python manage.py createsuperuser
 
 
-npx parcel build --target main
+npx parcel build --target browser --dist-dir main/static
 
-python manage.py generateschema  --format=openapi-json --file main/static/openapi.schema.json
+python manage.py generateschema  --format=openapi-json --file main/static/api/restapi-schema.json
+
+# python manage.py dumpdata -o data.json
+# python manage.py loaddata
 
 python manage.py collectstatic --no-input
 python manage.py test

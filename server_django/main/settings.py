@@ -31,9 +31,6 @@ MIDDLEWARE = [
 ]
 
 
-# TODO https://www.django-rest-framework.org/community/3.10-announcement/
-# remove coreapi ==> openapi
-
 REST_FRAMEWORK = {
     # https://www.django-rest-framework.org/api-guide/permissions/
     "DEFAULT_PERMISSION_CLASSES": [

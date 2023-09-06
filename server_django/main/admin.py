@@ -1,9 +1,9 @@
-from django.contrib import admin  # noqa
-from django.contrib.contenttypes.models import ContentType
+from django.contrib import admin
+from main.models import Version
 
 
-class ContentTypeAdmin(admin.ModelAdmin):
+class VersionAdmin(admin.ModelAdmin):
     pass
 
 
-admin.site.register(ContentType, ContentTypeAdmin)
+admin.site.register(Version, VersionAdmin)

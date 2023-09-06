@@ -1,5 +1,2 @@
-const utils = require("./utils.js");
 
-window.main = {
-  utils: utils,
-};
+window.utils = require("./apiClient.js");
