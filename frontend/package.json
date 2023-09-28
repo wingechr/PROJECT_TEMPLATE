@@ -1,0 +1,32 @@
+{
+  "scripts": {
+    "serve": "npx parcel serve",
+    "build": "npx parcel build"
+  },
+  "targets": {
+    "default": {
+      "context": "browser",
+      "engines": {
+        "browsers": "> 0.5%, last 2 versions, not dead"
+      },
+      "sourceMap": false,
+      "isLibrary": false,
+      "optimize": true,
+      "distDir": "dist",
+      "publicUrl": ".",
+      "source": "src/index.html"
+    }
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.9.3",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.2",
+    "bootstrap-icons": "^1.11.1",
+    "bootstrap-select": "^1.13.18",
+    "eslint": "^8.49.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-jsdoc": "^46.8.2",
+    "jquery": "^3.7.1",
+    "parcel": "^2.9.3"
+  }
+}
