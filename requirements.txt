@@ -1,9 +1,17 @@
+# install package itself to install it's dependencies
+.
+
+# development tools
+bumpversion
+pip
+setuptools
+twine
+tox
+pre-commit
+black
+flake8
+isort
+
+# build tools
 scons>=3.0,<4.0
 pystache-cli
-bumpversion
-flake8
-black
-tox
-pip
-twine
-setuptools
