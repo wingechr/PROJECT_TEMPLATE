@@ -1,0 +1,21 @@
+from glob import glob
+
+from SCons.Script import Environment, Import, Touch
+
+env = Environment()
+Import("env")
+
+src_data = env.GetBuildPath("#$SRC/data")
+
+src_data_jsons = env.Command(
+    f"{src_data}/.sconsbuild",
+    glob(f"{src_data}/**/*.json", recursive=True),
+    Touch("$TARGET"),
+)
+
+src_data_json = env.Command(
+    "#$BUILD/data.json",
+    "#$SRC/data.json",
+    f"$PYSTACHE_JSON --partial_paths {src_data}",
+)
+env.Depends(src_data_json, src_data_jsons)

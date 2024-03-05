@@ -15,7 +15,7 @@ job_checkout:
   script:
     - test -d $PATH_CHECKOUT || git clone git@$CI_SERVER_HOST:$CI_PROJECT_PATH.git $PATH_CHECKOUT
     - pushd $PATH_CHECKOUT
-    - git checkout -f $CI_BUILD_REF_NAME
+    - git checkout -f $CI_COMMIT_REF_NAME
     - git pull
     - npm install
     - test -d .env || virtualenv --system-site-packages -p python3 .env
