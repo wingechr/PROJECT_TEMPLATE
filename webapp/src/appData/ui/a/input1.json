@@ -1,0 +1,5 @@
+{
+  "$schema": "../../components/inputInt/schema.json",
+  "parentId": "input1-container",
+  "name": "p1"
+}
