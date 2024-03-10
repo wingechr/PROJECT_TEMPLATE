@@ -1,3 +1,3 @@
-export function getValue(e) {
+function getValue(e) {
   return parseInt(e.value);
 }

@@ -28,13 +28,14 @@ repos:
     hooks:
       - id: prettier
         files: \.(css|less|md|json|sql)$
-#-   repo: https://github.com/pre-commit/mirrors-eslint
-#    rev: v8.36.0
-#    hooks:
-#    -   id: eslint
-#        additional_dependencies:
-#        - eslint@8.14.0
-#        - eslint-config-google@0.14.0
-#        - eslint-plugin-jsdoc@39.3.3
-#        - eslint-config-standard@17.0.0
-#        args: ["--fix"]
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.36.0
+    hooks:
+      - id: eslint
+        additional_dependencies:
+          - eslint-config-standard@17.1.0
+          - eslint-config-prettier@9.1.0
+          - eslint-plugin-jsdoc@48.2.1
+          - eslint-plugin-prettier@5.1.3
+
+        args: ["--fix"]

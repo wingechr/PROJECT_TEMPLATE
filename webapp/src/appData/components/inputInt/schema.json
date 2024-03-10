@@ -1,1 +1,14 @@
-{}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "parentId", "name", "min", "max"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string" },
+    "parentId": { "type": "string" },
+    "name": { "type": "string" },
+    "min": { "type": "integer" },
+    "max": { "type": "integer" }
+  }
+}

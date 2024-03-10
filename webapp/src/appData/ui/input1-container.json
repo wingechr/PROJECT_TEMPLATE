@@ -1,4 +1,5 @@
 {
   "$schema": "../components/div/schema.json",
-  "parentId": "main"
+  "parentId": "main",
+  "id": "input1-container"
 }

@@ -1,4 +1,4 @@
-export function setValue(e, v) {
+function setValue(e, v) {
   e.textContent = v.toLocaleString("de-DE", {
     useGrouping: true,
     minimumFractionDigits: 1,

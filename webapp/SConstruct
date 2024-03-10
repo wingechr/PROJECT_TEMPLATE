@@ -19,22 +19,22 @@ env.Decider("MD5")  # timestamp-newer MD5-timestamp
 functions_js = env.Command(
     "src/appData/build/functions.js",
     "src/appData/buildFunctions.cjs",
-    "node $SOURCE src/appData/functions $TARGET && npx prettier --write $TARGET",
+    "node $SOURCE src/appData/functions $TARGET",
 )
 env.Depends(functions_js, glob("src/appData/functions/**/*.js", recursive=True))
 
 
-data_js = env.Command(
-    "src/appData/build/data.js",
+data_json = env.Command(
+    "src/appData/build/data.json",
     "src/appData/buildData.py",
-    "python $SOURCE src/appData/data $TARGET && npx prettier --write $TARGET",
+    "python $SOURCE src/appData/data $TARGET",
 )
-env.Depends(data_js, glob("src/appData/data/**/*.json", recursive=True))
+env.Depends(data_json, glob("src/appData/data/**/*.json", recursive=True))
 
 ui_js = env.Command(
     "src/appData/build/ui.js",
     "src/appData/buildUI.py",
-    "python $SOURCE src/appData/ui $TARGET && npx prettier --write $TARGET",
+    "python $SOURCE src/appData/ui $TARGET",
 )
 env.Depends(ui_js, glob("src/appData/ui/**/*.json", recursive=True))
 env.Depends(ui_js, glob("src/appData/components/**/*", recursive=True))

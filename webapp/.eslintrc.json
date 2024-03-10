@@ -1,20 +1,42 @@
 {
   "env": {
     "browser": true,
-    "node": true,
-    "es6": true
+    "es6": true,
+    "commonjs": true,
+    "es2021": true
   },
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "jsdoc"],
+  "extends": ["prettier"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
   "rules": {
     "prettier/prettier": [
       "error",
       {
         "endOfLine": "auto"
       }
-    ]
-  },
-  "parserOptions": {
-    "sourceType": "module"
-  },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 90
+      }
+    ],
+    "camelcase": 0,
+    "prefer-const": 0,
+    "valid-jsdoc": [
+      2,
+      {
+        "prefer": { "return": "returns" },
+        "requireReturn": false,
+        "requireReturnDescription": false,
+        "requireParamDescription": false
+      }
+    ],
+    "quotes": [0, "single", "double"],
+
+    "linebreak-style": 0
+  }
 }

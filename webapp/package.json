@@ -7,9 +7,9 @@
   "source": "src/index.html",
   "scripts": {
     "clean": "scons --clean && rm -rf dist build .parcel-cache",
-    "test": "scons && npx mocha src/**/test*.js",
-    "serve": "scons && npx parcel serve --dist-dir build",
-    "build": "scons && rm -rf dist && npx parcel build --no-cache --no-scope-hoist --no-source-maps --dist-dir dist --public-url ./"
+    "test": "scons -j4 && npx mocha src/**/test*.js",
+    "serve": "scons -j4 && npx parcel serve --dist-dir build",
+    "build": "scons -j4 && rm -rf dist && npx parcel build --no-cache --no-scope-hoist --no-source-maps --dist-dir dist --public-url ./"
   },
   "dependencies": {
     "lodash": "^4.17.21"
@@ -19,8 +19,10 @@
     "acorn-walk": "^8.3.2",
     "chai": "^5.1.0",
     "chai-almost": "^1.0.1",
-    "eslint": "^8.57.0",
+    "eslint": "^8.36.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-jsdoc": "^48.2.1",
     "eslint-plugin-prettier": "^5.1.3",
     "glob": "^10.3.10",
     "mocha": "^10.3.0",

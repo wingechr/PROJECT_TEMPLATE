@@ -7,14 +7,14 @@ import {
 } from "./app/utils.js";
 import { DataGraph } from "./app/dataGraph.js";
 // import $ from "jquery";
-import appDefaultData from "./appData/build/data.js";
+import appDefaultData from "./appData/build/data.json";
 import appFunctions from "./appData/build/functions.js";
 import appUI from "./appData/build/ui.js";
 
 /**
  *
  * @param {DataGraph} dg
- * @param {object} data
+ * @param {object} initialData
  */
 function addDataNodes(dg, initialData) {
   for (const name in initialData) {
@@ -25,7 +25,7 @@ function addDataNodes(dg, initialData) {
 /**
  *
  * @param {DataGraph} dg
- * @param {array} functions
+ * @param {array} functionData
  */
 function addFunctionNodes(dg, functionData) {
   for (const { name, dependencies, callable } of functionData) {
@@ -42,8 +42,6 @@ function addHtml(uiData) {
     elementContainer.innerHTML = html;
     // assuming its only one item: get first child
     const element = elementContainer.firstChild;
-    // assign id
-    element.id = id;
     parent.appendChild(element);
   }
 }
@@ -51,6 +49,7 @@ function addHtml(uiData) {
 /**
  *
  * @param {DataGraph} dg
+ * @param {array} uiData
  */
 function bindUICallbacks(dg, uiData) {
   for (const { id, name, getValue, setValue } of uiData) {
