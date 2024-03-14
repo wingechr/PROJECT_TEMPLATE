@@ -10,7 +10,8 @@ export class DataGraph {
    */
   constructor() {
     this._nodes = {}; // object[name, node object]:
-    this._updateSequence = []; // array[string]: ordered array of names of (mutable) function nodes
+    // array[string]: ordered array of names of (mutable) function nodes
+    this._updateSequence = [];
     this._callbacks = []; // array[callback object]
   }
 
@@ -129,6 +130,8 @@ export class DataGraph {
     if (!callable) {
       throw new Error(`missing function`);
     }
+    console.log(`DG: add function: ${name}(${dependencies})`);
+
     this.addNode(name);
     const node = this._nodes[name];
     node.dependencies = dependencies;
@@ -152,6 +155,7 @@ export class DataGraph {
     }
 
     // init node object
+    console.log(`DG: add node: ${name}`);
     const node = {
       name: name,
       value: null,

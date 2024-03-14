@@ -7,7 +7,7 @@ import {
 } from "./app/utils.js";
 import { DataGraph } from "./app/dataGraph.js";
 // import $ from "jquery";
-import appDefaultData from "./appData/build/data.json";
+import appDefaultData from "./appData/build/data.js";
 import appFunctions from "./appData/build/functions.js";
 import appUI from "./appData/build/ui.js";
 
@@ -33,27 +33,18 @@ function addFunctionNodes(dg, functionData) {
   }
 }
 
-function addHtml(uiData) {
-  for (const { id, parentId, html } of uiData) {
-    const parent = document.getElementById(parentId);
-    // create new container element
-    const elementContainer = document.createElement("div");
-    // add content
-    elementContainer.innerHTML = html;
-    // assuming its only one item: get first child
-    const element = elementContainer.firstChild;
-    parent.appendChild(element);
-  }
-}
-
 /**
  *
  * @param {DataGraph} dg
  * @param {array} uiData
  */
 function bindUICallbacks(dg, uiData) {
-  for (const { id, name, getValue, setValue } of uiData) {
+  for (const { id, name, getValue, setValue, init } of uiData) {
     const element = document.getElementById(id);
+
+    if (init) {
+      init();
+    }
 
     /* change of UI => data (inputs only) */
     if (getValue) {
@@ -86,8 +77,11 @@ let initialData = appDefaultData;
 
 if (typeof window !== "undefined") {
   console_log("INIT UI");
-  addHtml(appUI);
-  bindUICallbacks(app, appUI);
+  for (const row of appUI) {
+    console.log(row);
+    row.component.init(app);
+  }
+
   initialData = getInitialDataWithStorage(appDefaultData); // only in UI
   window.app = app; // export to browser
 }

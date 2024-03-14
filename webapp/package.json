@@ -9,14 +9,15 @@
     "clean": "scons --clean && rm -rf dist build .parcel-cache",
     "test": "scons -j4 && npx mocha src/**/test*.js",
     "serve": "scons -j4 && npx parcel serve --dist-dir build",
-    "build": "scons -j4 && rm -rf dist && npx parcel build --no-cache --no-scope-hoist --no-source-maps --dist-dir dist --public-url ./"
+    "build": "npm run clean && scons -j4 && npx parcel build --no-cache --no-scope-hoist --no-source-maps --dist-dir dist --public-url ./"
   },
   "dependencies": {
+    "chart.js": "^4.4.2",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "acorn": "^8.11.3",
-    "acorn-walk": "^8.3.2",
+    "@babel/eslint-parser": "^7.23.10",
+    "@babel/plugin-syntax-import-assertions": "^7.23.3",
     "chai": "^5.1.0",
     "chai-almost": "^1.0.1",
     "eslint": "^8.36.0",
@@ -25,6 +26,7 @@
     "eslint-plugin-jsdoc": "^48.2.1",
     "eslint-plugin-prettier": "^5.1.3",
     "glob": "^10.3.10",
+    "jsdom": "^24.0.0",
     "mocha": "^10.3.0",
     "parcel": "^2.12.0",
     "prettier": "^3.2.5"
