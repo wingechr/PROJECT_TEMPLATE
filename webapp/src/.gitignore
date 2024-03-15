@@ -1,0 +1,5 @@
+# auto createdbynpm run build-static
+index.html
+data/index.*
+ui/index.*
+functions/index.*
