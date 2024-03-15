@@ -23,7 +23,7 @@ def resolve_excel(data_from_excel: dict):
             yield spec["key"], val
 
 
-_, dir_in, json_out = sys.argv
+_, dir_in, json_out, js_out = sys.argv
 
 data = {}
 data_from_excel = {}
@@ -58,5 +58,5 @@ text = json.dumps(data, indent=2, ensure_ascii=False)
 with open(json_out, "w", encoding="utf-8") as file:
     file.write(text)
 
-# with open(js_out, "w", encoding="utf-8") as file:
-#    file.write(f"export default [\n{text}\n];")
+with open(js_out, "w", encoding="utf-8") as file:
+    file.write(f"export default {text};")

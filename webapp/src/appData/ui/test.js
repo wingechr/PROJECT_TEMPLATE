@@ -1,6 +1,6 @@
 "use strict";
 
-import { IntInputComponent } from "./../components/index.js";
+import { IntInputComponent } from "./../../components/index.js";
 
 const c = new IntInputComponent({
   id: "id1",

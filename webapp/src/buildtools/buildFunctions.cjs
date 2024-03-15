@@ -50,11 +50,11 @@ function sortExports(exports, data) {
 
     if (isOk) {
       done.push(exp);
-      //console.log(`adding ${exp.id}`);
+      //console_log(`adding ${exp.id}`);
       maxDefer = todo.length;
       dataIds.add(exp.id);
     } else {
-      //console.log(`deferring ${exp.id}`);
+      //console_log(`deferring ${exp.id}`);
       todo.push(exp);
     }
 

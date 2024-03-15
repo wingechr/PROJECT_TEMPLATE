@@ -17,9 +17,9 @@ env.Decider("MD5")  # timestamp-newer MD5-timestamp
 # env.SConscript(env.GetBuildPath("#/src/appData/SConscript"))
 
 data_json = env.Command(
-    "src/appData/build/data.json",
+    ["src/appData/build/data.json", "src/appData/build/data.js"],
     "src/buildtools/buildData.py",
-    "python $SOURCE src/appData/data $TARGETS",
+    "python $SOURCES src/appData/data $TARGETS",
 )
 env.Depends(data_json, glob("src/appData/data/**/*.json", recursive=True))
 
@@ -27,15 +27,26 @@ env.Depends(data_json, glob("src/appData/data/**/*.json", recursive=True))
 functions_js = env.Command(
     "src/appData/build/functions.js",
     ["src/buildtools/buildFunctions.cjs", "src/appData/build/data.json"],
-    "node $SOURCES src/appData/functions $TARGET",
+    "node $SOURCES src/appData/functions $TARGETS",
 )
 env.Depends(functions_js, glob("src/appData/functions/**/*.js", recursive=True))
 
 
 ui_js = env.Command(
     "src/appData/build/ui.js",
-    ["src/buildtools/buildUI.cjs", "src/index.html"],
-    "node $SOURCES src/appData/ui $TARGET",
+    ["src/buildtools/buildUI.cjs", "src/index.template.html"],
+    "node $SOURCES src/appData/ui $TARGETS",
 )
 env.Depends(ui_js, glob("src/appData/ui/**/*.js", recursive=True))
 env.Depends(ui_js, glob("src/components/**/*", recursive=True))
+
+index_html = env.Command(
+    "src/index.html",
+    [
+        "src/buildtools/buildIndex.cjs",
+        "src/appData/build/ui.js",
+        "src/index.template.html",
+    ],
+    "node $SOURCES $TARGETS && prettier -w $TARGETS",
+)
+env.Depends(index_html, glob("src/components/**/*", recursive=True))

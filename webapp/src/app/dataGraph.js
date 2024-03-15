@@ -130,7 +130,7 @@ export class DataGraph {
     if (!callable) {
       throw new Error(`missing function`);
     }
-    console.log(`DG: add function: ${name}(${dependencies})`);
+    console_log(`DG: add function: ${name}(${dependencies})`);
 
     this.addNode(name);
     const node = this._nodes[name];
@@ -155,7 +155,7 @@ export class DataGraph {
     }
 
     // init node object
-    console.log(`DG: add node: ${name}`);
+    console_log(`DG: add node: ${name}`);
     const node = {
       name: name,
       value: null,

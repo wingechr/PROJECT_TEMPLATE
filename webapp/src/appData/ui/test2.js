@@ -1,5 +1,5 @@
 "use strict";
-import { Component, LabelOUtputComponent } from "./../components/index.js";
+import { Component, LabelOUtputComponent } from "./../../components/index.js";
 
 const c1 = new LabelOUtputComponent({
   id: "id2",

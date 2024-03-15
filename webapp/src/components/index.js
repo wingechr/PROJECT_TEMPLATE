@@ -1,28 +1,37 @@
+import { console_log } from "./../app/utils.js";
+
 class Component {
   constructor(options) {
     this.id = options.id;
     this.parentId = options.parentId;
   }
-
-  init(app) {
-    console.log("init component");
+  createDynamic(document) {
+    console_log("create dynamic html");
+  }
+  createStatic(document) {
+    console_log("create static html");
+  }
+  init(document, app) {
+    console_log("init component");
   }
 }
 
 class LabelOUtputComponent extends Component {
   constructor(options) {
     super(options);
-    this.name = options.name;
+    this.nameGet = options.name;
   }
-
-  init(app) {
+  createDynamic(document) {
     let element = document.createElement("label");
+    element.setAttribute("data-name-get", this.nameGet);
     element.id = this.id;
-    const dataName = this.name;
-
     document.getElementById(this.parentId).appendChild(element);
+  }
+  init(document, app) {
+    let element = document.getElementById(this.id);
+    const nameGet = element.getAttribute("data-name-get");
 
-    app.addCallback([dataName], (value) => {
+    app.addCallback([nameGet], (value) => {
       element.textContent = value.toLocaleString("de-DE", {
         useGrouping: true,
         minimumFractionDigits: 1,
@@ -37,25 +46,33 @@ class IntInputComponent extends Component {
     super(options);
     this.min = options.min;
     this.max = options.max;
-    this.name = options.name;
+    this.nameGet = options.name;
+    this.nameSet = options.name;
   }
 
-  init(app) {
+  createSynamic(document) {
     let element = document.createElement("input");
+    element.setAttribute("data-name-set", this.nameSet);
+    element.setAttribute("data-name-get", this.nameGet);
     element.id = this.id;
     element.type = "number";
     element.min = this.min;
     element.max = this.max;
-    const dataName = this.name;
     document.getElementById(this.parentId).appendChild(element);
+  }
+
+  init(document, app) {
+    let element = document.getElementById(this.id);
+    const nameSet = element.getAttribute("data-name-set");
+    const nameGet = element.getAttribute("data-name-get");
 
     element.addEventListener("change", function (_event) {
       const value = parseInt(element.value);
       // TODO: OR: set data attribute
-      app.setValue(dataName, value);
+      app.setValue(nameGet, value);
     });
 
-    app.addCallback([dataName], (value) => {
+    app.addCallback([nameSet], (value) => {
       element.value = value;
     });
   }

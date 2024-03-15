@@ -56,6 +56,7 @@ function getInitialDataWithStorage(defaultData) {
  * @param {*} value
  */
 function saveLocalStorage(key, value) {
+  console_log(`Storing value ${key} = ${value}`);
   localStorage.setItem(key, JSON.stringify(value));
 }
 
