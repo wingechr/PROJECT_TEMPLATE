@@ -7,7 +7,7 @@ import {
 } from "./app/utils.js";
 import { DataGraph } from "./app/dataGraph.js";
 // import $ from "jquery";
-import appDefaultData from "./appData/build/data.js";
+import appDefaultData from "./appData/build/data.json";
 import appFunctions from "./appData/build/functions.js";
 import appUI from "./appData/build/ui.js";
 

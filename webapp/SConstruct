@@ -17,7 +17,7 @@ env.Decider("MD5")  # timestamp-newer MD5-timestamp
 # env.SConscript(env.GetBuildPath("#/src/appData/SConscript"))
 
 data_json = env.Command(
-    ["src/appData/build/data.json","src/appData/build/data.js"],
+    "src/appData/build/data.json",
     "src/buildtools/buildData.py",
     "python $SOURCE src/appData/data $TARGETS",
 )
