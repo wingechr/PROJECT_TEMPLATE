@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { describe, it } from "mocha";
-import { isDifferent } from "../app/utils.js";
+import { isDifferent } from "./utils.mjs";
 
 describe("isDifferent", () => {
   it("should be false for same number", () => {

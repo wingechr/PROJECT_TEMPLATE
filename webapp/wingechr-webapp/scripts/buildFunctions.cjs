@@ -2,7 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const utils = require("./buildUtils.cjs");
+const utils = require("./utils/index.cjs");
 
 function getFunctionInfo(func) {
   // Get the name of the function
@@ -86,16 +86,18 @@ function save(items, filepath) {
   fs.writeFileSync(filepath, text);
 }
 
-const [_node, script, dataJsonPath, inputDir, jsOut] = process.argv;
+const [_node, script, inputDir, dataIn, jsOut] = process.argv;
 const scriptDir = path.dirname(path.resolve(script));
+
 const outDir = path.dirname(path.resolve(jsOut));
-const reldataJsonPath = utils.getRelPath(scriptDir, dataJsonPath);
-const data = require(reldataJsonPath);
+const relDataPath = utils.getRelPath(scriptDir, dataIn);
+const data = require(relDataPath);
 
 utils
   .findJSFiles(inputDir)
   .then((x) => x.sort())
-  .then((x) => utils.loadFiles(x, scriptDir))
+  .then((x) => x.filter((f) => path.resolve(f) != path.resolve(jsOut)))
+  .then((x) => utils.loadFiles(x))
   .then((x) => utils.getExports(x, outDir))
   .then((x) => sortExports(x, data))
   .then((exps) => save(exps, jsOut));

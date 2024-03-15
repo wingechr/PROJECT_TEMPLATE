@@ -1,7 +1,8 @@
 "use strict";
-import _ from "lodash";
 
-const IS_DEBUG = process.env.NODE_ENV == "development";
+const IS_DEBUG =
+  typeof process != "undefined" ? process.env.NODE_ENV == "development" : true;
+
 /* only use console.log in development */
 let console_log;
 if (IS_DEBUG) {
@@ -19,16 +20,14 @@ if (IS_DEBUG) {
 }
 
 /**
- * we could also do a lodash deep equal, but I don't thinks it's worth the trouble.
- * it's good enough that it works on primitive data
  * @param {*} x
  * @param {*} y
  * @returns {boolean}
  */
 function isDifferent(x, y) {
-  /*
+  /* TODO: better (faster)
    */
-  return !_.isEqual(x, y);
+  return JSON.stringify(x) != JSON.stringify(y);
 }
 
 /**
@@ -36,7 +35,7 @@ function isDifferent(x, y) {
  * @returns {object}
  */
 function getInitialDataWithStorage(defaultData) {
-  result = {};
+  const result = {};
   for (const [name, valueDefault] of Object.entries(defaultData)) {
     const strVal = localStorage.getItem(name);
     if (strVal) {

@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { describe, it } from "mocha";
-import { DataGraph } from "../app/dataGraph.js";
+import { DataGraph } from "./dataGraph.mjs";
 
 describe("DataGraph", () => {
   it("should refuse duplicate names", () => {

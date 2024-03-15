@@ -6,14 +6,18 @@
   "browserslist": "> 0.5%, last 5 versions, not dead",
   "source": "src/index.html",
   "scripts": {
-    "clean": "scons --clean && rm -rf dist build .parcel-cache",
-    "test": "scons -j4 && npx mocha src/**/test*.js",
-    "serve": "scons -j4 && npx parcel serve --dist-dir build",
-    "build": "npm run clean && scons -j4 && npx parcel build --no-cache --no-scope-hoist --no-source-maps --dist-dir dist --public-url ./"
+    "clean": "rm -rf dist build .parcel-cache src/data/index.json src/data/index.mjs src/functions/index.mjs src/ui/index.mjs",
+    "test": "npx mocha **/test*.mjs",
+    "build-data-json": "python src/utils/buildData.py src/data src/data/index.json && prettier -w src/data/index.json",
+    "build-data-js": "node wingechr-webapp/scripts/buildDataJs.cjs src/data/index.json src/data/index.mjs && prettier -w src/data/index.mjs",
+    "build-functions-js": "node wingechr-webapp/scripts/buildFunctions.cjs src/functions src/data/index.json src/functions/index.mjs && prettier -w src/functions/index.mjs",
+    "build-ui-js": "node wingechr-webapp/scripts/buildUI.cjs src/ui src/ui/index.html src/ui/index.mjs && prettier -w src/ui/index.mjs",
+    "build-static": "npm run build-data-json && npm run build-data-js && npm run build-functions-js && npm run build-ui-js",
+    "serve": "npx parcel serve --dist-dir build",
+    "build": "npm run clean && npm run build-static && npx parcel build --no-cache --no-scope-hoist --no-source-maps --dist-dir dist --public-url ./"
   },
   "dependencies": {
-    "chart.js": "^4.4.2",
-    "lodash": "^4.17.21"
+    "chart.js": "^4.4.2"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.23.10",
@@ -29,6 +33,8 @@
     "jsdom": "^24.0.0",
     "mocha": "^10.3.0",
     "parcel": "^2.12.0",
-    "prettier": "^3.2.5"
+    "polyfill": "^0.1.0",
+    "prettier": "^3.2.5",
+    "process": "^0.11.10"
   }
 }

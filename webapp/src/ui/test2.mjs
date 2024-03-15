@@ -1,5 +1,8 @@
 "use strict";
-import { Component, LabelOUtputComponent } from "./../../components/index.js";
+import {
+  Component,
+  LabelOUtputComponent,
+} from "./../../wingechr-webapp/components/index.mjs";
 
 const c1 = new LabelOUtputComponent({
   id: "id2",

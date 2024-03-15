@@ -10,8 +10,8 @@ const { JSDOM } = require("jsdom");
  * @param {string} directory
  * @returns {Promise} resolves to list of paths
  */
-function findJSFiles(directory) {
-  const filePaths = glob.glob(directory + "/**/*.js");
+function findMJSFiles(directory) {
+  const filePaths = glob.glob(directory + "/**/*.mjs");
   return filePaths;
 }
 
@@ -21,11 +21,13 @@ function getRelPath(dirFrom, filePath) {
   );
 }
 
-function loadFiles(filePaths, scriptDir) {
+function loadFiles(filePaths) {
   return Promise.all(
-    filePaths.map((fp) =>
-      import(getRelPath(scriptDir, fp)).then((mod) => [fp, mod]),
-    ),
+    filePaths.map((fp) => {
+      let fpRel = getRelPath(__dirname, fp);
+      console.log(fpRel);
+      return import(fpRel).then((mod) => [fp, mod]);
+    }),
   );
 }
 
@@ -58,7 +60,7 @@ function extractDivIds(filepathHtml) {
 
 module.exports = {
   getExports,
-  findJSFiles,
+  findJSFiles: findMJSFiles,
   loadFiles,
   getRelPath,
   extractDivIds,

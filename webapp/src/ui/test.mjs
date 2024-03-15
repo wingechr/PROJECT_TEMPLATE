@@ -1,6 +1,6 @@
 "use strict";
 
-import { IntInputComponent } from "./../../components/index.js";
+import { IntInputComponent } from "./../../wingechr-webapp/components/index.mjs";
 
 const c = new IntInputComponent({
   id: "id1",

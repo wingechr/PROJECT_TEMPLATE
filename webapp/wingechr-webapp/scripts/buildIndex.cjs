@@ -3,7 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const { JSDOM } = require("jsdom");
-const utils = require("./buildUtils.cjs");
+const utils = require("./utils/index.cjs");
 
 const [_node, script, uiJs, inHtml, outHtml] = process.argv;
 const scriptDir = path.dirname(path.resolve(script));

@@ -2,7 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const utils = require("./buildUtils.cjs");
+const utils = require("./utils/index.cjs");
 
 function sortExports(exports, externalIds) {
   /* initialize nodes in tree */
@@ -68,7 +68,7 @@ function save(items, filepath) {
     const filepathRel = it.relPath;
     const basename = path
       .basename(filepathRel)
-      .replace(".js", "")
+      .replace(".mjs", "")
       .replace("-", "_");
     const nameImp = it.name;
     const name = `comp_${i}_${basename}_${nameImp}`;
@@ -85,15 +85,15 @@ function save(items, filepath) {
   fs.writeFileSync(filepath, text);
 }
 
-const [_node, script, indexHtmlPath, inputDir, jsOut] = process.argv;
-const scriptDir = path.dirname(path.resolve(script));
+const [_node, _script, inputDir, indexHtmlPath, jsOut] = process.argv;
 const outDir = path.dirname(path.resolve(jsOut));
 const externalDIvIds = utils.extractDivIds(indexHtmlPath);
 
 utils
   .findJSFiles(inputDir)
   .then((x) => x.sort())
-  .then((x) => utils.loadFiles(x, scriptDir))
+  .then((x) => x.filter((f) => path.resolve(f) != path.resolve(jsOut)))
+  .then((x) => utils.loadFiles(x))
   .then((x) => utils.getExports(x, outDir))
   .then((x) => sortExports(x, externalDIvIds))
   .then((exps) => save(exps, jsOut));

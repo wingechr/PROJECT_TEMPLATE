@@ -1,5 +1,5 @@
 "use strict";
-import { console_log, isDifferent } from "./utils.js";
+import { console_log, isDifferent } from "./utils.mjs";
 
 /**
  *

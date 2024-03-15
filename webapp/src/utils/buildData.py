@@ -23,7 +23,7 @@ def resolve_excel(data_from_excel: dict):
             yield spec["key"], val
 
 
-_, dir_in, json_out, js_out = sys.argv
+_, dir_in, json_out = sys.argv
 
 data = {}
 data_from_excel = {}
@@ -35,6 +35,10 @@ def add_dict_unique(dct, key, val):
 
 
 for path in glob.glob(dir_in + "/**/*.json", recursive=True):
+    # skip output
+    if os.path.abspath(json_out) == os.path.abspath(path):
+        continue
+
     basedir = os.path.dirname(path)
     print(path)
     with open(path, encoding="utf-8") as file:
@@ -58,5 +62,5 @@ text = json.dumps(data, indent=2, ensure_ascii=False)
 with open(json_out, "w", encoding="utf-8") as file:
     file.write(text)
 
-with open(js_out, "w", encoding="utf-8") as file:
-    file.write(f"export default {text};")
+# with open(js_out, "w", encoding="utf-8") as file:
+#    file.write(f"export default {text};")

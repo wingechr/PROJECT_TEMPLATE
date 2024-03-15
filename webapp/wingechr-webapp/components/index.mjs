@@ -1,4 +1,4 @@
-import { console_log } from "./../app/utils.js";
+import { console_log } from "./../utils.mjs";
 
 class Component {
   constructor(options) {
@@ -50,7 +50,7 @@ class IntInputComponent extends Component {
     this.nameSet = options.name;
   }
 
-  createSynamic(document) {
+  createDynamic(document) {
     let element = document.createElement("input");
     element.setAttribute("data-name-set", this.nameSet);
     element.setAttribute("data-name-get", this.nameGet);
