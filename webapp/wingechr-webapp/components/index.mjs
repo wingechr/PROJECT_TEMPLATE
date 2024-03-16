@@ -1,81 +1,114 @@
 import { console_log } from "./../utils.mjs";
 
 class Component {
-  constructor(options) {
-    this.id = options.id;
-    this.parentId = options.parentId;
+  constructor(parentId, id, dataName, tag) {
+    this.parentId = parentId;
+    this.id = id;
+    this.dataName = dataName;
+    this.tag = tag || "div";
+    this.element = null; // in init();
   }
-  createDynamic(document) {
-    console_log("create dynamic html");
+
+  createHtml(document) {
+    if (document.getElementById(this.id)) {
+      throw new Error(`Wlement already exists: ${this.id}`);
+    }
+    const parent = document.getElementById(this.parentId);
+    if (!parent) {
+      throw new Error(`Parent element does not exist: ${this.parentId}`);
+    }
+    const element = document.createElement(this.tag);
+    element.id = this.id;
+
+    parent.appendChild(element);
+    if (this.dataName) {
+      element.setAttribute("data-name", this.dataName);
+    }
+    return element;
   }
-  createStatic(document) {
-    console_log("create static html");
+
+  createStaticHtml(document) {
+    if (this.staticHtml) {
+      this._createHtmlElement(document);
+    }
   }
-  init(document, app) {
-    console_log("init component");
+
+  init(document, app, createStaticHtml) {
+    if (createStaticHtml) {
+      this.createStaticHtml(document);
+    }
+
+    const element = document.getElementById(this.id);
+    this.element = element;
+    const dataName = element.getAttribute("data-name");
+    const getValue = this.getValue;
+
+    if (dataName && getValue) {
+      element.addEventListener("change", (_event) => {
+        app.setValue(dataName, getValue(element));
+      });
+    }
+
+    const setValue = this.setValue;
+    if (dataName && setValue) {
+      app.addCallback([dataName], (value) => setValue(element, value));
+    }
   }
 }
 
-class LabelOUtputComponent extends Component {
-  constructor(options) {
-    super(options);
-    this.nameGet = options.name;
+class OutputComponent extends Component {
+  setValue(element, value) {
+    element.value = value;
   }
-  createDynamic(document) {
-    let element = document.createElement("label");
-    element.setAttribute("data-name-get", this.nameGet);
-    element.id = this.id;
-    document.getElementById(this.parentId).appendChild(element);
-  }
-  init(document, app) {
-    let element = document.getElementById(this.id);
-    const nameGet = element.getAttribute("data-name-get");
+}
 
-    app.addCallback([nameGet], (value) => {
-      element.textContent = value.toLocaleString("de-DE", {
-        useGrouping: true,
-        minimumFractionDigits: 1,
-        maximumFractionDigits: 1,
-      });
+class InputComponent extends OutputComponent {
+  getValue(element) {
+    return element.value;
+  }
+}
+
+class LabelOutputComponent extends OutputComponent {
+  constructor(parentId, id, dataName) {
+    const tag = "label";
+    super(parentId, id, dataName, tag);
+  }
+
+  setValue(element, value) {
+    element.textContent = value.toLocaleString("de-DE", {
+      useGrouping: true,
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
     });
   }
 }
 
-class IntInputComponent extends Component {
-  constructor(options) {
-    super(options);
-    this.min = options.min;
-    this.max = options.max;
-    this.nameGet = options.name;
-    this.nameSet = options.name;
+class IntInputComponent extends InputComponent {
+  constructor(parentId, id, dataName, min, max) {
+    const tag = "input";
+    super(parentId, id, dataName, tag);
+    this.min = min;
+    this.max = max;
   }
 
-  createDynamic(document) {
-    let element = document.createElement("input");
-    element.setAttribute("data-name-set", this.nameSet);
-    element.setAttribute("data-name-get", this.nameGet);
-    element.id = this.id;
+  createHtml(document) {
+    let element = super.createHtml(document);
     element.type = "number";
     element.min = this.min;
     element.max = this.max;
-    document.getElementById(this.parentId).appendChild(element);
+    return element;
   }
 
-  init(document, app) {
-    let element = document.getElementById(this.id);
-    const nameSet = element.getAttribute("data-name-set");
-    const nameGet = element.getAttribute("data-name-get");
+  getValue(element) {
+    return parseInt(super.getValue(element));
+  }
 
-    element.addEventListener("change", function (_event) {
-      const value = parseInt(element.value);
-      // TODO: OR: set data attribute
-      app.setValue(nameGet, value);
-    });
-
-    app.addCallback([nameSet], (value) => {
-      element.value = value;
-    });
+  setValue(element, value) {
+    // clip to range
+    value = Math.min(value, parseInt(element.max));
+    value = Math.max(value, parseInt(element.min));
+    return super.setValue(element, value);
   }
 }
 
-export { Component, IntInputComponent, LabelOUtputComponent };
+export { Component, IntInputComponent, LabelOutputComponent };

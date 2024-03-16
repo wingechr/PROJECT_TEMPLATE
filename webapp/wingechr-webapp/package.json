@@ -1,11 +1,8 @@
 {
-  "name": "wingechr-webapp",
+  "name": "@wingechr/webapp",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
+  "main": "index.mjs",
+  "author": "Christian Winger",
+  "license": "ISC",
+  "type": "module"
 }

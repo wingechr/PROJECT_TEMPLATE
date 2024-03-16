@@ -8,7 +8,7 @@ import {
 import { DataGraph } from "./dataGraph.mjs";
 
 class App {
-  constructor(data, functions, ui) {
+  constructor(data, functions, ui, createStaticHtml) {
     let initialData = data;
 
     /* create app without UI */
@@ -28,14 +28,13 @@ class App {
     // if browser
     if (typeof window !== "undefined") {
       console_log("INIT UI");
-      for (const row of ui) {
-        row.component.createDynamic(document); // already done in precompile
-        row.component.init(document, graph);
+      for (const component of ui) {
+        component.init(document, graph, createStaticHtml);
 
         // also bind storage
-        if (row.component.nameSet) {
-          graph.addCallback([row.component.nameSet], (value) =>
-            saveLocalStorage(row.component.nameSet, value),
+        if (component.dataName && component.getValue) {
+          graph.addCallback([component.dataName], (value) =>
+            saveLocalStorage(component.dataName, value),
           );
         }
       }

@@ -12,7 +12,7 @@
     "build-data-js": "node wingechr-webapp/scripts/buildDataMjs.cjs src/data/index.json src/data/index.mjs && prettier -w src/data/index.mjs",
     "build-functions-js": "node wingechr-webapp/scripts/buildFunctionsMjs.cjs src/functions src/data/index.json src/functions/index.mjs && prettier -w src/functions/index.mjs",
     "build-ui-js": "node wingechr-webapp/scripts/buildUiMjs.cjs src/ui src/ui/index.html src/ui/index.mjs && prettier -w src/ui/index.mjs",
-    "build-index-html": "node wingechr-webapp/scripts/buildIndexHtml.cjs src/ui/index.mjs src/ui/index.html src/index.html && prettier -w src/index.html",
+    "build-index-html": "node wingechr-webapp/scripts/buildIndexHtml.cjs src/ui/index.mjs src/ui/index.html src/index.html true && prettier -w src/index.html",
     "build-static": "npm run build-data-json && npm run build-data-js && npm run build-functions-js && npm run build-ui-js && npm run build-index-html",
     "serve": "npx parcel serve --dist-dir build",
     "build": "npm run clean && npm run build-static && npx parcel build --no-cache --no-scope-hoist --no-source-maps --dist-dir dist --public-url ./"
@@ -23,6 +23,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.23.10",
     "@babel/plugin-syntax-import-assertions": "^7.23.3",
+    "@wingechr/webapp": "file:wingechr-webapp",
     "chai": "^5.1.0",
     "chai-almost": "^1.0.1",
     "eslint": "^8.36.0",
