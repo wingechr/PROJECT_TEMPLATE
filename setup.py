@@ -1,12 +1,11 @@
-from setuptools import find_packages, setup
+from setuptools import setup
 
 if __name__ == "__main__":
-
     with open("README.md", encoding="utf-8") as file:
         long_description = file.read()
 
     setup(
-        packages=find_packages(),
+        packages=["WINGECHR_PACKAGE_TEMPLATE"],
         keywords=[],
         install_requires=["click", "coloredlogs"],
         name="WINGECHR_PACKAGE_TEMPLATE",
@@ -29,5 +28,6 @@ if __name__ == "__main__":
             "Operating System :: OS Independent",
         ],
         entry_points={"console_scripts": ["project-cmd = MODULE.__main__:main"]},
-        package_data={"WINGECHR_PACKAGE_TEMPLATE.test": ["data/**"]},
+        package_data={"WINGECHR_PACKAGE_TEMPLATE": ["data/**"]},
+        include_package_data=True,
     )

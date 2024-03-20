@@ -1,6 +1,0 @@
-.parcel-cache
-.env
-.venv
-build
-dist
-node_modules
