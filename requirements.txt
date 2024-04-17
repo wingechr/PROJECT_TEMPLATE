@@ -2,9 +2,10 @@
 .
 
 # development tools
+setuptools
+wheel
 bumpversion
 pip
-setuptools
 twine
 tox
 pre-commit
