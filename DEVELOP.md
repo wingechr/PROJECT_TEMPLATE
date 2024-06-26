@@ -23,6 +23,7 @@ python -m mkdocs build
 
 ```
 # Settings -> Actions -> General -> Workflow permissions: "Read and write permissions"
+# Set github page
 mkdocs gh-deploy # initially
 ```
 
