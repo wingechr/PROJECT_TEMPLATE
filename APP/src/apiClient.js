@@ -5,27 +5,27 @@
  */
 function getCookie(name) {
   let cookieValue = null;
-  if (document.cookie && document.cookie !== '') {
-    const cookies = document.cookie.split(';');
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
     for (let i = 0; i < cookies.length; i++) {
       const cookie = cookies[i].trim();
       // Does this cookie string begin with the name we want?
-      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+      if (cookie.substring(0, name.length + 1) === name + "=") {
         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
         break;
       }
     }
   }
   return cookieValue;
-};
+}
 
 /**
  *
  * @returns {string}
  */
 function getCsrftoken() {
-  return getCookie('csrftoken');
-};
+  return getCookie("csrftoken");
+}
 
 /**
  *
@@ -48,18 +48,17 @@ function api(url, data, method) {
     method: method,
     headers: {
       "Content-Type": "application/json",
-      'X-CSRFToken': token,
+      "X-CSRFToken": token,
     },
     body: data,
-  })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("HTTP error, status = " + response.status);
-        } else if (response.headers.get("Content-Type") == "application/json") {
-          return response.json();
-        }
-        return Promise.resolve();
-      });
+  }).then((response) => {
+    if (!response.ok) {
+      throw new Error("HTTP error, status = " + response.status);
+    } else if (response.headers.get("Content-Type") == "application/json") {
+      return response.json();
+    }
+    return Promise.resolve();
+  });
 }
 
 /**
@@ -79,7 +78,7 @@ function querySettings(defaults, onchange) {
     console.log("new data", data);
 
     // update state with new data
-    Object.keys(data).map((k)=>{
+    Object.keys(data).map((k) => {
       state[k] = data[k];
     });
 
@@ -87,7 +86,7 @@ function querySettings(defaults, onchange) {
 
     // Build the new query string
     let data2 = {};
-    Object.keys(state).map((k)=>{
+    Object.keys(state).map((k) => {
       data2[k] = JSON.stringify(state[k]);
     });
 
@@ -95,10 +94,10 @@ function querySettings(defaults, onchange) {
     console.log("queryString", queryString);
 
     // Get the current URL without the query string
-    const baseUrl = window.location.href.split('?')[0];
+    const baseUrl = window.location.href.split("?")[0];
     const newUrl = baseUrl + "?" + queryString;
 
-    history.pushState({}, '', newUrl);
+    history.pushState({}, "", newUrl);
 
     // callback
     onchange(state);
@@ -115,7 +114,7 @@ function querySettings(defaults, onchange) {
 
     let data = {};
     // get and parse values from url, or use defaults
-    Object.keys(defaults).map((k)=>{
+    Object.keys(defaults).map((k) => {
       let v = url.searchParams.get(k);
       if (v == undefined) {
         // use deafultt
@@ -139,6 +138,6 @@ function querySettings(defaults, onchange) {
   return {
     update: update,
   };
-};
+}
 
-module.exports = {api, getCsrftoken, getCookie, querySettings};
+module.exports = { api, getCsrftoken, getCookie, querySettings };
