@@ -10,7 +10,7 @@ class TestNotebooks(unittest.TestCase):
 
         with open(notebook_path, "rb") as file:
             nb = nbformat.read(file, nbformat.NO_CONVERT)
-        ep = ExecutePreprocessor(timeout=600, kernel_name="python3")
+        ep = ExecutePreprocessor(timeout=600)
         # TODO: may raise RuntimeWarning: Proactor event loop does not implement ...
         ep.preprocess(nb)
 
