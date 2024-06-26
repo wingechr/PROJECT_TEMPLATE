@@ -1,11 +1,11 @@
-from setuptools import setup
+from setuptools import find_packages, setup
 
 if __name__ == "__main__":
     with open("README.md", encoding="utf-8") as file:
         long_description = file.read()
 
     setup(
-        packages=["PYTHON_PACKAGE"],
+        packages=find_packages(),
         keywords=[],
         install_requires=["click", "coloredlogs"],
         name="wingechr-PYTHON_PACKAGE",
@@ -17,7 +17,7 @@ if __name__ == "__main__":
         author_email="c@wingechr.de",
         url="https://github.com/wingechr/PROJECT_TEMPLATE",
         platforms=["any"],
-        license="Public Domain",
+        license="CC0-1.0",
         project_urls={"Bug Tracker": "https://github.com/wingechr/PROJECT_TEMPLATE"},
         classifiers=[
             "Programming Language :: Python :: 3",
