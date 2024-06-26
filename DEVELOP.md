@@ -22,8 +22,13 @@ python -m mkdocs build
 ## Pages
 
 ```
+# Settings -> Actions -> General -> Workflow permissions: "Read and write permissions"
 mkdocs gh-deploy # initially
 ```
+
+## PYPI
+
+# set PYPI_API_TOKEN
 
 ## Tasks
 

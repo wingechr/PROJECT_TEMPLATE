@@ -10,7 +10,7 @@ on:
       - completed
 
 jobs:
-  publish:
+  pypi:
     runs-on: ubuntu-latest
 
     steps:
