@@ -1,5 +1,3 @@
-# Welcome to MkDocs
+# Readme
 
-## Api
-
-::: WINGECHR_PACKAGE_TEMPLATE
+--8<-- "README.md"

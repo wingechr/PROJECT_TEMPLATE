@@ -5,14 +5,18 @@ pre-commit install
 pre-commit autoupdate
 git add . && pre-commit run
 
-sphinx-build docs docs/build
 
-bumpversion --allow-dirty patch
-python -m unittest
+bumpversion patch
 
-python setup.py sdist
+# python -m unittest
+tox
+
+# python setup.py sdist
+python -m build --sdist --wheel --outdir dist/
 twine upload --repository testpypi dist/*
 twine upload dist/*
+
+python -m mkdocs build
 ```
 
 ## Tasks

@@ -5,10 +5,10 @@ if __name__ == "__main__":
         long_description = file.read()
 
     setup(
-        packages=["WINGECHR_PACKAGE_TEMPLATE"],
+        packages=["PYTHON_PACKAGE"],
         keywords=[],
         install_requires=["click", "coloredlogs"],
-        name="WINGECHR_PACKAGE_TEMPLATE",
+        name="wingechr-PYTHON_PACKAGE",
         description="DESCRIPTION",
         long_description=long_description,
         long_description_content_type="text/markdown",
@@ -24,10 +24,12 @@ if __name__ == "__main__":
             "Programming Language :: Python :: 3.8",
             "Programming Language :: Python :: 3.9",
             "Programming Language :: Python :: 3.10",
+            "Programming Language :: Python :: 3.11",
+            "Programming Language :: Python :: 3.12",
             "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
             "Operating System :: OS Independent",
         ],
         entry_points={"console_scripts": ["project-cmd = MODULE.__main__:main"]},
-        package_data={"WINGECHR_PACKAGE_TEMPLATE": ["data/**"]},
+        package_data={"PYTHON_PACKAGE": ["test/data/**"]},
         include_package_data=True,
     )

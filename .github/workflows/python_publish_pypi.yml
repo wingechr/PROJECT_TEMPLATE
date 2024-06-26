@@ -1,4 +1,4 @@
-name: publish
+name: python_publish_pypi
 
 on:
   workflow_run:

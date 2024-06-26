@@ -4,15 +4,18 @@
 # development tools
 setuptools
 wheel
+build
 bumpversion
-pip
 twine
 tox
 pre-commit
 black
 flake8
 isort
+jupyterlab
 
 # build tools
-scons>=3.0,<4.0
-pystache-cli
+scons
+
+# docs
+-r docs/requirements.txt

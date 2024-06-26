@@ -1,4 +1,4 @@
-name: publish
+name: mkdocs
 
 on:
   workflow_run:
