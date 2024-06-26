@@ -5,6 +5,10 @@
     "doc": "docs"
   },
   "devDependencies": {
+    "@babel/cli": "^7.24.7",
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "@parcel/transformer-babel": "^2.12.0",
     "@parcel/transformer-sass": "^2.12.0",
     "chai": "^5.1.1",
     "chai-almost": "^1.0.1",
@@ -20,8 +24,10 @@
     "process": "^0.11.10"
   },
   "scripts": {
-    "build": "npx --no-install parcel",
-    "test": "npx --no-install mocha modules/**/test*.mjs",
+    "serve": "npx parcel serve src/index.html",
+    "build-js": "npx parcel build src/index.js",
+    "build-html": "npx parcel build src/index.html",
+    "test": "npx mocha test/**/test*.mjs",
     "upload": "npm publish --access public"
   },
   "repository": {
@@ -34,5 +40,5 @@
     "url": "https://github.com/wingechr/PROJECT_TEMPLATE/issues"
   },
   "homepage": "https://github.com/wingechr/PROJECT_TEMPLATE#readme",
-  "main": "src/index.js"
+  "browserslist": "> 0.25%, not dead"
 }

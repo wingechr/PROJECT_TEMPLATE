@@ -17,6 +17,7 @@ jobs:
         shell: bash -l {0}
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v4
       - uses: conda-incubator/setup-miniconda@v2
         with:
           auto-activate-base: true
@@ -26,6 +27,11 @@ jobs:
           conda install -q -y -c conda-forge tox
           conda create -q -y -n py38 python=3.8
           conda create -q -y -n py312 python=3.12
+      - run: |
+          pushd JAVASCRIPT_PACKAGE
+          npm install --no-save
+          npm run test
+          popd
       - run: |
           export PY38_PATH=$CONDA/envs/py38/bin
           export PY312_PATH=$CONDA/envs/py312/bin
