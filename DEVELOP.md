@@ -19,6 +19,12 @@ twine upload dist/*
 python -m mkdocs build
 ```
 
+## Pages
+
+```
+mkdocs gh-deploy # initially
+```
+
 ## Tasks
 
 - register add https://readthedocs.org
