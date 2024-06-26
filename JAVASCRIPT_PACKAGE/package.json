@@ -20,8 +20,7 @@
     "jsdom": "^24.1.0",
     "mocha": "^10.5.1",
     "parcel": "^2.12.0",
-    "prettier": "^3.3.2",
-    "process": "^0.11.10"
+    "prettier": "^3.3.2"
   },
   "scripts": {
     "serve": "npx parcel serve src/index.html",
@@ -40,5 +39,15 @@
     "url": "https://github.com/wingechr/PROJECT_TEMPLATE/issues"
   },
   "homepage": "https://github.com/wingechr/PROJECT_TEMPLATE#readme",
-  "browserslist": "> 0.25%, not dead"
+  "browserslist": "> 0.25%, not dead",
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "bootstrap-select": "^1.13.18",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.7.1",
+    "lodash": "^4.17.21",
+    "process": "^0.11.10"
+  }
 }
