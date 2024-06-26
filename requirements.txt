@@ -1,21 +1,6 @@
 # install package itself to install it's dependencies
 .
 
-# development tools
-setuptools
-wheel
+# builld tools
 build
-bumpversion
-twine
-tox
-pre-commit
-black
-flake8
-isort
-jupyterlab
-
-# build tools
-scons
-
-# docs
--r docs/requirements.txt
+nbformat
