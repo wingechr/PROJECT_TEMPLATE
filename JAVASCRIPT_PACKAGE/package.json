@@ -23,11 +23,12 @@
     "prettier": "^3.3.2"
   },
   "scripts": {
-    "serve": "npx parcel serve src/index.html",
-    "build-js": "npx parcel build src/index.js",
-    "build-html": "npx parcel build src/index.html",
+    "serve": "npx parcel serve --dist-dir build src/index.html",
+    "build-js": "npx parcel build --no-source-maps --no-content-hash --dist-dir dist/module src/index.js",
+    "build-html": "npx parcel build --no-source-maps --no-content-hash --dist-dir dist/page src/index.html",
+    "build": "rm -r dist && npm run build-js && npm run build-html",
     "test": "npx mocha test/**/test*.mjs",
-    "upload": "npm publish --access public"
+    "publish": "npm publish --access public"
   },
   "repository": {
     "type": "git",
