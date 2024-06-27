@@ -2,7 +2,7 @@
 import doctest
 import unittest
 
-import PYTHON_PACKAGE
+import python_package as pkg
 
 
 class TestDoctests(unittest.TestCase):
@@ -11,4 +11,4 @@ class TestDoctests(unittest.TestCase):
         self.assertFalse(report.failed)
 
     def test_modules(self):
-        self.run_doctest(PYTHON_PACKAGE)
+        self.run_doctest(pkg)

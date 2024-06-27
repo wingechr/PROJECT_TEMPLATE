@@ -1,4 +1,4 @@
-site_name: DataDisAggregation
+site_name: TITLE
 
 # Configuration
 theme:
@@ -28,8 +28,8 @@ markdown_extensions:
   - pymdownx.snippets # include README
 
 plugins:
-  #- mkdocs-jupyter:
-  #    execute: true
+  - mkdocs-jupyter:
+      execute: true
   - mkdocstrings:
       handlers:
         python:

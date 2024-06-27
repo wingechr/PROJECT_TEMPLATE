@@ -15,4 +15,4 @@ class TestNotebooks(unittest.TestCase):
         ep.preprocess(nb)
 
     def test_notebooks(self):
-        self.run_notebook("./docs/examples.ipynb")
+        self.run_notebook("../DOCS/docs/examples.ipynb")

@@ -17,7 +17,7 @@
     },
     "../JAVASCRIPT_PACKAGE": {
       "name": "@wingechr/javascript_package",
-      "version": "0.0.2",
+      "version": "0.0.4",
       "license": "CC0-1.0",
       "dependencies": {
         "@popperjs/core": "^2.11.8",
