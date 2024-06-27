@@ -10,6 +10,7 @@
     "@babel/preset-env": "^7.24.7",
     "@parcel/transformer-babel": "^2.12.0",
     "@parcel/transformer-sass": "^2.12.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "chai": "^5.1.1",
     "chai-almost": "^1.0.1",
     "dom-storage": "^2.1.0",
@@ -47,17 +48,7 @@
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "bootstrap-select": "^1.13.18",
-    "font-awesome": "^4.7.0",
     "jquery": "^3.7.1",
-    "lodash": "^4.17.21",
-    "process": "^0.11.10"
-  },
-  "targets": {
-    "browser": {
-      "sourceMap": false,
-      "optimize": true,
-      "context": "browser",
-      "outputFormat": "commonjs"
-    }
+    "lodash": "^4.17.21"
   }
 }

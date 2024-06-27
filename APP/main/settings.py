@@ -67,6 +67,7 @@ TEMPLATES = [
 
 # add node_modules folders: prefix => path
 STATICFILES_DIRS = [
+    ("vendor", "node_modules/@popperjs/core/dist/umd"),
     ("vendor", "node_modules/jquery/dist"),
     ("vendor", "node_modules/bootstrap/dist"),
     ("vendor", "node_modules/bootstrap-icons/font"),
