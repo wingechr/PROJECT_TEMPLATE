@@ -12,7 +12,7 @@ if __name__ == "__main__":
         description="DESCRIPTION",
         long_description=long_description,
         long_description_content_type="text/markdown",
-        version="0.0.3",
+        version="0.0.4",
         author="Christian Winger",
         author_email="c@wingechr.de",
         url="https://github.com/wingechr/PROJECT_TEMPLATE",
