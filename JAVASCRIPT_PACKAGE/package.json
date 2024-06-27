@@ -26,7 +26,8 @@
     "serve": "npx parcel serve --dist-dir build src/index.html",
     "build-js": "npx parcel build --no-source-maps --no-content-hash --dist-dir dist/module src/index.js",
     "build-html": "npx parcel build --no-source-maps --no-content-hash --dist-dir dist/page src/index.html",
-    "build": "rm -r dist && npm run build-js && npm run build-html",
+    "build-clean": "rm -r dist || mkdir dist",
+    "build": "npm run build-clean && npm run build-js && npm run build-html",
     "test": "npx mocha test/**/test*.mjs",
     "publish": "npm publish --access public"
   },
@@ -50,5 +51,13 @@
     "jquery": "^3.7.1",
     "lodash": "^4.17.21",
     "process": "^0.11.10"
+  },
+  "targets": {
+    "browser": {
+      "sourceMap": false,
+      "optimize": true,
+      "context": "browser",
+      "outputFormat": "commonjs"
+    }
   }
 }

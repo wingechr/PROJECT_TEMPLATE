@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@wingechr/javascript_package": "file:../JAVASCRIPT_PACKAGE",
     "bootstrap": "^4.6.2",
     "bootstrap-icons": "^1.9.1",
     "bootstrap-select": "^1.13.18",
