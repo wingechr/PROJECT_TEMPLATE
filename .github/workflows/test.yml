@@ -34,6 +34,10 @@ jobs:
           npm run test
           popd
       - run: |
+          pushd javascript_frontend
+          npm run build
+          popd
+      - run: |
           pushd python_package
           export PY38_PATH=$CONDA/envs/py38/bin
           export PY312_PATH=$CONDA/envs/py312/bin
