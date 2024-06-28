@@ -1,5 +1,6 @@
 from django.contrib import admin
-from main.models import Version
+
+from app.models import Version
 
 
 class VersionAdmin(admin.ModelAdmin):

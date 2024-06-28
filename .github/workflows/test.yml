@@ -27,6 +27,7 @@ jobs:
           conda install -q -y -c conda-forge tox
           conda create -q -y -n py38 python=3.8
           conda create -q -y -n py312 python=3.12
+          ls
       - run: |
           npm install --no-save
           pushd javascript_package

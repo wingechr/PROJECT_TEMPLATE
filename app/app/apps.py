@@ -3,5 +3,5 @@ from django.conf import settings
 
 
 class AppConfig(AppConfig):
-    name = "main"
+    name = "app"
     verbose_name = settings.SITE_TITLE

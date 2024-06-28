@@ -1,8 +1,9 @@
 # from django.urls import path, include
 
 from django.http import JsonResponse
-from main.models import Version
 from rest_framework import routers, serializers, viewsets
+
+from app.models import Version
 
 api_router = routers.DefaultRouter()
 

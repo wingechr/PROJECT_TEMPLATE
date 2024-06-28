@@ -6,8 +6,9 @@ tox
 pre-commit
 jupyterlab
 
--r assets/requirements.txt
 -r docs/requirements.txt
--r app/requirements.txt
--e ./python_package
--e ./python_client
+
+#-r assets/requirements.txt
+# -r app/requirements.txt
+#-e ./python_package
+#-e ./python_client

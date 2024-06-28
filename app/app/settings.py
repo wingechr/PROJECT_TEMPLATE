@@ -1,12 +1,37 @@
 import logging
-import os
 import sys
+
+from _local.settings import (
+    ADMIN_PASSWORD,
+    ADMIN_TOKEN,
+    ALLOW_ADMIN,
+    ALLOW_BROWSER_API,
+    ALLOWED_HOSTS,
+    BASE_URL,
+    DEBUG,
+    DEFAULT_DATABASE,
+    LANGUAGE_CODE,
+    LOCAL_DIR,
+    LOGFILE,
+    SECRET_KEY,
+    TEST_DATABASE,
+    TIME_ZONE,
+)
+
+__all__ = [
+    "ADMIN_PASSWORD",
+    "ADMIN_TOKEN",
+    "ALLOW_ADMIN",
+    "ALLOW_BROWSER_API",
+    "ALLOWED_HOSTS",
+    "LANGUAGE_CODE",
+    "SECRET_KEY",
+    "TIME_ZONE",
+]
 
 __version__ = "0.0.0"
 
-from _local.settings import *  # noqa: F403
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SITE_TITLE = "TITLE"
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -18,8 +43,10 @@ INSTALLED_APPS = [
     # 3rd party
     "rest_framework",
     "rest_framework.authtoken",
+    "drf_spectacular",
+    "compressor",  # hashed static files
     # apps
-    "main.apps.AppConfig",
+    "app.apps.AppConfig",
 ]
 
 MIDDLEWARE = [
@@ -50,6 +77,19 @@ REST_FRAMEWORK = {
     ],
 }
 
+SPECTACULAR_SETTINGS = {
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": True,
+    # OTHER SETTINGS
+}
+
+STATICFILES_FINDERS = (
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    # other finders..
+    "compressor.finders.CompressorFinder",
+)
+
 
 TEMPLATES = [
     {
@@ -69,18 +109,18 @@ TEMPLATES = [
 
 # add node_modules folders: prefix => path
 STATICFILES_DIRS = [
-    ("vendor", "node_modules/@popperjs/core/dist/umd"),
-    ("vendor", "node_modules/jquery/dist"),
-    ("vendor", "node_modules/bootstrap/dist"),
-    ("vendor", "node_modules/bootstrap-icons/font"),
-    ("vendor", "node_modules/bootstrap-select/dist"),
-    ("vendor", "node_modules/swagger-ui/dist"),
-    ("vendor", "node_modules/swagger-client/dist"),
+    ("vendor", "../node_modules/@popperjs/core/dist/umd"),
+    ("vendor", "../node_modules/jquery/dist"),
+    ("vendor", "../node_modules/bootstrap/dist"),
+    ("vendor", "../node_modules/bootstrap-icons/font"),
+    ("vendor", "../node_modules/bootstrap-select/dist"),
+    ("vendor", "../node_modules/swagger-ui/dist"),
+    ("vendor", "../node_modules/swagger-client/dist"),
 ]
 
 
-ROOT_URLCONF = "main.urls"
-WSGI_APPLICATION = "main.wsgi.application"
+ROOT_URLCONF = "app.urls"
+WSGI_APPLICATION = "app.wsgi.application"
 
 if "test" in sys.argv:
     DATABASES = {"default": TEST_DATABASE}  # noqa: F405: local setting
@@ -91,14 +131,13 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-LOCAL_ROOT = BASE_DIR + "/_local"
 
 # all must end in slash
 STATIC_URL = BASE_URL + "static/"  # noqa: F405: local setting
-STATIC_ROOT = LOCAL_ROOT + "/static/"
+STATIC_ROOT = LOCAL_DIR + "/static/"
 
 MEDIA_URL = BASE_URL + "media/"  # noqa: F405: local setting
-MEDIA_ROOT = LOCAL_ROOT + "/media/"
+MEDIA_ROOT = LOCAL_DIR + "/media/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -106,14 +145,20 @@ AUTH_PASSWORD_VALIDATORS = []
 
 AUTHENTICATION_BACKENDS = ["django.contrib.auth.backends.ModelBackend"]  # default
 
-LOGLEVEL = logging.WARNING if DEBUG else logging.WARNING  # noqa: F405: local setting
+LOGIN_URL = BASE_URL + "admin/login"
+LOGOUT_URL = BASE_URL + "admin/logout"
+
+# https://django-compressor.readthedocs.io/en/stable/settings.html#django.conf.settings.COMPRESS_OFFLINE
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = True
+
+# Logging
+LOGLEVEL = logging.INFO if DEBUG else logging.WARNING  # noqa: F405: local setting
 logger = logging.getLogger()
 logFormatter = logging.Formatter(
     "[%(asctime)s %(levelname)7s] %(message)s", datefmt="%Y-%m-%d %H:%M:%S"
 )
-fileHandler = logging.FileHandler(
-    os.path.join(BASE_DIR, "_local", "log.txt"), encoding="utf-8"
-)
+fileHandler = logging.FileHandler(LOGFILE, encoding="utf-8")
 fileHandler.setFormatter(logFormatter)
 consoleHandler = logging.StreamHandler()
 consoleHandler.setFormatter(logFormatter)

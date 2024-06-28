@@ -1,0 +1,2 @@
+ldap
+django_auth_ldap

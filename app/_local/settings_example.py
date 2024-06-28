@@ -1,27 +1,58 @@
 import os
 
-LOCAL_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+__all__ = [
+    "ADMIN_PASSWORD",
+    "ADMIN_TOKEN",
+    "ALLOW_ADMIN",
+    "ALLOW_BROWSER_API",
+    "ALLOWED_HOSTS",
+    "BASE_URL",
+    "DEBUG",
+    "DEFAULT_DATABASE",
+    "LANGUAGE_CODE",
+    "LOCAL_DIR",
+    "LOGFILE",
+    "SECRET_KEY",
+    "TEST_DATABASE",
+    "TIME_ZONE",
+]
+
+DEBUG = True
+
+LOCAL_DIR = os.path.dirname(os.path.abspath(__file__))
 
 BASE_URL = "/"  # start and ends with /
-SITE_TITLE = "TITLE"
+
 LANGUAGE_CODE = "en-US"
 TIME_ZONE = "Europe/Berlin"
-DEBUG = True
+
 SECRET_KEY = "**********************************"
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "my.domain.com"]
 ALLOW_BROWSER_API = True
 ALLOW_ADMIN = True
 
-DBNAME = SITE_TITLE.lower().replace(" ", "")
+ADMIN_PASSWORD = "*******"
+ADMIN_TOKEN = "********"
 
 SQLITE_DATABASE = {
     "ENGINE": "django.db.backends.sqlite3",
-    "NAME": LOCAL_BASE_DIR + "/db.sqlite3",
+    "NAME": LOCAL_DIR + "/db.sqlite3",
+}
+
+_POSTGRES_DATABASE = {
+    "ENGINE": "django.db.backends.postgresql",
+    "NAME": "<DATABASE>",
+    "USER": "<USER>",
+    "PASSWORD": "<PASSWORD>",
+    "HOST": "localhost",
+    "PORT": "5432",
 }
 
 TEST_DATABASE = {
     "ENGINE": "django.db.backends.sqlite3",
-    "NAME": LOCAL_BASE_DIR + "/test_db.sqlite3",
+    "NAME": LOCAL_DIR + "/test_db.sqlite3",
 }
+
+LOGFILE = LOCAL_DIR + "/log.txt"
 
 DEFAULT_DATABASE = SQLITE_DATABASE
