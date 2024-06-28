@@ -16,11 +16,12 @@
     "jsdom": "^24.1.0",
     "mocha": "^10.5.1",
     "parcel": "^2.12.0",
-    "prettier": "^3.3.2"
+    "prettier": "^3.3.2",
+    "shx": "^0.3.4"
   },
   "dependencies": {
-    "@wingechr/javascript_package": "file:./javascript_package",
+    "@wingechr/app": "file:./app",
     "@wingechr/javascript_frontend": "file:./javascript_frontend",
-    "@wingechr/app": "file:./app"
+    "@wingechr/javascript_package": "file:./javascript_package"
   }
 }

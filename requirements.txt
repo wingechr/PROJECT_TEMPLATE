@@ -4,11 +4,12 @@ bumpversion
 twine
 tox
 pre-commit
-jupyterlab
+ipykernel
 
 -r docs/requirements.txt
+-r app/requirements.txt
+-r assets/requirements.txt
 
-#-r assets/requirements.txt
-# -r app/requirements.txt
-#-e ./python_package
+# needed to run notebook (also to build docs)
+-e ./python_package #
 #-e ./python_client
