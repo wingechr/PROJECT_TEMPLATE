@@ -1,4 +1,5 @@
 # coding: utf-8
+import os
 import unittest
 
 import nbformat
@@ -15,4 +16,5 @@ class TestNotebooks(unittest.TestCase):
         ep.preprocess(nb)
 
     def test_notebooks(self):
-        self.run_notebook("../DOCS/docs/examples.ipynb")
+        nb_path = os.path.abspath(__file__ + "/../../../docs/docs/example.ipynb")
+        self.run_notebook(nb_path)

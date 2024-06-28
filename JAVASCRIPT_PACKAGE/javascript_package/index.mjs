@@ -1,3 +1,5 @@
+const __version__ = "0.0.0";
+
 class MyClass {
   constructor(data) {
     this.data = data;
@@ -10,6 +12,11 @@ class MyClass {
   }
 }
 
+function getInfo() {
+  return { version: __version__ };
+}
+
 export const Main = {
   sum: (a, b) => new MyClass(a).add(b),
+  getInfo: getInfo,
 };

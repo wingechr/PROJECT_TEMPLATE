@@ -1,29 +1,12 @@
 variables:
-  GIT_STRATEGY: none
-
-# PATH_CHECKOUT from environment
+  GIT_STRATEGY: fetch
 
 stages:
-  - checkout
-  - deploy
+  - stage_example
 
-job_checkout:
+job_example:
   only:
-    - dev
-    - master
-  stage: checkout
+    - main
+  stage: stage_example
   script:
-    - test -d $PATH_CHECKOUT || git clone git@$CI_SERVER_HOST:$CI_PROJECT_PATH.git $PATH_CHECKOUT
-    - pushd $PATH_CHECKOUT
-    - git checkout -f $CI_COMMIT_REF_NAME
-    - git pull
-    - npm install
-    - test -d .env || virtualenv --system-site-packages -p python3 .env
-    - . .env/bin/activate
-    - pip install -r requirements.txt
-    - python manage.py showmigrations # create sqlite db on first run
-    - python manage.py backup
-    - python manage.py migrate
-    - python manage.py collectstatic --no-input
-    - python manage.py test
-    - touch main.wsgi
+    - git status

@@ -4,7 +4,7 @@ $green1: #70ad47;
 
 $primary: $green1;
 
-@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../../node_modules/bootstrap/scss/bootstrap";
 
 /* use url() to resolve relative paths of fonts */
-@import url("../node_modules/bootstrap-icons/font/bootstrap-icons");
+@import url("../../node_modules/bootstrap-icons/font/bootstrap-icons");

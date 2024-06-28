@@ -15,5 +15,8 @@ jobs:
         with:
           python-version: "3.x"
           cache: "pip" # caching pip dependencies
-      - run: pip install --upgrade -r docs/requirements.txt
-      - run: mkdocs gh-deploy --force
+      - run: |
+          pushd
+          pip install requirements.txt
+          mkdocs gh-deploy --force
+          popd

@@ -2,6 +2,8 @@ import logging
 import os
 import sys
 
+__version__ = "0.0.0"
+
 from _local.settings import *  # noqa: F403
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

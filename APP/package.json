@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@wingechr/javascript_package": "file:../JAVASCRIPT_PACKAGE",
+    "@wingechr/javascript_frontend": "file:../javascript_frontend",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "bootstrap-select": "^1.13.18",

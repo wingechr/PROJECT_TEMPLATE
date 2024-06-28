@@ -1,6 +1,4 @@
-# django
-django<4,>=3
+django>=5,<6
 djangorestframework>=3.10
 mistune>=2.0.3 # not directly required, pinned by Snyk to avoid a vulnerability
 uritemplate
-../PYTHON_PACKAGE/dist/wingechr_python_package-0.0.4.tar.gz

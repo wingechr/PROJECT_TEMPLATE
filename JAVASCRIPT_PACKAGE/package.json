@@ -1,35 +1,8 @@
 {
   "name": "@wingechr/javascript_package",
-  "version": "0.0.4",
-  "directories": {
-    "doc": "docs"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.24.7",
-    "@babel/core": "^7.24.7",
-    "@babel/preset-env": "^7.24.7",
-    "@parcel/transformer-babel": "^2.12.0",
-    "@parcel/transformer-sass": "^2.12.0",
-    "babel-plugin-transform-remove-console": "^6.9.4",
-    "chai": "^5.1.1",
-    "chai-almost": "^1.0.1",
-    "dom-storage": "^2.1.0",
-    "eslint": "^8.36.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-jsdoc": "^48.2.1",
-    "eslint-plugin-prettier": "^5.1.3",
-    "jsdom": "^24.1.0",
-    "mocha": "^10.5.1",
-    "parcel": "^2.12.0",
-    "prettier": "^3.3.2"
-  },
+  "version": "0.0.0",
   "scripts": {
-    "serve": "npx parcel serve --dist-dir build src/index.html",
-    "build-js": "npx parcel build --no-source-maps --no-content-hash --dist-dir dist/module src/index.js",
-    "build-html": "npx parcel build --no-source-maps --no-content-hash --dist-dir dist/page src/index.html",
-    "build-clean": "rm -r dist || mkdir dist",
-    "build": "npm run build-clean && npm run build-js && npm run build-html",
-    "test": "npx mocha test/**/test*.mjs",
+    "test": "npx --no mocha test/**/test*.mjs",
     "publish": "npm publish --access public"
   },
   "repository": {
@@ -38,17 +11,7 @@
   },
   "author": "Christian Winger",
   "license": "CC0-1.0",
-  "bugs": {
-    "url": "https://github.com/wingechr/PROJECT_TEMPLATE/issues"
-  },
-  "homepage": "https://github.com/wingechr/PROJECT_TEMPLATE#readme",
-  "browserslist": "> 0.25%, not dead",
   "dependencies": {
-    "@popperjs/core": "^2.11.8",
-    "bootstrap": "^5.3.3",
-    "bootstrap-icons": "^1.11.3",
-    "bootstrap-select": "^1.13.18",
-    "jquery": "^3.7.1",
     "lodash": "^4.17.21"
   }
 }

@@ -2,10 +2,10 @@ from setuptools import setup
 
 if __name__ == "__main__":
     setup(
-        packages=["python_package"],
+        packages=["python_client"],
         keywords=[],
-        install_requires=[],
-        name="wingechr-PYTHON_PACKAGE",
+        install_requires=["click", "coloredlogs"],
+        name="wingechr-PYTHON_CLIENT",
         description="DESCRIPTION",
         long_description="",
         long_description_content_type="text/markdown",
@@ -26,6 +26,7 @@ if __name__ == "__main__":
             "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
             "Operating System :: OS Independent",
         ],
-        package_data={"python_package": ["data/**"]},
-        include_package_data=True,
+        entry_points={
+            "console_scripts": ["PYTHON_CLIENT = python_client.__main__:main"]
+        },
     )

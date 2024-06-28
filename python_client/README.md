@@ -6,14 +6,6 @@
 bumpversion patch # patch|minor|major
 ```
 
-## Test
-
-```bash
-python -m unittest
-# or
-tox
-```
-
 ## Build
 
 ```bash

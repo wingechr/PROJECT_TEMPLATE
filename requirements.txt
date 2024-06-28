@@ -1,17 +1,13 @@
-# install package itself to install it's dependencies
-.
-
--r docs/requirements.txt
-
 # development and build tools
 build
 bumpversion
 twine
 tox
 pre-commit
-black
-flake8
-isort
 jupyterlab
-nbformat
-scons
+
+-r assets/requirements.txt
+-r docs/requirements.txt
+-r app/requirements.txt
+-e ./python_package
+-e ./python_client

@@ -1,1 +1,7 @@
-included readme
+# README
+
+## Build
+
+```bash
+mkdocs build
+```

@@ -1,0 +1,22 @@
+{
+  "name": "@wingechr/javascript_frontend",
+  "version": "0.0.0",
+  "scripts": {
+    "serve": "npx --no parcel serve --dist-dir build src/index.html",
+    "build-js": "npx --no parcel build --no-source-maps --dist-dir dist/module src/index.mjs",
+    "build-css": "npx --no parcel build --no-source-maps --no-content-hash --dist-dir dist/module src/index.scss",
+    "build-html": "npx --no parcel build --no-source-maps --no-content-hash --dist-dir dist/page src/index.html",
+    "build-clean": "rm -r dist || mkdir dist",
+    "build": "npm run build-clean && npm run build-js && npm run build-css && npm run build-html",
+    "publish": "npm publish --access public"
+  },
+  "browserslist": "> 0.25%, not dead",
+  "dependencies": {
+    "@wingechr/javascript_package": "file:../javascript_package",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "bootstrap-select": "^1.13.18",
+    "jquery": "^3.7.1"
+  }
+}
