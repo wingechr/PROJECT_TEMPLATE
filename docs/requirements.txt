@@ -3,3 +3,5 @@ mkdocs-material
 mkdocs-jupyter
 mkdocstrings[python]
 pymdown-extensions
+
+-e ../python_package
