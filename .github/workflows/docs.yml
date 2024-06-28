@@ -17,6 +17,6 @@ jobs:
           cache: "pip" # caching pip dependencies
       - run: |
           pushd docs
-          pip install requirements.txt
+          pip install -r requirements.txt
           mkdocs gh-deploy --force
           popd
