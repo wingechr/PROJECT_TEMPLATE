@@ -108,14 +108,16 @@ TEMPLATES = [
 ]
 
 # add node_modules folders: prefix => path
+node_path = "./node_modules"
 STATICFILES_DIRS = [
-    ("vendor", "../node_modules/@popperjs/core/dist/umd"),
-    ("vendor", "../node_modules/jquery/dist"),
-    ("vendor", "../node_modules/bootstrap/dist"),
-    ("vendor", "../node_modules/bootstrap-icons/font"),
-    ("vendor", "../node_modules/bootstrap-select/dist"),
-    ("vendor", "../node_modules/swagger-ui/dist"),
-    ("vendor", "../node_modules/swagger-client/dist"),
+    ("vendor", f"{node_path}/@popperjs/core/dist/umd"),
+    ("vendor", f"{node_path}/jquery/dist"),
+    ("vendor", f"{node_path}/bootstrap/dist"),
+    ("vendor", f"{node_path}/bootstrap-icons/font"),
+    ("vendor", f"{node_path}/bootstrap-select/dist"),
+    ("vendor", f"{node_path}/swagger-ui/dist"),
+    ("vendor", f"{node_path}/swagger-client/dist"),
+    ("vendor", f"{node_path}/@wingechr/javascript_frontend/dist/module"),
 ]
 
 

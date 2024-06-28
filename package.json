@@ -20,8 +20,6 @@
     "shx": "^0.3.4"
   },
   "dependencies": {
-    "@wingechr/app": "file:./app",
-    "@wingechr/javascript_frontend": "file:./javascript_frontend",
     "@wingechr/javascript_package": "file:./javascript_package"
   }
 }

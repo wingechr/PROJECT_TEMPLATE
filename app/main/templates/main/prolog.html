@@ -1,12 +1,26 @@
 {% load static %}
+{% load compress %}
+
 <!DOCTYPE html>
 <html lang="{{language}}">
 
 <head>
     <title>{{title}}</title>
-    {% include "main/prolog-meta.html" %}
-    {% include "main/prolog-vendor-css.html" %}
-    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% compress js %}
+
+    <!--
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap-icons.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/css/bootstrap-select.min.css' %}">
+    -->
+
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/wingechr_javascript_frontend.min.css' %}">
+
+    {% endcompress %}
 </head>
 
 <body>

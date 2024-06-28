@@ -1,7 +1,20 @@
 {% load static %}
+{% load compress %}
 </main><!-- container  -->
-{% include "main/epilog-vendor-js.html" %}
-<script type="text/javascript" src="{% static 'main.js' %}"></script>
+
+
+{% compress js %}
+
+<script type="text/javascript" src="{% static 'vendor/wingechr_javascript_frontend.min.js' %}"></script>
+
+<!-- from node_modules
+<script type="text/javascript" src="{% static 'node_modules/jquery/dist/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'vendor/js/bootstrap.bundle.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'vendor/js/bootstrap-select.min.js' %}"></script>
+-->
+
+{% endcompress %}
+
 </body>
 
 </html>

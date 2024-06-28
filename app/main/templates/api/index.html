@@ -15,9 +15,10 @@
     </main>
 
     <script type="text/javascript" src="{% static 'vendor/swagger-ui-bundle.js' %}"></script>
-
+    <script type="text/javascript" src="{% static 'vendor/swagger-client.browser.min.js' %}"></script>
 
     <script>
+        /* display */
         const ui = SwaggerUIBundle({
             url: "{{ schema_url }}",
             dom_id: '#swagger-ui',
@@ -34,18 +35,9 @@
         })
     </script>
 
-    <script type="text/javascript" src="{% static 'vendor/swagger-client.browser.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'main.js' %}"></script>
+
+    <!--
     <script>
-        /* example api usage */
-        /*
-        getApiClient("/static/api/api-schema.json").then((a) => a.apis.api.example({ "value": 1 })).then((r) => console.log(r.body["value"]))
-
-        getApiClient("/static/api/restapi-schema.json").then((a) => a.apis.api.listVersions()).then((r) => console.log(r.body))
-            */
-
-        //getApiClient("/static/api/restapi-schema.json").then((a) => a.apis.api.createVersion({ "requestBody": { "version": "v3" } })).then((r) => console.log(r.body))
-
 
         const url = "/api/rest/version/"; // Replace with your API endpoint
         const data = {
@@ -74,7 +66,7 @@
 
     </script>
 
-
+-->
 
 </body>
 
