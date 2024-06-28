@@ -1,9 +1,8 @@
 from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 from django.db.utils import IntegrityError
+from main.settings import ADMIN_PASSWORD, ADMIN_TOKEN
 from rest_framework.authtoken.models import Token
-
-from app.settings import ADMIN_PASSWORD, ADMIN_TOKEN
 
 ADMIN_NAME = "admin"
 

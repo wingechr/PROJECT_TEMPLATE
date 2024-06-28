@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "compressor",  # hashed static files
     # apps
-    "app.apps.AppConfig",
+    "main.apps.AppConfig",
 ]
 
 MIDDLEWARE = [
@@ -119,8 +119,8 @@ STATICFILES_DIRS = [
 ]
 
 
-ROOT_URLCONF = "app.urls"
-WSGI_APPLICATION = "app.wsgi.application"
+ROOT_URLCONF = "main.urls"
+WSGI_APPLICATION = "main.wsgi.application"
 
 if "test" in sys.argv:
     DATABASES = {"default": TEST_DATABASE}  # noqa: F405: local setting
