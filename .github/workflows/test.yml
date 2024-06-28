@@ -29,8 +29,8 @@ jobs:
           conda create -q -y -n py312 python=3.12
           ls
       - run: |
-          pushd javascript_package
           npm install --no-save
+          pushd javascript_package
           npm run test
           popd
       - run: |
