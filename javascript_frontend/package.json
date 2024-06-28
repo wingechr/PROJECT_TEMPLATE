@@ -1,6 +1,6 @@
 {
   "name": "@wingechr/javascript_frontend",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "serve": "npx --no parcel serve --dist-dir build src/index.html",
     "build-js": "npx --no parcel build --no-source-maps --dist-dir dist/module src/index.mjs",
