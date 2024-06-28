@@ -1,5 +1,6 @@
 # from django.urls import path, include
 
+
 from django.http import JsonResponse
 from rest_framework import routers, serializers, viewsets
 
@@ -33,7 +34,13 @@ api_router.register("version", VersionModelViewSet, basename="api-version")
 # CUSTOM API ENDPOINTS
 
 
-def api_example_view(request):
-    value = float(request.GET["value"])
-    value = value + 1
-    return JsonResponse({"value": value})
+class ExampleViewSet(viewsets.ViewSet):
+    """
+    A simple example Viewset with only GET method
+    """
+
+    def list(self, request):
+        return JsonResponse({})
+
+
+api_router.register("example", ExampleViewSet, basename="api-example")

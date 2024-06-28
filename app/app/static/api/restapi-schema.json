@@ -5,7 +5,7 @@
     "version": ""
   },
   "paths": {
-    "/api/rest/version/": {
+    "/api/version/": {
       "get": {
         "operationId": "listVersions",
         "description": "",
@@ -65,7 +65,7 @@
         "tags": ["api"]
       }
     },
-    "/api/rest/version/{version}/": {
+    "/api/version/{version}/": {
       "get": {
         "operationId": "retrieveVersion",
         "description": "",
@@ -204,6 +204,27 @@
         ],
         "responses": {
           "204": {
+            "description": ""
+          }
+        },
+        "tags": ["api"]
+      }
+    },
+    "/api/example/": {
+      "get": {
+        "operationId": "listExampleViewSets",
+        "description": "A simple example Viewset with only GET method",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            },
             "description": ""
           }
         },

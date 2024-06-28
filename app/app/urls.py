@@ -38,32 +38,13 @@ if settings.DEBUG:  # also serve static files from media
 
 urlpatterns += [
     # include rest_api routes
-    path("api/rest/", include(api.api_router.urls)),
+    path("api/", include(api.api_router.urls)),
     # rest api doc from schema.json (generated with management command)
     path(
-        "api/doc-rest.html",
+        "api.html",
         TemplateView.as_view(
-            template_name="api/doc.html",
+            template_name="api/index.html",
             extra_context={"schema_url": static_path("api/restapi-schema.json")},
-        ),
-        name="api-doc-rest",
-    ),
-]
-
-# ------------------------------------------------------------------------------------
-#  CUSTOM API ENDPOITNS
-# ------------------------------------------------------------------------------------
-
-
-urlpatterns += [
-    # include rest_api routes
-    path("api/example/", api.api_example_view, name="api-example"),
-    # api doc manually generated for custom endpoints
-    path(
-        "api/doc.html",
-        TemplateView.as_view(
-            template_name="api/doc.html",
-            extra_context={"schema_url": static_path("api/api-schema.json")},
         ),
         name="api-doc",
     ),
