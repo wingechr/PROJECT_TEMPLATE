@@ -40,3 +40,9 @@ jobs:
           export PATH=$PATH:$PY38_PATH:$PY312_PATH
           tox # --parallel
           popd
+      - run: |
+          pushd app
+          cp _local/settings_example.py _local/settings.py
+          pip install -r requirements.txt
+          python manage.py test
+          popd
