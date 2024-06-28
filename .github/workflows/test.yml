@@ -44,5 +44,6 @@ jobs:
           pushd app
           cp _local/settings_example.py _local/settings.py
           pip install -r requirements.txt
+          python manage.py compress
           python manage.py test
           popd
