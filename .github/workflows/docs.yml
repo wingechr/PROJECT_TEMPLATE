@@ -1,4 +1,4 @@
-name: mkdocs
+name: docs
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
           python-version: "3.x"
           cache: "pip" # caching pip dependencies
       - run: |
-          pushd
+          pushd docs
           pip install requirements.txt
           mkdocs gh-deploy --force
           popd
