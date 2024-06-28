@@ -26,4 +26,5 @@ jobs:
       - uses: pypa/gh-action-pypi-publish@release/v1
         with:
           skip-existing: true
+          packages-dir: python_package/dist/
           password: ${{ secrets.PYPI_API_TOKEN }}

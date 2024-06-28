@@ -29,8 +29,8 @@ jobs:
           conda create -q -y -n py312 python=3.12
           ls
       - run: |
-          npm install --no-save
           pushd javascript_package
+          npm install --no-save
           npm run test
           popd
       - run: |
@@ -42,6 +42,7 @@ jobs:
           popd
       - run: |
           pushd app
+          npm install --no-save
           cp _local/settings_example.py _local/settings.py
           pip install -r requirements.txt
           python manage.py compress
