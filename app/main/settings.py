@@ -1,4 +1,5 @@
 import logging
+import os
 import sys
 
 from _local.settings import (
@@ -43,7 +44,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "drf_spectacular",  # schema generation
-    "compressor",  # hashed static files
+    # "compressor",  # hashed static files
     # apps
     "main.apps.AppConfig",
 ]
@@ -81,9 +82,33 @@ STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
     # other finders..
-    "compressor.finders.CompressorFinder",
+    # "compressor.finders.CompressorFinder",
 )
 
+
+STATICFILES_IGNORE_PATTERNS = [
+    # we dont need this one and it has invalid references
+    # to missing vendor/short-unique-id.js.map
+    # r".*swagger-client.browser.js$",
+]
+STATICFILES_STORAGE = "main.static.ManifestStaticFilesStorageWithIgnore"
+
+
+# add node_modules folders: prefix => path
+node_path = "../node_modules"
+STATICFILES_DIRS = [
+    (
+        "vendor",
+        f"{node_path}/@wingechr/javascript_frontend/dist/static",
+    ),
+    ("vendor", f"{node_path}/@popperjs/core/dist/umd"),
+    ("vendor", f"{node_path}/jquery/dist"),
+    ("vendor", f"{node_path}/bootstrap/dist"),
+    ("vendor", f"{node_path}/bootstrap-icons/font"),
+    ("vendor", f"{node_path}/bootstrap-select/dist"),
+    ("vendor", f"{node_path}/swagger-ui/dist"),
+    ("vendor", f"{node_path}/swagger-client/dist"),
+]
 
 TEMPLATES = [
     {
@@ -99,19 +124,6 @@ TEMPLATES = [
             ]
         },
     }
-]
-
-# add node_modules folders: prefix => path
-node_path = "../node_modules"
-STATICFILES_DIRS = [
-    ("vendor", f"{node_path}/@popperjs/core/dist/umd"),
-    ("vendor", f"{node_path}/jquery/dist"),
-    ("vendor", f"{node_path}/bootstrap/dist"),
-    ("vendor", f"{node_path}/bootstrap-icons/font"),
-    ("vendor", f"{node_path}/bootstrap-select/dist"),
-    ("vendor", f"{node_path}/swagger-ui/dist"),
-    ("vendor", f"{node_path}/swagger-client/dist"),
-    ("vendor", f"{node_path}/@wingechr/javascript_frontend/dist/static"),
 ]
 
 
@@ -135,6 +147,8 @@ STATIC_ROOT = LOCAL_DIR + "/static/"
 MEDIA_URL = BASE_URL + "media/"  # noqa: F405: local setting
 MEDIA_ROOT = LOCAL_DIR + "/media/"
 
+os.makedirs(MEDIA_ROOT, exist_ok=True)
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_PASSWORD_VALIDATORS = []
@@ -145,8 +159,11 @@ LOGIN_URL = BASE_URL + "admin/login"
 LOGOUT_URL = BASE_URL + "admin/logout"
 
 # https://django-compressor.readthedocs.io/en/stable/settings.html#django.conf.settings.COMPRESS_OFFLINE
-COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = True
+
+# COMPRESS_ENABLED = False
+# COMPRESS_OFFLINE = True
+# default is CACHE
+# COMPRESS_OUTPUT_DIR = "CACHE"
 
 # Logging
 LOGLEVEL = logging.INFO if DEBUG else logging.WARNING  # noqa: F405: local setting

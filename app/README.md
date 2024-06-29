@@ -17,11 +17,11 @@ python manage.py generateschema  --format=openapi-json --file main/static/api/sc
 # python manage.py dumpdata -o data.json
 # python manage.py loaddata
 
-python manage.py compress
+# python manage.py compress
 python manage.py collectstatic --no-input
-python manage.py test
 python manage.py runserver
 
+python manage.py test
 
 ```
 

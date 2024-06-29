@@ -1,10 +1,9 @@
 from django.conf import settings
-from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.templatetags.static import static as static_path
-from django.urls import include, path
+from django.templatetags.static import static
+from django.urls import include, path, re_path
 from django.views.generic import TemplateView
+from django.views.static import serve
 
 from . import api, views
 
@@ -22,12 +21,29 @@ if settings.ALLOW_ADMIN:
     urlpatterns.append(path("admin/", admin.site.urls))
 
 # ------------------------------------------------------------------------------------
-# STATIC / MEDIA
+# STATIC / MEDIA (serve in develop mode)
 # ------------------------------------------------------------------------------------
 
-if settings.DEBUG:  # also serve static files from media
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    urlpatterns += staticfiles_urlpatterns()
+urlpatterns += (
+    re_path(
+        rf"^{settings.MEDIA_URL.strip('/')}(?P<path>.*)$",
+        serve,
+        {"document_root": settings.MEDIA_ROOT},
+    ),
+)
+
+# also serve static files from collectstatic folder
+# we want this to test if STATICFILES_STORAGE = ManifestStaticFilesStorage
+# and we want to see if it automatically adds hashsum to {% static %}
+# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+urlpatterns += (
+    re_path(
+        rf"^{settings.STATIC_URL.strip('/')}(?P<path>.*)$",
+        serve,
+        {"document_root": settings.STATIC_ROOT},
+    ),
+)
 
 
 # ------------------------------------------------------------------------------------
@@ -44,7 +60,7 @@ urlpatterns += [
         "api.html",
         TemplateView.as_view(
             template_name="api/index.html",
-            extra_context={"schema_url": static_path("api/schema.json")},
+            extra_context={"schema_url": static("api/schema.json")},
         ),
         name="api-doc",
     ),
