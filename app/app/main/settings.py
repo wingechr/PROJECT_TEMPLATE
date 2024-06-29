@@ -1,8 +1,13 @@
 import logging
 import os
 import sys
+from os.path import abspath, dirname
 
-from _local.settings import (
+# root_dir contains _local
+root_dir = dirname(dirname(dirname(abspath(__file__))))
+sys.path.insert(0, root_dir)
+
+from _local.settings import (  # noqa E402
     ADMIN_PASSWORD,
     ADMIN_TOKEN,
     ALLOW_ADMIN,
@@ -19,6 +24,7 @@ from _local.settings import (
     TIME_ZONE,
 )
 
+# unused here but used in app
 __all__ = [
     "ADMIN_PASSWORD",
     "ADMIN_TOKEN",
@@ -95,7 +101,7 @@ STATICFILES_STORAGE = "main.static.ManifestStaticFilesStorageWithIgnore"
 
 
 # add node_modules folders: prefix => path
-node_path = "../node_modules"
+node_path = "../../node_modules"
 STATICFILES_DIRS = [
     (
         "vendor",
@@ -128,7 +134,7 @@ TEMPLATES = [
 
 
 ROOT_URLCONF = "main.urls"
-WSGI_APPLICATION = "main.wsgi.application"
+WSGI_APPLICATION = "wsgi.application"
 
 if "test" in sys.argv:
     DATABASES = {"default": TEST_DATABASE}  # noqa: F405: local setting
