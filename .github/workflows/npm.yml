@@ -1,0 +1,26 @@
+name: npm
+
+on:
+  workflow_run:
+    workflows:
+      - test
+    branches:
+      - main
+    types:
+      - completed
+
+jobs:
+  pypi:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
+      - run: |
+          pushd javascript_package
+          npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
