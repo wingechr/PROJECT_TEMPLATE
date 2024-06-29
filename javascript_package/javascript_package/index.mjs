@@ -7,11 +7,15 @@ class MyClass {
 
   add(value) {
     console.log("adding");
-    /** I am a comment **/
+    /** I am a comment */
     return this.data + value;
   }
 }
 
+/**
+ *
+ * @returns {object}
+ */
 function getInfo() {
   return { version: __version__ };
 }

@@ -1,6 +1,7 @@
 {
   "suggestedDevDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.13.4"
+    "@openapitools/openapi-generator-cli": "^2.13.4",
+    "create-react-app": "^5.0.1"
   },
   "devDependencies": {
     "eslint": "^8.36.0",

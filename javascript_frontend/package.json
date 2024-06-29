@@ -1,6 +1,7 @@
 {
   "name": "@wingechr/javascript_frontend",
   "version": "0.0.1",
+  "private": false,
   "scripts": {
     "serve": "npx --no parcel serve --dist-dir build src/index.html",
     "build:js": "npx --no parcel build --no-source-maps --dist-dir dist/module src/index.mjs && shx mv dist/module/index.js dist/module/wingechr_javascript_frontend.min.js",
@@ -8,19 +9,41 @@
     "build:html": "npx --no parcel build --no-source-maps --no-content-hash --dist-dir dist/page src/index.html",
     "build-clean": "shx rm -r dist || shx mkdir dist",
     "build": "npm run build-clean && npx npm-run-all build:*",
-    "publish": "npm publish --access public"
+    "publish": "npm publish --access public",
+    "start": "react-scripts start",
+    "_build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "browserslist": "> 0.25%, not dead",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "dependencies": {
-    "@wingechr/javascript_package": "file:../javascript_package"
+    "@wingechr/javascript_package": "file:../javascript_package",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react-scripts": "5.0.1",
     "@babel/cli": "^7.24.7",
     "@babel/core": "^7.24.7",
     "@babel/preset-env": "^7.24.7",
     "@parcel/transformer-babel": "^2.12.0",
     "@parcel/transformer-sass": "^2.12.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
+    "@babel/plugin-transform-private-property-in-object": "^7.24.7",
     "parcel": "^2.12.0",
     "npm-run-all": "^4.1.5",
     "shx": "^0.3.4"

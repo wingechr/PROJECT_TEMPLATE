@@ -3,6 +3,11 @@
     "sourceType": "module",
     "ecmaVersion": 2022
   },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
   "plugins": ["prettier", "jsdoc", "react", "react-hooks"],
   "extends": [
     "eslint:recommended",
@@ -18,7 +23,8 @@
     "prettier/prettier": [
       "error",
       {
-        "endOfLine": "auto"
+        "endOfLine": "auto",
+        "trailingComma": "es5"
       }
     ],
     "max-len": [
@@ -29,6 +35,8 @@
     ],
     "camelcase": 0,
     "prefer-const": 0,
+    "jsdoc/require-param-description": "off",
+    "jsdoc/require-returns-description": "off",
     "valid-jsdoc": [
       2,
       {
