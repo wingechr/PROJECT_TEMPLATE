@@ -4,6 +4,8 @@
     "create-react-app": "^5.0.1"
   },
   "devDependencies": {
+    "@parcel/packager-raw-url": "^2.12.0",
+    "@parcel/transformer-webmanifest": "^2.12.0",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jsdoc": "^48.2.1",

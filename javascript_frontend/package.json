@@ -3,17 +3,17 @@
   "version": "0.0.1",
   "private": false,
   "scripts": {
-    "serve": "npx --no parcel serve --dist-dir build src/index.html",
+    "_TODO_serve": "npx --no parcel serve --dist-dir build src/index.html",
     "build:js": "npx --no parcel build --no-source-maps --dist-dir dist/module src/index.mjs && shx mv dist/module/index.js dist/module/wingechr_javascript_frontend.min.js",
     "build:css": "npx --no parcel build --no-source-maps --no-content-hash --dist-dir dist/module src/index.scss && shx mv dist/module/index.css dist/module/wingechr_javascript_frontend.min.css",
-    "build:html": "npx --no parcel build --no-source-maps --no-content-hash --dist-dir dist/page src/index.html",
+    "build:html": "npx --no parcel build --no-source-maps --no-content-hash --dist-dir dist/page public/index.html --public-url=./",
     "build-clean": "shx rm -r dist || shx mkdir dist",
     "build": "npm run build-clean && npx npm-run-all build:*",
     "publish": "npm publish --access public",
     "start": "react-scripts start",
-    "_build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "_TODO_build": "react-scripts build",
+    "_TODO_test": "react-scripts test",
+    "_TODO_eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
@@ -43,7 +43,7 @@
     "@parcel/transformer-babel": "^2.12.0",
     "@parcel/transformer-sass": "^2.12.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
-    "@babel/plugin-transform-private-property-in-object": "^7.24.7",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "parcel": "^2.12.0",
     "npm-run-all": "^4.1.5",
     "shx": "^0.3.4"

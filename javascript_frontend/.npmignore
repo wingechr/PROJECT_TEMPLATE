@@ -1,4 +1,4 @@
 *
 !package.json
 !src/**
-!test/**
+!public/**
