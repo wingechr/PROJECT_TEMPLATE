@@ -3,8 +3,18 @@
     "sourceType": "module",
     "ecmaVersion": 2022
   },
-  "plugins": ["prettier", "jsdoc"],
+  "plugins": ["prettier", "jsdoc", "react", "react-hooks"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:jsdoc/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended"
+  ],
   "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "prettier/prettier": [
       "error",
       {

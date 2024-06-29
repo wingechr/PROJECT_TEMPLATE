@@ -12,12 +12,7 @@
   },
   "browserslist": "> 0.25%, not dead",
   "dependencies": {
-    "@wingechr/javascript_package": "file:../javascript_package",
-    "@popperjs/core": "^2.11.8",
-    "bootstrap": "^5.3.3",
-    "bootstrap-icons": "^1.11.3",
-    "bootstrap-select": "^1.13.18",
-    "jquery": "^3.7.1"
+    "@wingechr/javascript_package": "file:../javascript_package"
   },
   "devDependencies": {
     "@babel/cli": "^7.24.7",
