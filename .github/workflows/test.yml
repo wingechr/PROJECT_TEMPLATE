@@ -48,8 +48,8 @@ jobs:
           pushd app
           npm install --no-save --prefix ..
           pip install -r requirements.txt
-          pushd app
           cp _local/settings_example.py _local/settings.py
+          pushd app
           python manage.py collectstatic --no-input
           python manage.py test
           popd
