@@ -111,7 +111,7 @@ STATICFILES_DIRS = [
     ("vendor", f"{node_path}/bootstrap-select/dist"),
     ("vendor", f"{node_path}/swagger-ui/dist"),
     ("vendor", f"{node_path}/swagger-client/dist"),
-    ("vendor", f"{node_path}/@wingechr/javascript_frontend/dist/module"),
+    ("vendor", f"{node_path}/@wingechr/javascript_frontend/dist/static"),
 ]
 
 
