@@ -3,17 +3,17 @@
   "version": "0.0.1",
   "private": false,
   "scripts": {
-    "_TODO_serve": "npx --no parcel serve --dist-dir build src/index.html",
-    "build:js": "npx --no parcel build --no-source-maps --dist-dir dist/module src/index.mjs && npx shx mv dist/module/index.js dist/module/wingechr_javascript_frontend.min.js",
-    "build:css": "npx --no parcel build --no-source-maps --no-content-hash --dist-dir dist/module src/index.scss && shx mv dist/module/index.css dist/module/wingechr_javascript_frontend.min.css",
-    "build:html": "npx --no parcel build --no-source-maps --no-content-hash --dist-dir dist/page public/index.html --public-url=./",
-    "build-clean": "npx shx rm -r dist || npx shx mkdir dist",
-    "build": "npm run build-clean && npx npm-run-all build:*",
+    "_serve": "npx --no parcel serve --dist-dir tmp public/index.html",
+    "_build:js": "npx --no parcel build --no-source-maps --dist-dir build/static src/index.mjs && npx shx mv build/static/index.js build/static/wingechr_javascript_frontend.min.js",
+    "_build:css": "npx --no parcel build --no-source-maps --no-content-hash --dist-dir build/static src/index.scss && shx mv build/static/index.css build/static/wingechr_javascript_frontend.min.css",
+    "_build:html": "npx --no parcel build --no-source-maps --no-content-hash --dist-dir build/page public/index.html --public-url=./",
+    "build-clean": "npx shx touch build && npx shx rm -r build",
+    "_build": "npm run build-clean && npx npm-run-all build:*",
     "publish": "npm publish --access public",
-    "start": "react-scripts start",
-    "_TODO_build": "react-scripts build",
+    "serve": "react-scripts start",
+    "build": "npm run build-clean && react-scripts build",
     "_TODO_test": "react-scripts test",
-    "_TODO_eject": "react-scripts eject"
+    "_eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
