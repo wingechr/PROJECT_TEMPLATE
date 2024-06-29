@@ -29,7 +29,6 @@ __all__ = [
     "TIME_ZONE",
 ]
 
-__version__ = "0.0.0"
 
 SITE_TITLE = "TITLE"
 
@@ -108,7 +107,7 @@ TEMPLATES = [
 ]
 
 # add node_modules folders: prefix => path
-node_path = "./node_modules"
+node_path = "../node_modules"
 STATICFILES_DIRS = [
     ("vendor", f"{node_path}/@popperjs/core/dist/umd"),
     ("vendor", f"{node_path}/jquery/dist"),

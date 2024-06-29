@@ -1,9 +1,9 @@
 from django.contrib import admin
-from main.models import Version
+from main.models import UserData
 
 
 class VersionAdmin(admin.ModelAdmin):
     pass
 
 
-admin.site.register(Version, VersionAdmin)
+admin.site.register(UserData, VersionAdmin)

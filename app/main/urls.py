@@ -44,7 +44,7 @@ urlpatterns += [
         "api.html",
         TemplateView.as_view(
             template_name="api/index.html",
-            extra_context={"schema_url": static_path("api/restapi-schema.json")},
+            extra_context={"schema_url": static_path("api/schema.json")},
         ),
         name="api-doc",
     ),

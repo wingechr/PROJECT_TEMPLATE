@@ -37,33 +37,41 @@ class ModelTestCase(TestCase):
         self.assertTrue("login" in res.url)
 
     def test_authenticate_api(self):
-        url_list = reverse("api-version-list")
-        url_v1 = reverse("api-version-detail", args=["v1"])
+        url_list = reverse("api-userdata-list")
 
         # authenticated user can add object
-        res = self.client_staff.post(url_list, data={"version": "v1"})
-        # replace directly with put
-        res = self.client_staff.put(url_v1, data={"version": "v1"})
+        res = self.client_staff.post(url_list, data={"key": "key1", "value": "value1a"})
+        self.assertEqual(res.status_code, 201)
+
+        # change object
+        id1 = res.json()["id"]
+        url_id1 = reverse("api-userdata-detail", args=[id1])
+
+        # update
+        res = self.client_staff.patch(url_id1, data={"value": "value1b"})
         self.assertEqual(res.status_code, 200)
 
-        # anonymoususer cannot add
-        res = self.client_anonymous.post(url_list, data={"version": "v1"})
-        self.assertEqual(res.status_code, 401)
-        # ... but they can see existing items
-
-        # list items is allowed for all
-        res = self.client_anonymous.get(url_list)
+        # retrieve
+        res = self.client_staff.get(url_id1)
         self.assertEqual(res.status_code, 200)
-        self.assertEqual(res.json()[0]["version"], "v1")
+        self.assertEqual(res.json()["key"], "key1")
+        self.assertEqual(res.json()["value"], "value1b")
 
-        res = self.client_anonymous.get(url_v1)
+        # different user cannot see/change other others items
+        res = self.client_superuser.get(url_list)
         self.assertEqual(res.status_code, 200)
-        self.assertEqual(res.json()["version"], "v1")
-        self.assertTrue("created_at" in res.json())
-        self.assertFalse("created_by" in res.json())  # user should be hidden
+        self.assertEqual(res.json(), [])
+        res = self.client_superuser.delete(url_id1)
+        self.assertEqual(res.status_code, 404)
 
-        res = self.client_anonymous.delete(url_v1)
-        self.assertEqual(res.status_code, 401)
-
-        res = self.client_staff.delete(url_v1)
+        # but owner can delete
+        res = self.client_staff.delete(url_id1)
         self.assertEqual(res.status_code, 204)
+
+        # anonymoususer cannot read or write
+        res = self.client_anonymous.post(
+            url_list, data={"key": "key2", "value": "value2"}
+        )
+        self.assertEqual(res.status_code, 401)
+        res = self.client_anonymous.get(url_list)
+        self.assertEqual(res.status_code, 401)

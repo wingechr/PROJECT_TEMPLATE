@@ -5,9 +5,9 @@
     "version": ""
   },
   "paths": {
-    "/api/version/": {
+    "/api/userdata/": {
       "get": {
-        "operationId": "listVersions",
+        "operationId": "listUserData",
         "description": "",
         "parameters": [],
         "responses": {
@@ -17,7 +17,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Version"
+                    "$ref": "#/components/schemas/UserData"
                   }
                 }
               }
@@ -28,24 +28,24 @@
         "tags": ["api"]
       },
       "post": {
-        "operationId": "createVersion",
+        "operationId": "createUserData",
         "description": "",
         "parameters": [],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Version"
+                "$ref": "#/components/schemas/UserData"
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/Version"
+                "$ref": "#/components/schemas/UserData"
               }
             },
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Version"
+                "$ref": "#/components/schemas/UserData"
               }
             }
           }
@@ -55,7 +55,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Version"
+                  "$ref": "#/components/schemas/UserData"
                 }
               }
             },
@@ -65,16 +65,16 @@
         "tags": ["api"]
       }
     },
-    "/api/version/{version}/": {
+    "/api/userdata/{id}/": {
       "get": {
-        "operationId": "retrieveVersion",
+        "operationId": "retrieveUserData",
         "description": "",
         "parameters": [
           {
-            "name": "version",
+            "name": "id",
             "in": "path",
             "required": true,
-            "description": "A unique value identifying this version.",
+            "description": "A unique integer value identifying this user data.",
             "schema": {
               "type": "string"
             }
@@ -85,7 +85,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Version"
+                  "$ref": "#/components/schemas/UserData"
                 }
               }
             },
@@ -95,14 +95,14 @@
         "tags": ["api"]
       },
       "put": {
-        "operationId": "updateVersion",
+        "operationId": "updateUserData",
         "description": "",
         "parameters": [
           {
-            "name": "version",
+            "name": "id",
             "in": "path",
             "required": true,
-            "description": "A unique value identifying this version.",
+            "description": "A unique integer value identifying this user data.",
             "schema": {
               "type": "string"
             }
@@ -112,17 +112,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Version"
+                "$ref": "#/components/schemas/UserData"
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/Version"
+                "$ref": "#/components/schemas/UserData"
               }
             },
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Version"
+                "$ref": "#/components/schemas/UserData"
               }
             }
           }
@@ -132,7 +132,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Version"
+                  "$ref": "#/components/schemas/UserData"
                 }
               }
             },
@@ -142,14 +142,14 @@
         "tags": ["api"]
       },
       "patch": {
-        "operationId": "partialUpdateVersion",
+        "operationId": "partialUpdateUserData",
         "description": "",
         "parameters": [
           {
-            "name": "version",
+            "name": "id",
             "in": "path",
             "required": true,
-            "description": "A unique value identifying this version.",
+            "description": "A unique integer value identifying this user data.",
             "schema": {
               "type": "string"
             }
@@ -159,17 +159,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Version"
+                "$ref": "#/components/schemas/UserData"
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/Version"
+                "$ref": "#/components/schemas/UserData"
               }
             },
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Version"
+                "$ref": "#/components/schemas/UserData"
               }
             }
           }
@@ -179,7 +179,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Version"
+                  "$ref": "#/components/schemas/UserData"
                 }
               }
             },
@@ -189,14 +189,14 @@
         "tags": ["api"]
       },
       "delete": {
-        "operationId": "destroyVersion",
+        "operationId": "destroyUserData",
         "description": "",
         "parameters": [
           {
-            "name": "version",
+            "name": "id",
             "in": "path",
             "required": true,
-            "description": "A unique value identifying this version.",
+            "description": "A unique integer value identifying this user data.",
             "schema": {
               "type": "string"
             }
@@ -210,10 +210,10 @@
         "tags": ["api"]
       }
     },
-    "/api/example/": {
+    "/api/info/": {
       "get": {
-        "operationId": "listExampleViewSets",
-        "description": "A simple example Viewset with only GET method",
+        "operationId": "listInfoViewSets",
+        "description": "System info",
         "parameters": [],
         "responses": {
           "200": {
@@ -234,12 +234,15 @@
   },
   "components": {
     "schemas": {
-      "Version": {
+      "UserData": {
         "type": "object",
         "properties": {
-          "version": {
+          "key": {
             "type": "string",
             "maxLength": 128
+          },
+          "value": {
+            "type": "string"
           },
           "created_at": {
             "type": "string",
@@ -247,7 +250,7 @@
             "readOnly": true
           }
         },
-        "required": ["version"]
+        "required": ["key", "value"]
       }
     }
   }

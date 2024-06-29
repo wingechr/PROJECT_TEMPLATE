@@ -20,7 +20,7 @@
     <script>
         /* display */
         const ui = SwaggerUIBundle({
-            url: "{{ schema_url }}",
+            url: "{{ schema_url }}?v=latest",
             dom_id: '#swagger-ui',
             presets: [
                 SwaggerUIBundle.presets.apis,
@@ -28,7 +28,7 @@
             ],
             layout: "BaseLayout",
             requestInterceptor: (request) => {
-                request.headers['X-CSRFToken'] = "{{ csrf_token }}";
+                //request.headers['X-CSRFToken'] = "{{ csrf_token }}";
                 request.headers['Accept'] = "application/json";
                 return request;
             }

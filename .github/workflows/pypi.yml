@@ -23,7 +23,7 @@ jobs:
           cache: "pip" # caching pip dependencies
       - run: |
           pushd python_package
-          pip install build
+          pip install setuptools build
           python -m build --sdist --wheel --outdir dist/
       - uses: pypa/gh-action-pypi-publish@release/v1
         with:

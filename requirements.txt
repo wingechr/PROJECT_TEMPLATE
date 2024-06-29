@@ -5,11 +5,12 @@ twine
 tox
 pre-commit
 ipykernel
+python-dotenv
+scons
 
--r docs/requirements.txt
--r app/requirements.txt
--r assets/requirements.txt
+# NOTE: cannot include these from here
+# because the relative paths -e file:../python_package
+# are not resolved correctly
 
-# needed to run notebook (also to build docs)
--e ./python_package #
-#-e ./python_client
+#-r docs/requirements.txt
+#-r app/requirements.txt
