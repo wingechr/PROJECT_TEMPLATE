@@ -6,4 +6,4 @@ uritemplate  # for python manage.py generateschema
 # django-compressor==4.4
 psycopg2-binary
 
--e file:../python_package
+-e ./../python_package
