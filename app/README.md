@@ -10,7 +10,7 @@ python manage.py createsuperuser
 
 npx parcel build --target browser --dist-dir main/static
 
-python manage.py generateschema  --format=openapi-json --file main/static/api/schema.json
+python manage.py generateschema  --format=openapi-json --file main/static/api/schema.json --title title --api_version 1.0.0
 
 
 

@@ -1,4 +1,6 @@
 {
+  "name": "@wingechr/app",
+  "version": "0.0.0",
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "@wingechr/javascript_frontend": "file:../javascript_frontend",

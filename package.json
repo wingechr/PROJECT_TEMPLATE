@@ -1,4 +1,7 @@
 {
+  "suggestedDevDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.13.4"
+  },
   "devDependencies": {
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^9.1.0",
@@ -15,6 +18,7 @@
     "postinstall": "npx npm-run-all install:*"
   },
   "dependencies": {
+    "@wingechr/app": "file:app",
     "@wingechr/javascript_frontend": "file:javascript_frontend",
     "@wingechr/javascript_package": "file:javascript_package"
   }

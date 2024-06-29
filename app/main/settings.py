@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     # 3rd party
     "rest_framework",
     "rest_framework.authtoken",
-    "drf_spectacular",
+    "drf_spectacular",  # schema generation
     "compressor",  # hashed static files
     # apps
     "main.apps.AppConfig",
@@ -76,11 +76,6 @@ REST_FRAMEWORK = {
     ],
 }
 
-SPECTACULAR_SETTINGS = {
-    "VERSION": "1.0.0",
-    "SERVE_INCLUDE_SCHEMA": True,
-    # OTHER SETTINGS
-}
 
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
