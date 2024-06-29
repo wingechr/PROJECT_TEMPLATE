@@ -27,13 +27,14 @@ jobs:
           conda install -q -y -c conda-forge tox
           conda create -q -y -n py38 python=3.8
           conda create -q -y -n py312 python=3.12
-          npm install --no-save
       - run: |
           pushd javascript_package
+          npm install --no-save --prefix ..
           npm run test
           popd
       - run: |
           pushd javascript_frontend
+          npm install --no-save --prefix ..
           npm run build
           popd
       - run: |
@@ -46,6 +47,7 @@ jobs:
       - run: |
           pushd app
           cp _local/settings_example.py _local/settings.py
+          npm install --no-save --prefix ..
           pip install -r requirements.txt
           python manage.py compress
           python manage.py test
