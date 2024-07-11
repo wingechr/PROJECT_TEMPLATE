@@ -1,13 +1,11 @@
 # from django.urls import path, include
 
-from django.db import connections
-from django.db.migrations.recorder import MigrationRecorder
-from django.http import JsonResponse
-from main import __version__
-from main.models import UserData
-from rest_framework import permissions, routers, serializers, viewsets
 
-from python_package import get_info
+from django.http import JsonResponse
+from drf_spectacular.openapi import AutoSchema
+from main.models import UserData
+from main.utils import get_info
+from rest_framework import permissions, routers, serializers, viewsets
 
 api_router = routers.DefaultRouter()
 
@@ -31,7 +29,7 @@ class UserDataSerializer(serializers.ModelSerializer):
 
 
 class UserDataModelViewSet(viewsets.ModelViewSet):
-    # queryset = UserData.objects.all()
+    queryset = UserData.objects.all()
     serializer_class = UserDataSerializer
     permission_classes = [permissions.IsAuthenticated, UserDataPermission]
 
@@ -51,30 +49,27 @@ api_router.register("userdata", UserDataModelViewSet, basename="api-userdata")
 # CUSTOM API ENDPOINTS
 
 
-class InfoViewSet(viewsets.ViewSet):
-    """
-    System info
-    """
-
-    # Function to get the current migration revision ID
-    @staticmethod
-    def _get_current_migration_revision_id(app_name):
-        connection = connections["default"]
-        recorder = MigrationRecorder(connection)
-        latest_migration = (
-            recorder.migration_qs.filter(app=app_name).order_by("-applied").first()
-        )
-        if latest_migration:
-            return latest_migration.name
-        return None
-
-    def list(self, request) -> dict:
-        # TODO: how to tell python manage.py generateschema the output schema?
-        data = get_info()
-        data["version:app"] = __version__
-        data["version:dbschema:main"] = self._get_current_migration_revision_id("main")
-
-        return JsonResponse(data)
+class FunctionApiSchema(AutoSchema):
+    def get_operation(self, *args, **kwargs):
+        result = super().get_operation(*args, **kwargs)
+        result["responses"]["200"] = {
+            "content": {"application/json": {"schema": {"type": "object"}}},
+            "description": "",
+        }
+        return result
 
 
-api_router.register("info", InfoViewSet, basename="api-info")
+class MySerializer(serializers.BaseSerializer):
+    fields = {}
+
+
+class TestViewSet(viewsets.GenericViewSet):
+    schema = FunctionApiSchema()
+    serializer_class = MySerializer
+
+    def list(self, response):
+        "some description"
+        return JsonResponse(get_info(), safe=False)
+
+
+api_router.register("utils", TestViewSet, basename="api-utils")

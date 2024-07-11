@@ -5,7 +5,7 @@
 ```bash
 python manage.py makemigrations
 python manage.py migrate
-python manage.py generateschema  --format=openapi-json --file main/static/api/schema.json --title title --api_version 1.0.0
+python manage.py spectacular --format=openapi-json --file main/static/api/schema.json
 python manage.py collectstatic --no-input
 python manage.py test
 python manage.py runserver
@@ -31,3 +31,22 @@ python manage.py loaddata ../_local/backups/data.json
 - run `migration`
 - run `collectstatic`
 - touch `wsgi.py` for restart
+
+```
+from rest_framework_bulk import (
+    BulkListSerializer,
+    BulkSerializerMixin,
+    ListBulkCreateUpdateDestroyAPIView,
+)
+
+class FooSerializer(BulkSerializerMixin, ModelSerializer):
+    class Meta(object):
+        model = FooModel
+        # only necessary in DRF3
+        list_serializer_class = BulkListSerializer
+
+class FooView(ListBulkCreateUpdateDestroyAPIView):
+    queryset = FooModel.objects.all()
+    serializer_class = FooSerializer
+
+```

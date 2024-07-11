@@ -1,15 +1,23 @@
 {
-  "openapi": "3.0.2",
+  "openapi": "3.0.3",
   "info": {
-    "title": "title",
-    "version": "1.0.0"
+    "title": "TODO: TITLE",
+    "version": "0.0.1",
+    "description": "TODO: DESCRIPTION"
   },
   "paths": {
     "/api/userdata/": {
       "get": {
-        "operationId": "listUserData",
-        "description": "",
-        "parameters": [],
+        "operationId": "api_userdata_list",
+        "tags": ["api"],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "content": {
@@ -24,13 +32,11 @@
             },
             "description": ""
           }
-        },
-        "tags": ["api"]
+        }
       },
       "post": {
-        "operationId": "createUserData",
-        "description": "",
-        "parameters": [],
+        "operationId": "api_userdata_create",
+        "tags": ["api"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -48,8 +54,17 @@
                 "$ref": "#/components/schemas/UserData"
               }
             }
-          }
+          },
+          "required": true
         },
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
         "responses": {
           "201": {
             "content": {
@@ -61,23 +76,30 @@
             },
             "description": ""
           }
-        },
-        "tags": ["api"]
+        }
       }
     },
     "/api/userdata/{id}/": {
       "get": {
-        "operationId": "retrieveUserData",
-        "description": "",
+        "operationId": "api_userdata_retrieve",
         "parameters": [
           {
-            "name": "id",
             "in": "path",
-            "required": true,
-            "description": "",
+            "name": "id",
             "schema": {
-              "type": "string"
-            }
+              "type": "integer"
+            },
+            "description": "A unique integer value identifying this user data.",
+            "required": true
+          }
+        ],
+        "tags": ["api"],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -91,23 +113,22 @@
             },
             "description": ""
           }
-        },
-        "tags": ["api"]
+        }
       },
       "put": {
-        "operationId": "updateUserData",
-        "description": "",
+        "operationId": "api_userdata_update",
         "parameters": [
           {
-            "name": "id",
             "in": "path",
-            "required": true,
-            "description": "",
+            "name": "id",
             "schema": {
-              "type": "string"
-            }
+              "type": "integer"
+            },
+            "description": "A unique integer value identifying this user data.",
+            "required": true
           }
         ],
+        "tags": ["api"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -125,8 +146,17 @@
                 "$ref": "#/components/schemas/UserData"
               }
             }
-          }
+          },
+          "required": true
         },
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "content": {
@@ -138,42 +168,49 @@
             },
             "description": ""
           }
-        },
-        "tags": ["api"]
+        }
       },
       "patch": {
-        "operationId": "partialUpdateUserData",
-        "description": "",
+        "operationId": "api_userdata_partial_update",
         "parameters": [
           {
-            "name": "id",
             "in": "path",
-            "required": true,
-            "description": "",
+            "name": "id",
             "schema": {
-              "type": "string"
-            }
+              "type": "integer"
+            },
+            "description": "A unique integer value identifying this user data.",
+            "required": true
           }
         ],
+        "tags": ["api"],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserData"
+                "$ref": "#/components/schemas/PatchedUserData"
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/UserData"
+                "$ref": "#/components/schemas/PatchedUserData"
               }
             },
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/UserData"
+                "$ref": "#/components/schemas/PatchedUserData"
               }
             }
           }
         },
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "content": {
@@ -185,55 +222,89 @@
             },
             "description": ""
           }
-        },
-        "tags": ["api"]
+        }
       },
       "delete": {
-        "operationId": "destroyUserData",
-        "description": "",
+        "operationId": "api_userdata_destroy",
         "parameters": [
           {
-            "name": "id",
             "in": "path",
-            "required": true,
-            "description": "",
+            "name": "id",
             "schema": {
-              "type": "string"
-            }
+              "type": "integer"
+            },
+            "description": "A unique integer value identifying this user data.",
+            "required": true
+          }
+        ],
+        "tags": ["api"],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
           "204": {
-            "description": ""
+            "description": "No response body"
           }
-        },
-        "tags": ["api"]
+        }
       }
     },
-    "/api/info/": {
+    "/api/utils/": {
       "get": {
-        "operationId": "listInfoViewSets",
-        "description": "System info",
-        "parameters": [],
+        "operationId": "api_utils_list",
+        "description": "some description",
+        "tags": ["api"],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {}
+        ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {}
+                  "type": "object"
                 }
               }
             },
             "description": ""
           }
-        },
-        "tags": ["api"]
+        }
       }
     }
   },
   "components": {
     "schemas": {
+      "PatchedUserData": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "value": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          }
+        }
+      },
       "UserData": {
         "type": "object",
         "properties": {
@@ -254,7 +325,20 @@
             "readOnly": true
           }
         },
-        "required": ["key", "value"]
+        "required": ["created_at", "id", "key", "value"]
+      }
+    },
+    "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "sessionid"
+      },
+      "tokenAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "description": "Token-based authentication with required prefix \"Token\""
       }
     }
   }

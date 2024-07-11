@@ -31,8 +31,8 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1", "my.domain.com"]
 ALLOW_BROWSER_API = True
 ALLOW_ADMIN = True
 
-ADMIN_PASSWORD = "*******"
-ADMIN_TOKEN = "********"
+ADMIN_PASSWORD = "***"
+ADMIN_TOKEN = "***"
 
 SQLITE_DATABASE = {
     "ENGINE": "django.db.backends.sqlite3",
