@@ -3,8 +3,8 @@ djangorestframework>=3.10
 mistune>=2.0.3 # not directly required, pinned by Snyk to avoid a vulnerability
 drf-spectacular[sidecar] # for schema generation
 uritemplate  # for python manage.py generateschema
-# django-compressor==4.4
+django-compressor==4.4
 psycopg2-binary
-djangorestframework-bulk
+django-filter
 
 -e file:../python_package

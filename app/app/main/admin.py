@@ -1,9 +1,16 @@
 from django.contrib import admin
-from main.models import UserData
+from main.models import Dataset, Upload
 
 
-class UserDataAdmin(admin.ModelAdmin):
+class DatasetAdmin(admin.ModelAdmin):
     pass
 
 
-admin.site.register(UserData, UserDataAdmin)
+admin.site.register(Dataset, DatasetAdmin)
+
+
+class UploadAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Upload, UploadAdmin)

@@ -6,9 +6,9 @@
     "description": "TODO: DESCRIPTION"
   },
   "paths": {
-    "/api/userdata/": {
+    "/api/dataset/": {
       "get": {
-        "operationId": "api_userdata_list",
+        "operationId": "api_dataset_list",
         "tags": ["api"],
         "security": [
           {
@@ -25,7 +25,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/UserData"
+                    "$ref": "#/components/schemas/Dataset"
                   }
                 }
               }
@@ -35,23 +35,23 @@
         }
       },
       "post": {
-        "operationId": "api_userdata_create",
+        "operationId": "api_dataset_create",
         "tags": ["api"],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserData"
+                "$ref": "#/components/schemas/Dataset"
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/UserData"
+                "$ref": "#/components/schemas/Dataset"
               }
             },
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/UserData"
+                "$ref": "#/components/schemas/Dataset"
               }
             }
           },
@@ -70,7 +70,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserData"
+                  "$ref": "#/components/schemas/Dataset"
                 }
               }
             },
@@ -79,9 +79,91 @@
         }
       }
     },
-    "/api/userdata/{id}/": {
+    "/api/usersetting/": {
       "get": {
-        "operationId": "api_userdata_retrieve",
+        "operationId": "api_usersetting_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": ["api"],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserSetting"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "operationId": "api_usersetting_create",
+        "tags": ["api"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserSetting"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/UserSetting"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UserSetting"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserSetting"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/usersetting/{id}/": {
+      "get": {
+        "operationId": "api_usersetting_retrieve",
         "parameters": [
           {
             "in": "path",
@@ -89,7 +171,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "A unique integer value identifying this user data.",
+            "description": "A unique integer value identifying this user setting.",
             "required": true
           }
         ],
@@ -107,7 +189,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserData"
+                  "$ref": "#/components/schemas/UserSetting"
                 }
               }
             },
@@ -116,7 +198,7 @@
         }
       },
       "put": {
-        "operationId": "api_userdata_update",
+        "operationId": "api_usersetting_update",
         "parameters": [
           {
             "in": "path",
@@ -124,7 +206,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "A unique integer value identifying this user data.",
+            "description": "A unique integer value identifying this user setting.",
             "required": true
           }
         ],
@@ -133,17 +215,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserData"
+                "$ref": "#/components/schemas/UserSetting"
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/UserData"
+                "$ref": "#/components/schemas/UserSetting"
               }
             },
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/UserData"
+                "$ref": "#/components/schemas/UserSetting"
               }
             }
           },
@@ -162,7 +244,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserData"
+                  "$ref": "#/components/schemas/UserSetting"
                 }
               }
             },
@@ -171,7 +253,7 @@
         }
       },
       "patch": {
-        "operationId": "api_userdata_partial_update",
+        "operationId": "api_usersetting_partial_update",
         "parameters": [
           {
             "in": "path",
@@ -179,7 +261,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "A unique integer value identifying this user data.",
+            "description": "A unique integer value identifying this user setting.",
             "required": true
           }
         ],
@@ -188,17 +270,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PatchedUserData"
+                "$ref": "#/components/schemas/PatchedUserSetting"
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/PatchedUserData"
+                "$ref": "#/components/schemas/PatchedUserSetting"
               }
             },
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/PatchedUserData"
+                "$ref": "#/components/schemas/PatchedUserSetting"
               }
             }
           }
@@ -216,7 +298,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserData"
+                  "$ref": "#/components/schemas/UserSetting"
                 }
               }
             },
@@ -225,7 +307,7 @@
         }
       },
       "delete": {
-        "operationId": "api_userdata_destroy",
+        "operationId": "api_usersetting_destroy",
         "parameters": [
           {
             "in": "path",
@@ -233,7 +315,7 @@
             "schema": {
               "type": "integer"
             },
-            "description": "A unique integer value identifying this user data.",
+            "description": "A unique integer value identifying this user setting.",
             "required": true
           }
         ],
@@ -284,7 +366,26 @@
   },
   "components": {
     "schemas": {
-      "PatchedUserData": {
+      "Dataset": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "value": {},
+          "timestamp": {
+            "type": "string",
+            "readOnly": true
+          },
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          }
+        },
+        "required": ["id", "key", "timestamp"]
+      },
+      "PatchedUserSetting": {
         "type": "object",
         "properties": {
           "key": {
@@ -292,9 +393,9 @@
             "maxLength": 128
           },
           "value": {
-            "type": "string"
+            "nullable": true
           },
-          "created_at": {
+          "timestamp": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
@@ -305,7 +406,7 @@
           }
         }
       },
-      "UserData": {
+      "UserSetting": {
         "type": "object",
         "properties": {
           "key": {
@@ -313,9 +414,9 @@
             "maxLength": 128
           },
           "value": {
-            "type": "string"
+            "nullable": true
           },
-          "created_at": {
+          "timestamp": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
@@ -325,7 +426,7 @@
             "readOnly": true
           }
         },
-        "required": ["created_at", "id", "key", "value"]
+        "required": ["id", "key", "timestamp"]
       }
     },
     "securitySchemes": {

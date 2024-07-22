@@ -37,6 +37,7 @@ urlpatterns += (
 # and we want to see if it automatically adds hashsum to {% static %}
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+
 urlpatterns += (
     re_path(
         rf"^{settings.STATIC_URL.strip('/')}(?P<path>.*)$",
@@ -57,14 +58,16 @@ urlpatterns += [
     path("api/", include(api.api_router.urls)),
     # rest api doc from schema.json (generated with management command)
     path(
-        "api.html",
+        "api-schema",
         TemplateView.as_view(
             template_name="api/index.html",
             extra_context={"schema_url": static("api/schema.json")},
         ),
-        name="api-doc",
+        name="api-schema",
     ),
+    path("api/dataset/", api.DatasetApiView.as_view(), name="api-dataset"),
 ]
+
 
 # ------------------------------------------------------------------------------------
 # MAIN APP: index

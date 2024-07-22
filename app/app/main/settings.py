@@ -49,9 +49,10 @@ INSTALLED_APPS = [
     # 3rd party
     "rest_framework",
     "rest_framework.authtoken",
+    "django_filters",
     "drf_spectacular",  # schema generation
     "drf_spectacular_sidecar",
-    # "compressor",  # hashed static files
+    "compressor",  # hashed static files
     # apps
     "main.apps.AppConfig",
 ]
@@ -83,6 +84,7 @@ REST_FRAMEWORK = {
         "rest_framework.renderers.JSONRenderer",
         # 'rest_framework.renderers.BrowsableAPIRenderer',
     ],
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
 }
 
 SPECTACULAR_SETTINGS = {
@@ -100,7 +102,7 @@ STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
     # other finders..
-    # "compressor.finders.CompressorFinder",
+    "compressor.finders.CompressorFinder",
 )
 
 
@@ -176,10 +178,9 @@ AUTHENTICATION_BACKENDS = ["django.contrib.auth.backends.ModelBackend"]  # defau
 LOGIN_URL = BASE_URL + "admin/login"
 LOGOUT_URL = BASE_URL + "admin/logout"
 
-# https://django-compressor.readthedocs.io/en/stable/settings.html#django.conf.settings.COMPRESS_OFFLINE
-
-# COMPRESS_ENABLED = False
-# COMPRESS_OFFLINE = True
+# https://django-compressor.readthedocs.io/en/stable/settings.html
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = True
 # default is CACHE
 # COMPRESS_OUTPUT_DIR = "CACHE"
 
