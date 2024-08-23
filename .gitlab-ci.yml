@@ -1,6 +1,9 @@
 variables:
   GIT_STRATEGY: fetch
 
+before_script:
+  - if [ -z "$DEPLOY_PATH" ]; then echo "Project variable DEPLOY_PATH is not defined"; exit 1; fi
+
 stages:
   - stage_example
 

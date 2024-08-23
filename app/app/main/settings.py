@@ -1,13 +1,8 @@
 import logging
 import os
 import sys
-from os.path import abspath, dirname
 
-# root_dir contains _local
-root_dir = dirname(dirname(dirname(abspath(__file__))))
-sys.path.insert(0, root_dir)
-
-from _local.settings import (  # noqa E402
+from data.settings import (
     ADMIN_PASSWORD,
     ADMIN_TOKEN,
     ALLOW_ADMIN,
@@ -24,7 +19,6 @@ from _local.settings import (  # noqa E402
     TIME_ZONE,
 )
 
-# unused here but used in app
 __all__ = [
     "ADMIN_PASSWORD",
     "ADMIN_TOKEN",
@@ -50,10 +44,12 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "django_filters",
+    "crispy_forms",  # needed by django_filters/rest_framework
+    "crispy_bootstrap5",
     "drf_spectacular",  # schema generation
     "drf_spectacular_sidecar",
     "compressor",  # hashed static files
-    # apps
+    # our apps
     "main.apps.AppConfig",
 ]
 
@@ -115,19 +111,15 @@ STATICFILES_STORAGE = "main.static.ManifestStaticFilesStorageWithIgnore"
 
 
 # add node_modules folders: prefix => path
-node_path = "../../node_modules"
+node_modules = "./node_modules"  # relative to workdir
 STATICFILES_DIRS = [
-    (
-        "vendor",
-        f"{node_path}/@wingechr/javascript_frontend/dist/static",
-    ),
-    ("vendor", f"{node_path}/@popperjs/core/dist/umd"),
-    ("vendor", f"{node_path}/jquery/dist"),
-    ("vendor", f"{node_path}/bootstrap/dist"),
-    ("vendor", f"{node_path}/bootstrap-icons/font"),
-    ("vendor", f"{node_path}/bootstrap-select/dist"),
-    ("vendor", f"{node_path}/swagger-ui/dist"),
-    ("vendor", f"{node_path}/swagger-client/dist"),
+    ("vendor", f"{node_modules}/@popperjs/core/dist/umd"),
+    ("vendor", f"{node_modules}/jquery/dist"),
+    ("vendor", f"{node_modules}/bootstrap/dist"),
+    ("vendor", f"{node_modules}/bootstrap-icons/font"),
+    ("vendor", f"{node_modules}/bootstrap-select/dist"),
+    ("vendor", f"{node_modules}/swagger-ui/dist"),
+    ("vendor", f"{node_modules}/swagger-client/dist"),
 ]
 
 TEMPLATES = [
@@ -146,6 +138,9 @@ TEMPLATES = [
     }
 ]
 
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 ROOT_URLCONF = "main.urls"
 WSGI_APPLICATION = "wsgi.application"

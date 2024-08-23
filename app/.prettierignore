@@ -1,0 +1,2 @@
+# Ignore all HTML files, because these are django templates
+**/*.html

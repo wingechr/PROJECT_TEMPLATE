@@ -1,13 +1,12 @@
 {
-  "name": "@wingechr/app",
+  "name": "app",
   "version": "0.0.1",
-  "private": false,
+  "private": true,
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@wingechr/javascript_frontend": "file:../javascript_frontend",
     "bootstrap": "^5.3.3",
-    "bootstrap-icons": "^1.11.3",
     "bootstrap-select": "^1.13.18",
+    "bootstrap-icons": "^1.11.0",
     "jquery": "^3.7.1",
     "swagger-client": "^3.28.2",
     "swagger-ui": "^5.17.14"

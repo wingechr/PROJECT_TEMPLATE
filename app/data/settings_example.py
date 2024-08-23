@@ -36,10 +36,10 @@ ADMIN_TOKEN = "***"
 
 SQLITE_DATABASE = {
     "ENGINE": "django.db.backends.sqlite3",
-    "NAME": LOCAL_DIR + "/db.sqlite3",
+    "NAME": LOCAL_DIR + "/database/db.sqlite3",
 }
 
-_POSTGRES_DATABASE = {
+POSTGRES_DATABASE = {
     "ENGINE": "django.db.backends.postgresql",
     "NAME": "<DATABASE>",
     "USER": "<USER>",
@@ -50,9 +50,9 @@ _POSTGRES_DATABASE = {
 
 TEST_DATABASE = {
     "ENGINE": "django.db.backends.sqlite3",
-    "NAME": LOCAL_DIR + "/test_db.sqlite3",
+    "NAME": LOCAL_DIR + "/database/test_db.sqlite3",
 }
 
-LOGFILE = LOCAL_DIR + "/log.txt"
+LOGFILE = LOCAL_DIR + "/logs/log.txt"
 
 DEFAULT_DATABASE = SQLITE_DATABASE

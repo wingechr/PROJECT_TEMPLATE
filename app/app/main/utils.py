@@ -2,8 +2,6 @@ from django.db import connections
 from django.db.migrations.recorder import MigrationRecorder
 from main import __version__
 
-from python_package import get_info as _get_info
-
 
 def get_info():
     def _get_current_migration_revision_id(app_name):
@@ -16,7 +14,7 @@ def get_info():
             return latest_migration.name
         return None
 
-    data = _get_info()
+    data = {}
     data["version:app"] = __version__
     data["version:dbschema:main"] = _get_current_migration_revision_id("main")
 
