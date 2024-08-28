@@ -19,3 +19,9 @@ rm -r app
 
 python manage.py check # no issues
 ```
+
+### Auth
+
+- https://docs.djangoproject.com/en/5.1/topics/auth/default/
+
+Django provides no default template for the authentication views. You should create your own templates for the views you want to use. The template context is documented in each view, see All authentication views: https://docs.djangoproject.com/en/5.1/topics/auth/default/#all-authentication-views
