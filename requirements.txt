@@ -13,4 +13,4 @@ scons
 # are not resolved correctly
 
 #-r docs/requirements.txt
-#-r app/requirements.txt
+#-r django_app/requirements.txt

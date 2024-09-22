@@ -1,43 +1,79 @@
-"""
-URL configuration for main project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-
+from django.conf import settings
 from django.contrib import admin
+from django.templatetags.static import static
+from django.urls import include, path, re_path
+from django.views.generic import TemplateView
+from django.views.static import serve
 
-# from django.contrib.auth import views as auth_views
-from django.urls import include, path
+from . import api, views
 
-from . import views
+urlpatterns = []
 
-urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("accounts/", include("django.contrib.auth.urls")),
-    # accounts/login/ [name='login']
-    # accounts/logout/ [name='logout']
-    # accounts/password_change/ [name='password_change']
-    # accounts/password_change/done/ [name='password_change_done']
-    # accounts/password_reset/ [name='password_reset']
-    # accounts/password_reset/done/ [name='password_reset_done']
-    # accounts/reset/<uidb64>/<token>/ [name='password_reset_confirm']
-    # accounts/reset/done/ [name='password_reset_complete']
-    path(
-        "accounts/profile/",
-        # this is the default redirect from (admin?) )login if there is no ?next=
-        views.profile,
-        name="profile",
+# ------------------------------------------------------------------------------------
+# ADMIN (including login/logout)
+# ------------------------------------------------------------------------------------
+
+admin.site.site_header = settings.SITE_TITLE
+admin.site.site_title = None
+admin.site.index_title = settings.SITE_TITLE
+admin.site.site_url = None  # remove "View Site" link
+urlpatterns.append(path("admin/", admin.site.urls))
+
+# ------------------------------------------------------------------------------------
+# STATIC / MEDIA (serve in develop mode)
+# ------------------------------------------------------------------------------------
+
+urlpatterns += (
+    re_path(
+        rf"^{settings.MEDIA_URL.strip('/')}(?P<path>.*)$",
+        serve,
+        {"document_root": settings.MEDIA_ROOT},
     ),
-    path("", views.index, name="index"),
+)
+
+# also serve static files from collectstatic folder
+# we want this to test if STATICFILES_STORAGE = ManifestStaticFilesStorage
+# and we want to see if it automatically adds hashsum to {% static %}
+# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+urlpatterns += (
+    re_path(
+        rf"^{settings.STATIC_URL.strip('/')}(?P<path>.*)$",
+        serve,
+        {"document_root": settings.STATIC_ROOT},
+    ),
+)
+
+
+# ------------------------------------------------------------------------------------
+#  REST API
+#     NOTE: returns forbidden if no api url registered
+# ------------------------------------------------------------------------------------
+
+
+urlpatterns += [
+    # include rest_api routes
+    path("api/", include(api.api_router.urls)),
+    # rest api doc from schema.json (generated with management command)
+    path(
+        "api-schema",
+        TemplateView.as_view(
+            template_name="api/index.html",
+            extra_context={"schema_url": static("api/schema.json")},
+        ),
+        name="api-schema",
+    ),
+    path("api/dataset/", api.DatasetApiView.as_view(), name="api-dataset"),
+]
+
+
+# ------------------------------------------------------------------------------------
+# MAIN APP: index
+# ------------------------------------------------------------------------------------
+
+urlpatterns += [
+    path("", views.index_view),
+    path("index.html", views.index_view, name="index"),
+    path("_index.html", views._index_view, name="_index"),  # with login
 ]

@@ -45,10 +45,11 @@ jobs:
           tox # --parallel
           popd
       - run: |
-          pushd app
-          npm install --no-save --prefix ..
+          pushd django_app
+          npm install --no-save
           pip install -r requirements.txt
-          cp _local/settings_example.py _local/settings.py
+          mkdir -p local_data
+          cp app/settings.local_example.py local_data/settings.py
           pushd app
           python manage.py collectstatic --no-input
           python manage.py test

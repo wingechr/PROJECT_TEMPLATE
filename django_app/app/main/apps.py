@@ -1,6 +1,7 @@
 from django.apps import AppConfig
+from django.conf import settings
 
 
-class MainConfig(AppConfig):
-    default_auto_field = "django.db.models.BigAutoField"
+class AppConfig(AppConfig):
     name = "main"
+    verbose_name = settings.SITE_TITLE
