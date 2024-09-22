@@ -1,5 +1,13 @@
 variables:
+  # https://docs.gitlab.com/ee/ci/runners/configure_runners.html#git-strategy
+  # fetch is faster as it re-uses the local working copy (falling back to clone if it does not exist).
+  # git clean is used to undo any changes made by the last job,
+  # and git fetch is used to retrieve commits made after the last job ran.
   GIT_STRATEGY: fetch
+  # we want git clean to keep files like venv that are in .gitignore
+  # default is -ffdx
+  GIT_CLEAN_FLAGS: -fd
+
 
 before_script:
   - if [ -z "$DEPLOY_PATH" ]; then echo "Project variable DEPLOY_PATH is not defined"; exit 1; fi
