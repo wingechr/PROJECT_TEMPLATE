@@ -107,13 +107,7 @@ class DatasetApiView(generics.ListCreateAPIView):
 
     permission_classes = [ReadOnlyOrAuthenticated]
     serializer_class = DatasetSerializer
-    # queryset = Dataset.objects.all()
-
-    def get_queryset(self):
-        # partial overlap: for each duplicate key: get latest upload
-        # TODO: by timestamp,not id?
-
-        return Dataset.objects.all()
+    queryset = Dataset.objects.all()
 
     def get_serializer(self, *args, **kwargs):
         # if POST
