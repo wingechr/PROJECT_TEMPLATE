@@ -20,7 +20,7 @@
     "sharp": "^0.33.5",
     "shx": "^0.3.4"
   },
-  "dependenciesExamples": {
+  "dependencies": {
     "@wingechr/javascript_frontend": "file:javascript_frontend",
     "@wingechr/javascript_package": "file:javascript_package"
   }
