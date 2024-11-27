@@ -47,7 +47,6 @@
       }
     ],
     "quotes": [0, "single", "double"],
-
     "linebreak-style": 0
   }
 }
