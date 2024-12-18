@@ -1,12 +1,13 @@
 # development and build tools
 build
 bumpversion
-twine
-tox
-pre-commit
 ipykernel
+pre-commit
 python-dotenv
 scons
+tox
+twine
+vulture # find dead code
 
 # NOTE: cannot include these from here
 # because the relative paths -e file:../python_package
