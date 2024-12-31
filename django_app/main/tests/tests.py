@@ -7,6 +7,7 @@ from django.core.management import call_command
 from django.test import TestCase
 from django.urls import reverse
 from html5validator import Validator
+from main import __version__
 from rest_framework.test import APIClient
 
 
@@ -89,3 +90,31 @@ class ValidateHtml(TestBaseAuth):
 
         if rc:
             raise Exception()
+
+
+class TestApi(TestBaseAuth):
+    def test_api_login_get_token(self):
+        path = reverse("api-login")
+        username = settings.ADMIN_NAME
+        password = settings.ADMIN_PASSWORD
+        # anonymous allowed for login
+        res = self.client_anonymous.post(
+            path, data={"username": username, "password": password}
+        )
+        token = res.json()["token"]
+        self.assertEqual(token, settings.ADMIN_TOKEN)
+
+    def test_api_info(self):
+        path = reverse("api-info")
+        res = self.client_anonymous.get(path)
+        # anonymous not allowed for any APIViews
+        self.assertEqual(res.status_code, 401)
+        res = self.client_regular.get(path)
+        version = res.json()["version"]
+        self.assertEqual(version, __version__)
+        # also get user endpoint
+        path = reverse("api-user-list")
+        res = self.client_regular.get(path)
+        # [0]: returns list of 1 item
+        username = res.json()[0]["username"]
+        self.assertEqual(username, settings.TESTUSER_NAME)

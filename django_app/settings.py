@@ -35,7 +35,10 @@ __all__ = [
     "ADMIN_NAME",
     "TESTUSER_NAME",
     "TESTUSER_MAIL",
+    "ALLOW_REGISTER",
+    "ALLOW_PASSWORD_RESET",
 ]
+
 
 # ROOT_DIR: contains node_modules, django_app, _static
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -57,6 +60,8 @@ INSTALLED_APPS = [
     # 3rd party
     "rest_framework",
     "rest_framework.authtoken",
+    "drf_spectacular",  # open api schema
+    "drf_spectacular_sidecar",  # required for Django collectstatic discovery
     "compressor",  # hashed static files
     "htmlmin",  # TODO: error in debug?
     # our apps
@@ -91,6 +96,7 @@ REST_FRAMEWORK = {
         "rest_framework.renderers.JSONRenderer",
         # 'rest_framework.renderers.BrowsableAPIRenderer',
     ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
 STATICFILES_FINDERS = (
@@ -100,6 +106,16 @@ STATICFILES_FINDERS = (
     "compressor.finders.CompressorFinder",
 )
 
+SPECTACULAR_SETTINGS = {
+    "TITLE": SITE_TITLE,
+    "DESCRIPTION": "TODO:DESCRIPTION",
+    "VERSION": "0.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    # OTHER SETTINGS
+    "SWAGGER_UI_DIST": "SIDECAR",  # shorthand to use the sidecar instead
+    "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
+    "REDOC_DIST": "SIDECAR",
+}
 
 STATICFILES_IGNORE_PATTERNS = [
     # we dont need this one and it has invalid references
@@ -223,6 +239,10 @@ COMPRESS_FILTERS = {
         # "compressor.filters.cssmin.rCSSMinFilter",
     ],
 }
+
+
+ALLOW_REGISTER = True
+ALLOW_PASSWORD_RESET = True
 
 # Logging
 LOGLEVEL = logging.INFO if DEBUG else logging.WARNING

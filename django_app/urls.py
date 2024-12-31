@@ -1,10 +1,14 @@
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required
 from django.urls import include, path, re_path
 from django.views.static import serve
+from drf_spectacular.renderers import OpenApiJsonRenderer
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from main.api import api_router
-from main.views import index, profile, registration
+from main.views import InfoAPIView, index, profile, registration
+from rest_framework.authtoken.views import obtain_auth_token
 
 __all__ = ["urlpatterns"]
 
@@ -30,46 +34,54 @@ urlpatterns += [
         name="logout",
     ),
     path(
-        "accounts/password_reset/",
-        auth_views.PasswordResetView.as_view(
-            template_name="accounts/password_reset_form.html",
-            email_template_name="accounts/password_reset_email.html",
-            subject_template_name="accounts/password_reset_subject.txt",
-        ),
-        name="password_reset",
-    ),
-    path(
-        "accounts/password_reset/done/",
-        auth_views.PasswordResetDoneView.as_view(
-            template_name="accounts/password_reset_done.html"
-        ),
-        name="password_reset_done",
-    ),
-    path(
-        "accounts/reset/<uidb64>/<token>/",
-        auth_views.PasswordResetConfirmView.as_view(
-            template_name="accounts/password_reset_confirm.html"
-        ),
-        name="password_reset_confirm",
-    ),
-    path(
-        "accounts/reset/done/",
-        auth_views.PasswordResetCompleteView.as_view(
-            template_name="accounts/password_reset_complete.html"
-        ),
-        name="password_reset_complete",
-    ),
-    path(
         "accounts/profile/",
         profile,
         name="profile",
     ),
-    path(
-        "accounts/registration/",
-        registration,
-        name="registration",
-    ),
 ]
+
+if settings.ALLOW_PASSWORD_RESET:
+    urlpatterns += [
+        path(
+            "accounts/password_reset/",
+            auth_views.PasswordResetView.as_view(
+                template_name="accounts/password_reset_form.html",
+                email_template_name="accounts/password_reset_email.html",
+                subject_template_name="accounts/password_reset_subject.txt",
+            ),
+            name="password_reset",
+        ),
+        path(
+            "accounts/password_reset/done/",
+            auth_views.PasswordResetDoneView.as_view(
+                template_name="accounts/password_reset_done.html"
+            ),
+            name="password_reset_done",
+        ),
+        path(
+            "accounts/reset/<uidb64>/<token>/",
+            auth_views.PasswordResetConfirmView.as_view(
+                template_name="accounts/password_reset_confirm.html"
+            ),
+            name="password_reset_confirm",
+        ),
+        path(
+            "accounts/reset/done/",
+            auth_views.PasswordResetCompleteView.as_view(
+                template_name="accounts/password_reset_complete.html"
+            ),
+            name="password_reset_complete",
+        ),
+    ]
+
+if settings.ALLOW_REGISTER:
+    urlpatterns += [
+        path(
+            "accounts/registration/",
+            registration,
+            name="registration",
+        ),
+    ]
 
 
 # ------------------------------------------------------------------------------------
@@ -113,7 +125,22 @@ urlpatterns += (
 
 urlpatterns += [
     # include rest_api routes
-    path("api/", include(api_router.urls))
+    path("api/", include(api_router.urls), name="api"),
+    path("api/info/", InfoAPIView.as_view(), name="api-info"),
+    path("api/login/", obtain_auth_token, name="api-login"),
+    path(
+        "api/schema/schema.json",
+        login_required(
+            SpectacularAPIView.as_view(renderer_classes=[OpenApiJsonRenderer])
+        ),
+        name="schema",  # must be named schema
+    ),
+    path(
+        "api/schema/",
+        login_required(SpectacularSwaggerView.as_view(url_name="schema")),
+        # SpectacularRedocView.as_view(url_name="schema"),
+        name="api-schema-ui",
+    ),
 ]
 
 

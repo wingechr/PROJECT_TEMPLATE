@@ -1,11 +1,13 @@
-# import logging
-import logging
-
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.core import serializers
 from django.http.request import HttpRequest
 from django.shortcuts import HttpResponse, redirect, render
+from drf_spectacular.utils import extend_schema, inline_serializer
+from main import __version__
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .forms import RegistrationForm, UserPasswordChangeForm, UserProfileForm
 
@@ -16,6 +18,9 @@ def registration(request: HttpRequest) -> HttpResponse:
         if form.is_valid():
             form.save()
             return redirect("index")  # Redirect to a success page
+        else:
+            for key, val in form.errors:
+                messages.error(request, f"{key}: {val}")
     else:
         form = RegistrationForm()
 
@@ -54,8 +59,11 @@ def profile(request: HttpRequest) -> HttpResponse:
                 )  # Keeps the user logged in
             messages.success(request, "Profile updated successfully!")
         else:
-            logging.error((form.errors, form_passwd.errors))
-            messages.error(request, "Profile updated failed!")
+            for key, val in form.errors:
+                messages.error(request, f"{key}: {val}")
+            if password_changed:
+                for key, val in form_passwd.errors:
+                    messages.error(request, f"{key}: {val}")
         # Redirect to the same URL to to a GET,
         # so reloading of page does not repeat operation
         return redirect(request.path)
@@ -77,3 +85,20 @@ def profile(request: HttpRequest) -> HttpResponse:
 @login_required()
 def index(request: HttpRequest) -> HttpResponse:
     return render(request, template_name="main/index.html")
+
+
+class InfoAPIView(APIView):
+    @extend_schema(
+        responses={
+            200: inline_serializer(
+                name="CustomData",
+                fields={"version": serializers.CharField()},
+                many=False,
+            )
+        },
+        description="system information",
+        tags=["api"],  # otherwise its in group "default"
+    )
+    def get(self, request):
+        data = {"version": __version__}
+        return Response(data)

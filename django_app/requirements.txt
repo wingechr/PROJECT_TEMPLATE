@@ -2,10 +2,10 @@ django>=5,<6
 django-compressor>=4.5
 django-htmlmin~=0.11
 djangorestframework>=3.10
+# mistune>=2.0.3 # not directly required, pinned by Snyk to avoid a vulnerability
+drf-spectacular[sidecar] # for schema generation
 html5validator~=0.4
 psycopg2-binary~=2.9
-# mistune>=2.0.3 # not directly required, pinned by Snyk to avoid a vulnerability
-# drf-spectacular[sidecar] # for schema generation
 # uritemplate  # for python manage.py generateschema
 # django-filter
 # django-crispy-forms  # needed by django_filters/rest_framework
