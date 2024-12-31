@@ -21,7 +21,8 @@
     "shx": "^0.3.4"
   },
   "dependencies": {
-    "@wingechr/javascript_frontend": "file:javascript_frontend",
-    "@wingechr/javascript_package": "file:javascript_package"
+    "@_local/javascript_frontend": "file:javascript_frontend",
+    "@_local/javascript_package": "file:javascript_package",
+    "@_local/django_app": "file:django_app"
   }
 }

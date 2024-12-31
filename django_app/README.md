@@ -1,5 +1,10 @@
 # README
 
+## Development
+
+make sure that `_local_data` and `django_app` are in your `PYTHONPATH`, so that your
+IDE works properly
+
 ## Deployment - Setup
 
 ### Database

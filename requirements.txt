@@ -1,3 +1,5 @@
+
+-r django_app/requirements.txt
 # development and build tools
 build
 bumpversion
@@ -8,10 +10,6 @@ scons
 tox
 twine
 vulture # find dead code
-
 # NOTE: cannot include these from here
-# because the relative paths -e file:../python_package
-# are not resolved correctly
-
-#-r docs/requirements.txt
-#-r django_app/requirements.txt
+# if they include relative paths, e.g. -e file:../python_package
+# -r docs/requirements.txt

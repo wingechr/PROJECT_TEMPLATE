@@ -1,4 +1,4 @@
-import { Main } from "@wingechr/javascript_package/javascript_package/index.mjs";
+import { Main } from "@_local/javascript_package/javascript_package/index.mjs";
 
 // import "../../node_modules/jquery/dist/jquery.min.js";
 // import "../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";

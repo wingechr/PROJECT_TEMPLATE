@@ -1,5 +1,5 @@
 {
-  "name": "@wingechr/javascript_frontend",
+  "name": "@_local/javascript_frontend",
   "version": "0.0.2",
   "private": false,
   "scripts": {
@@ -29,7 +29,7 @@
     ]
   },
   "dependencies": {
-    "@wingechr/javascript_package": "file:../javascript_package",
+    "@_local/javascript_package": "file:../javascript_package",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

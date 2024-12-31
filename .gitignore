@@ -52,3 +52,7 @@ site
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# django
+_local_data
+_static

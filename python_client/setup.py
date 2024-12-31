@@ -11,7 +11,7 @@ if __name__ == "__main__":
         long_description_content_type="text/markdown",
         version="0.0.1",
         author="Christian Winger",
-        author_email="c@wingechr.de",
+        author_email="c@_local.de",
         url="https://github.com/wingechr/PROJECT_TEMPLATE",
         platforms=["any"],
         license="CC0-1.0",
