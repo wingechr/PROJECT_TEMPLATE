@@ -6,7 +6,7 @@ __all__ = [
     "ALLOWED_HOSTS",
     "BASE_URL",
     "DEBUG",
-    "DEFAULT_DATABASES",
+    "PRODUCTION_DATABASES",
     "TEST_DATABASES",
     "LOCAL_DATA_DIR",
     "LOGFILE",
@@ -64,7 +64,12 @@ _TEST_DATABASE_POSTGRES = {
 }
 
 
-DEFAULT_DATABASES = {"default": _DEFAULT_DATABASE_SQLITE}
+# NOTE: test database for sqlite per default is in memory, so we
+# dont need to specify
+# NOTE: using "TEST" keyword in database does not allow for choosing a different
+# port, so we do it like this
+
+PRODUCTION_DATABASES = {"default": _DEFAULT_DATABASE_SQLITE}
 TEST_DATABASES = {"default": _TEST_DATABASE_SQLITE}
 
 LOGFILE = LOCAL_DATA_DIR + "/logs/django.log"

@@ -13,10 +13,10 @@ from local_settings import (
     ALLOWED_HOSTS,
     BASE_URL,
     DEBUG,
-    DEFAULT_DATABASES,
     DEFAULT_FROM_EMAIL,
     LOCAL_DATA_DIR,
     LOGFILE,
+    PRODUCTION_DATABASES,
     SECRET_KEY,
     TEST_DATABASES,
     TESTUSER_MAIL,
@@ -24,58 +24,18 @@ from local_settings import (
     TESTUSER_PASSWORD,
 )
 
+# imported but used elsewhere
 __all__ = [
-    "ADMIN_PASSWORD",
-    "ADMIN_TOKEN",
-    "ADMIN_EMAIL",
-    "ALLOWED_HOSTS",
-    "SECRET_KEY",
-    "DEFAULT_FROM_EMAIL",
-    "TESTUSER_PASSWORD",
-    "ADMIN_NAME",
-    "TESTUSER_NAME",
-    "TESTUSER_MAIL",
-    "ALLOW_REGISTER",
-    "ALLOW_PASSWORD_RESET",
-    "TIME_ZONE",
-    "LANGUAGE_CODE",
-    "INSTALLED_APPS",
-    "MIDDLEWARE",
-    "REST_FRAMEWORK",
-    "STATICFILES_FINDERS",
-    "SPECTACULAR_SETTINGS",
-    "STATICFILES_IGNORE_PATTERNS",
-    "STATICFILES_DIRS",
-    "TEMPLATES",
-    "MESSAGE_TAGS",
-    "ROOT_URLCONF",
-    "WSGI_APPLICATION",
-    "DATABASES",
-    "DATABASE_ROUTERS",
-    "USE_I18N",
-    "USE_L10N",
-    "USE_TZ",
-    "MEDIA_URL",
-    "APPEND_SLASH",
-    "LOGIN_URL",
-    "LOGIN_REDIRECT_URL",
-    "LOGOUT_URL",
-    "LOGOUT_REDIRECT_URL",
-    "EMAIL_BACKEND",
-    "EMAIL_HOST",
-    "EMAIL_PORT",
-    "EMAIL_HOST_USER",
-    "EMAIL_HOST_PASSWORD",
-    "EMAIL_USE_TLS",
-    "EMAIL_USE_SSL",
-    "DEFAULT_AUTO_FIELD",
-    "AUTH_USER_MODEL",
-    "AUTH_PASSWORD_VALIDATORS",
-    "AUTHENTICATION_BACKENDS",
-    "HTML_MINIFY",
-    "COMPRESS_ENABLED",
-    "COMPRESS_OFFLINE",
-    "COMPRESS_FILTERS",
+    ADMIN_EMAIL,
+    ADMIN_NAME,
+    ADMIN_PASSWORD,
+    ADMIN_TOKEN,
+    ALLOWED_HOSTS,
+    DEFAULT_FROM_EMAIL,
+    SECRET_KEY,
+    TESTUSER_MAIL,
+    TESTUSER_NAME,
+    TESTUSER_PASSWORD,
 ]
 
 
@@ -215,8 +175,12 @@ MESSAGE_TAGS = {
 ROOT_URLCONF = "urls"
 WSGI_APPLICATION = "wsgi.application"
 
+# NOTE: using "TEST" keyword in database does not allow for choosing a different
+# port, so we do it like this
 IS_TEST = "test" in sys.argv
-DATABASES = TEST_DATABASES if IS_TEST else DEFAULT_DATABASES
+DATABASES = TEST_DATABASES if IS_TEST else PRODUCTION_DATABASES
+
+
 # data for app "data"  is in separate database
 DATABASE_ROUTERS = ["data.routers.DataAppDatabaseRouter"]
 
