@@ -1,8 +1,7 @@
-
-# for notebook execution
--e file:../python_package
-mkdocs
-mkdocs-jupyter
-mkdocs-material
-mkdocstrings[python]
-pymdown-extensions
+mistune~=2.0 # NOTE 3.x does not work with mkdocs-jupyter
+mkdocs~=1.6
+mkdocs-jupyter~=0.25
+mkdocs-material~=9.5
+mkdocstrings~=0.27
+mkdocstrings-python~=1.13
+pymdown-extensions~=10.13

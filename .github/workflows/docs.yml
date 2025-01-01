@@ -18,5 +18,7 @@ jobs:
       - run: |
           pushd docs
           pip install -r requirements.txt
+          export JUPYTER_PLATFORM_DIRS=1
+          jupyter --paths
           mkdocs gh-deploy --force
           popd

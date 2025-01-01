@@ -1,15 +1,14 @@
-
+# NOTE: cannot include requirements.txt that have relative paths, e.g. -e file:../python_package
 -r django_app/requirements.txt
+-r docs/requirements.txt
 # development and build tools
 build
 bumpversion
 ipykernel
+pipreqs # create requirements.txt from setup.py
 pre-commit
 python-dotenv
 scons
 tox
 twine
 vulture # find dead code
-# NOTE: cannot include these from here
-# if they include relative paths, e.g. -e file:../python_package
-# -r docs/requirements.txt
