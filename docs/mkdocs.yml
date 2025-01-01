@@ -29,7 +29,8 @@ markdown_extensions:
 
 plugins:
   - mkdocs-jupyter:
-      execute: true
+      # execute: true is causes a lot of problems
+      execute: false
   - mkdocstrings:
       handlers:
         python:
