@@ -6,6 +6,8 @@ from rest_framework.routers import DefaultRouter
 
 User = get_user_model()
 
+__all__ = ["urlpatterns"]
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -56,5 +58,6 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 api_router = DefaultRouter()
-
 api_router.register("user", UserViewSet, basename="api-user")
+
+urlpatterns = api_router.urls  # for include in main urls

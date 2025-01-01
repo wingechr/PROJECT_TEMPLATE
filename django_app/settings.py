@@ -13,12 +13,12 @@ from local_settings import (
     ALLOWED_HOSTS,
     BASE_URL,
     DEBUG,
-    DEFAULT_DATABASE,
+    DEFAULT_DATABASES,
     DEFAULT_FROM_EMAIL,
     LOCAL_DATA_DIR,
     LOGFILE,
     SECRET_KEY,
-    TEST_DATABASE,
+    TEST_DATABASES,
     TESTUSER_MAIL,
     TESTUSER_NAME,
     TESTUSER_PASSWORD,
@@ -37,6 +37,45 @@ __all__ = [
     "TESTUSER_MAIL",
     "ALLOW_REGISTER",
     "ALLOW_PASSWORD_RESET",
+    "TIME_ZONE",
+    "LANGUAGE_CODE",
+    "INSTALLED_APPS",
+    "MIDDLEWARE",
+    "REST_FRAMEWORK",
+    "STATICFILES_FINDERS",
+    "SPECTACULAR_SETTINGS",
+    "STATICFILES_IGNORE_PATTERNS",
+    "STATICFILES_DIRS",
+    "TEMPLATES",
+    "MESSAGE_TAGS",
+    "ROOT_URLCONF",
+    "WSGI_APPLICATION",
+    "DATABASES",
+    "DATABASE_ROUTERS",
+    "USE_I18N",
+    "USE_L10N",
+    "USE_TZ",
+    "MEDIA_URL",
+    "APPEND_SLASH",
+    "LOGIN_URL",
+    "LOGIN_REDIRECT_URL",
+    "LOGOUT_URL",
+    "LOGOUT_REDIRECT_URL",
+    "EMAIL_BACKEND",
+    "EMAIL_HOST",
+    "EMAIL_PORT",
+    "EMAIL_HOST_USER",
+    "EMAIL_HOST_PASSWORD",
+    "EMAIL_USE_TLS",
+    "EMAIL_USE_SSL",
+    "DEFAULT_AUTO_FIELD",
+    "AUTH_USER_MODEL",
+    "AUTH_PASSWORD_VALIDATORS",
+    "AUTHENTICATION_BACKENDS",
+    "HTML_MINIFY",
+    "COMPRESS_ENABLED",
+    "COMPRESS_OFFLINE",
+    "COMPRESS_FILTERS",
 ]
 
 
@@ -66,6 +105,7 @@ INSTALLED_APPS = [
     "htmlmin",  # TODO: error in debug?
     # our apps
     "main.apps.AppConfig",
+    "data.apps.AppConfig",
 ]
 
 MIDDLEWARE = [
@@ -97,6 +137,13 @@ REST_FRAMEWORK = {
         # 'rest_framework.renderers.BrowsableAPIRenderer',
     ],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.AnonRateThrottle",
+        "rest_framework.throttling.UserRateThrottle",
+    ],
+    "DEFAULT_THROTTLE_RATES": {"anon": "24/day", "user": "86400/day"},
+    "DEFAULT_PAGINATION_CLASS": None,
+    "PAGE_SIZE": None,
 }
 
 STATICFILES_FINDERS = (
@@ -168,7 +215,10 @@ MESSAGE_TAGS = {
 ROOT_URLCONF = "urls"
 WSGI_APPLICATION = "wsgi.application"
 
-DATABASES = {"default": TEST_DATABASE if "test" in sys.argv else DEFAULT_DATABASE}
+IS_TEST = "test" in sys.argv
+DATABASES = TEST_DATABASES if IS_TEST else DEFAULT_DATABASES
+# data for app "data"  is in separate database
+DATABASE_ROUTERS = ["data.routers.DataAppDatabaseRouter"]
 
 # LOCALE_PATHS = ["main/locale"]
 

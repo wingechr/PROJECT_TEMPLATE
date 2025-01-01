@@ -1,11 +1,11 @@
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from django.core import serializers
 from django.http.request import HttpRequest
 from django.shortcuts import HttpResponse, redirect, render
 from drf_spectacular.utils import extend_schema, inline_serializer
 from main import __version__
+from rest_framework import serializers
 from rest_framework.response import Response
 from rest_framework.views import APIView
 

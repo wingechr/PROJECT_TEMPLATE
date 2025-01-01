@@ -6,7 +6,8 @@ from django.urls import include, path, re_path
 from django.views.static import serve
 from drf_spectacular.renderers import OpenApiJsonRenderer
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
-from main.api import api_router
+
+# from main.api import api_router
 from main.views import InfoAPIView, index, profile, registration
 from rest_framework.authtoken.views import obtain_auth_token
 
@@ -125,7 +126,7 @@ urlpatterns += (
 
 urlpatterns += [
     # include rest_api routes
-    path("api/", include(api_router.urls), name="api"),
+    path("api/", include("main.api"), name="api"),
     path("api/info/", InfoAPIView.as_view(), name="api-info"),
     path("api/login/", obtain_auth_token, name="api-login"),
     path(
@@ -145,8 +146,15 @@ urlpatterns += [
 
 
 # ------------------------------------------------------------------------------------
-# MAIN APP: index andpages
+# MAIN APP (other)
 # ------------------------------------------------------------------------------------
 
 
 urlpatterns += [path("", index, name="index")]
+
+
+# ------------------------------------------------------------------------------------
+# DATA APP
+# ------------------------------------------------------------------------------------
+
+urlpatterns += [path("api/data/", include("data.api"))]
