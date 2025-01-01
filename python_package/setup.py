@@ -4,7 +4,7 @@ if __name__ == "__main__":
     setup(
         packages=["python_package"],
         keywords=[],
-        install_requires=[],
+        install_requires=["pandas~=2.0"],
         name="wingechr-PYTHON_PACKAGE",
         description="DESCRIPTION",
         long_description="",

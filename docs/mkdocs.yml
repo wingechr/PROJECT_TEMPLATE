@@ -34,7 +34,8 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
-          paths: []
+          # either install package or provide path here
+          paths: ["../python_package"]
           options:
             show_source: false
             show_root_heading: true
