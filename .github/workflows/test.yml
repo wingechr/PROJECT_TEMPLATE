@@ -46,12 +46,15 @@ jobs:
           popd
       - run: |
           pushd django_app
+          # install
           npm install --no-save
           pip install -r requirements.txt
-          mkdir -p local_data
-          cp app/settings.local_example.py local_data/settings.py
-          pushd app
-          python manage.py collectstatic --no-input
+          mkdir -p ../_local_data
+          cp local_settings.example.py ../_local_data/local_settings.py
+          # build
+          python manage.py collectstatic --noinput
+          python manage.py compress
+          # test
           python manage.py test
           popd
           popd

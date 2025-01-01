@@ -1,8 +1,9 @@
-mkdocs
-mkdocs-material
-mkdocs-jupyter
-mkdocstrings[python]
-pymdown-extensions
 
 # for notebook execution
 -e file:../python_package
+mkdocs
+mkdocs-jupyter
+mkdocs-material
+mkdocs-math
+mkdocstrings[python]
+pymdown-extensions
