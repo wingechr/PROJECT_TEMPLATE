@@ -16,8 +16,7 @@
     "prettier-plugin-sql": "^0.18.1",
     "realfavicon": "~0.4.2",
     "sharp": "^0.33.5",
-    "shx": "^0.3.4",
-    "svgo": "^3.3.2"
+    "shx": "^0.3.4"
   },
   "dependencies": {
     "@local/django_app": "file:django_app",
