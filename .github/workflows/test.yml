@@ -29,12 +29,12 @@ jobs:
           conda create -q -y -n py312 python=3.12
       - run: |
           pushd javascript_package
-          npm install --no-save --prefix ..
+          npm install --no-save
           npm run test
           popd
       - run: |
           pushd javascript_frontend
-          npm install --no-save --prefix ..
+          npm install --no-save
           npm run build
           popd
       - run: |
@@ -47,7 +47,7 @@ jobs:
       - run: |
           pushd django_app
           # install
-          npm install --no-save
+          npm install --no-save --prefix ..
           pip install -r requirements.txt
           mkdir -p ../_local_data
           cp local_settings.example.py ../_local_data/local_settings.py

@@ -4,8 +4,6 @@
     "create-react-app": "^5.0.1"
   },
   "devDependencies": {
-    "@parcel/packager-raw-url": "^2.12.0",
-    "@parcel/transformer-webmanifest": "^2.12.0",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jsdoc": "^48.2.1",
@@ -22,8 +20,8 @@
     "svgo": "^3.3.2"
   },
   "dependencies": {
-    "@_local/django_app": "file:django_app",
-    "@_local/javascript_frontend": "file:javascript_frontend",
-    "@_local/javascript_package": "file:javascript_package"
+    "@local/django_app": "file:django_app",
+    "@local/javascript_frontend": "file:javascript_frontend",
+    "@local/javascript_package": "file:javascript_package"
   }
 }

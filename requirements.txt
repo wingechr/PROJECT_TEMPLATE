@@ -1,3 +1,4 @@
+-e file:./python_package
 # NOTE: cannot include requirements.txt that have relative paths, e.g. -e file:../python_package
 -r django_app/requirements.txt
 -r docs/requirements.txt
@@ -5,7 +6,6 @@
 build
 bumpversion
 ipykernel
-pipreqs # create requirements.txt from setup.py
 pre-commit
 python-dotenv
 scons
