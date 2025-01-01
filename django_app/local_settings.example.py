@@ -45,6 +45,10 @@ _TEST_DATABASE_SQLITE = {
     "ENGINE": "django.db.backends.sqlite3",
     "NAME": LOCAL_DATA_DIR + "/database/db.test.sqlite3",
 }
+_DATA_DATABASE_SQLITE = {
+    "ENGINE": "django.db.backends.sqlite3",
+    "NAME": LOCAL_DATA_DIR + "/database/db.data.sqlite3",
+}
 
 _DEFAULT_DATABASE_POSTGRES = {
     "ENGINE": "django.db.backends.postgresql",
@@ -69,7 +73,13 @@ _TEST_DATABASE_POSTGRES = {
 # NOTE: using "TEST" keyword in database does not allow for choosing a different
 # port, so we do it like this
 
-PRODUCTION_DATABASES = {"default": _DEFAULT_DATABASE_SQLITE}
-TEST_DATABASES = {"default": _TEST_DATABASE_SQLITE}
+PRODUCTION_DATABASES = {
+    "default": _DEFAULT_DATABASE_SQLITE,
+    "data": _DATA_DATABASE_SQLITE,
+}
+TEST_DATABASES = {
+    "default": _TEST_DATABASE_SQLITE,
+    # "data": _DATA_DATABASE_SQLITE,
+}
 
 LOGFILE = LOCAL_DATA_DIR + "/logs/django.log"
