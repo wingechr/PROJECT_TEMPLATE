@@ -1,7 +1,7 @@
 #!/bin/bash
 # Build: create venv and _static
 
-test -e venv || python -m venv venv
+test -e venv || python3 -m venv venv
 . venv/bin/activate
 pip install -r requirements.txt
 # node/npm

@@ -17,10 +17,5 @@
     "realfavicon": "~0.4.2",
     "sharp": "^0.33.5",
     "shx": "^0.3.4"
-  },
-  "dependencies": {
-    "@local/django_app": "file:django_app",
-    "@local/javascript_frontend": "file:javascript_frontend",
-    "@local/javascript_package": "file:javascript_package"
   }
 }

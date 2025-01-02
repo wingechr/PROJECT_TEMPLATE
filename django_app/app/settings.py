@@ -12,10 +12,10 @@ from local_settings import (
     ADMIN_TOKEN,
     ALLOWED_HOSTS,
     BASE_URL,
-    DEBUG,
     DEFAULT_FROM_EMAIL,
     LOCAL_DATA_DIR,
     LOGFILE,
+    PRDUCTION,
     PRODUCTION_DATABASES,
     SECRET_KEY,
     TEST_DATABASES,
@@ -38,6 +38,8 @@ __all__ = [
     TESTUSER_PASSWORD,
 ]
 
+DEBUG = not PRDUCTION
+IS_TEST = ("test" in sys.argv) and (not PRDUCTION)
 
 # ROOT_DIR: contains node_modules, django_app, _static
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -131,13 +133,17 @@ STATICFILES_IGNORE_PATTERNS = [
 ]
 
 # add node_modules folders: prefix => path
-node_modules = ROOT_DIR + "/node_modules"  # relative to workdir
-STATICFILES_DIRS = [
-    ("vendor/popperjs", f"{node_modules}/@popperjs/core/dist/umd"),
-    ("vendor/bootstrap", f"{node_modules}/bootstrap/dist"),
-    ("vendor/bootstrap-icons", f"{node_modules}/bootstrap-icons/font"),
-    ("vendor/fontawesome", f"{node_modules}/@fortawesome/fontawesome-free"),
-]
+# NOTE: we dont need this in production, because we use collected static files
+if PRDUCTION:
+    node_modules = ROOT_DIR + "/node_modules"  # relative to workdir
+    STATICFILES_DIRS = [
+        ("vendor/popperjs", f"{node_modules}/@popperjs/core/dist/umd"),
+        ("vendor/bootstrap", f"{node_modules}/bootstrap/dist"),
+        ("vendor/bootstrap-icons", f"{node_modules}/bootstrap-icons/font"),
+        ("vendor/fontawesome", f"{node_modules}/@fortawesome/fontawesome-free"),
+    ]
+else:
+    STATICFILES_DIRS = []
 
 TEMPLATES = [
     {
@@ -177,7 +183,6 @@ WSGI_APPLICATION = "wsgi.application"
 
 # NOTE: using "TEST" keyword in database does not allow for choosing a different
 # port, so we do it like this
-IS_TEST = "test" in sys.argv
 DATABASES = TEST_DATABASES if IS_TEST else PRODUCTION_DATABASES
 
 
