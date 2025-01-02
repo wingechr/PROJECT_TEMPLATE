@@ -47,14 +47,13 @@ jobs:
       - run: |
           pushd django_app
           # install
-          npm install --no-save --prefix ..
+          npm install --no-save
           pip install -r requirements.txt
-          mkdir -p ../_local_data
-          cp local_settings.example.py ../_local_data/local_settings.py
+          mkdir -p _local_data
+          cp app/local_settings.example.py _local_data/local_settings.py
           # build
-          python manage.py collectstatic --noinput
-          python manage.py compress
+          python app/manage.py collectstatic --noinput
+          python app/manage.py compress
           # test
-          python manage.py test
+          python app/manage.py test
           popd
-

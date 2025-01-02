@@ -2,4 +2,4 @@
 # requires build.sh to run first
 
 . venv/bin/activate
-python django_app/manage.py test
+python app/manage.py test

@@ -1,7 +1,7 @@
 import os
 from subprocess import PIPE, Popen
 
-from SCons.Script import AlwaysBuild, Environment, Export, SConscript
+from SCons.Script import AlwaysBuild, Environment, Export
 
 env = Environment()
 
