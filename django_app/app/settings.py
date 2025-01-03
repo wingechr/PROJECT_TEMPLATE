@@ -63,8 +63,9 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "drf_spectacular",  # open api schema
     "drf_spectacular_sidecar",  # required for Django collectstatic discovery
+    "django_filters",
     "compressor",  # hashed static files
-    "htmlmin",  # TODO: error in debug?
+    "htmlmin",
     # our apps
     "main.apps.AppConfig",
     "data.apps.AppConfig",
@@ -103,6 +104,7 @@ REST_FRAMEWORK = {
         "rest_framework.throttling.AnonRateThrottle",
         "rest_framework.throttling.UserRateThrottle",
     ],
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "DEFAULT_THROTTLE_RATES": {"anon": "24/day", "user": "86400/day"},
     "DEFAULT_PAGINATION_CLASS": None,
     "PAGE_SIZE": None,
