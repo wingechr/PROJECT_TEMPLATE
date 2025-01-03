@@ -25,40 +25,32 @@ CREATE DATABASE $DATABASE OWNER $USER;
 
 ServerName $DOMAIN
 
-ErrorLog /var/log/apache2/$DOMAIN/error.log
-CustomLog /var/log/apache2/$DOMAIN/access.log combined
-
 SSLCertificateFile    /etc/letsencrypt/live/$DOMAIN/fullchain.pem
 SSLCertificateKeyFile /etc/letsencrypt/live/$DOMAIN/privkey.pem
 SSLEngine on
 
-DocumentRoot /var/www/html/$DOMAIN/html
+LogLevel warn
+ErrorLog ${APACHE_LOG_DIR}/$DOMAIN/error.log
+CustomLog ${APACHE_LOG_DIR}/$DOMAIN/access.log combined
 
-<Directory /var/www/html/$DOMAIN/html>
-    Options FollowSymLinks
-    AllowOverride All
+WSGIPassAuthorization On
+WSGIDaemonProcess $NAME user=www-data processes=1 threads=5 display-name=$NAME python-path=$DEPLOY_PATH/venv/lib/python3.11/site-packages home=$DEPLOY_PATH/app
+WSGIScriptAlias / $DEPLOY_PATH/app/wsgi.py process-group=$NAME
+Alias /static/ $DEPLOY_PATH/_static/
+# NOTE: serve media from django we can have access control
+<Location />
     Require all granted
-    Order Allow,Deny
+    Allow from all
+</Location>
+<Directory $DEPLOY_PATH/_static>
+    Require all granted
     Allow from all
 </Directory>
-
-<LocationMatch ".*/\.">
-    Require all denied
-    Deny from all
-</LocationMatch>
-
-WSGIApplicationGroup %{GLOBAL}
-
-WSGIDaemonProcess $NAME user=www-data processes=1 threads=15 python-path=/var/www/html/$DOMAIN/venv/lib/$PYTHON/site-packages:/var/www/html/$DOMAIN/app home=/var/www/html/$DOMAIN/app
-WSGIScriptAlias $PREFIX/ /var/www/html/$DOMAIN/app/wsgi.py process-group=$NAME
-# these will be symlinks:
-Alias $PREFIX/static/ /var/www/html/$DOMAIN/html/static/
-Alias $PREFIX/media/ /var/www/html/$DOMAIN/html/media/
-WSGIPassAuthorization On
 
 </VirtualHost>
 </IfModule>
 
+# Redirect
 <VirtualHost *:80>
     ServerName $DOMAIN
     Redirect permanent / https://$DOMAIN/
