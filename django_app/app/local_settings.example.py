@@ -5,7 +5,7 @@ __all__ = [
     "ADMIN_TOKEN",
     "ALLOWED_HOSTS",
     "BASE_URL",
-    "PRDUCTION",
+    "PRODUCTION",
     "PRODUCTION_DATABASES",
     "TEST_DATABASES",
     "LOCAL_DATA_DIR",
@@ -16,7 +16,7 @@ __all__ = [
     "TESTUSER_MAIL",
 ]
 
-PRDUCTION = False  # must set to True in deployment
+PRODUCTION = False  # must set to True in deployment
 
 LOCAL_DATA_DIR = os.path.dirname(os.path.abspath(__file__))
 os.makedirs(LOCAL_DATA_DIR + "/database", exist_ok=True)

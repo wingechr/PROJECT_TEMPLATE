@@ -15,7 +15,7 @@ from local_settings import (
     DEFAULT_FROM_EMAIL,
     LOCAL_DATA_DIR,
     LOGFILE,
-    PRDUCTION,
+    PRODUCTION,
     PRODUCTION_DATABASES,
     SECRET_KEY,
     TEST_DATABASES,
@@ -38,8 +38,8 @@ __all__ = [
     TESTUSER_PASSWORD,
 ]
 
-DEBUG = not PRDUCTION
-IS_TEST = ("test" in sys.argv) and (not PRDUCTION)
+DEBUG = not PRODUCTION
+IS_TEST = ("test" in sys.argv) and (not PRODUCTION)
 
 # ROOT_DIR: contains node_modules, django_app, _static
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -134,7 +134,7 @@ STATICFILES_IGNORE_PATTERNS = [
 
 # add node_modules folders: prefix => path
 # NOTE: we dont need this in production, because we use collected static files
-if PRDUCTION:
+if not PRODUCTION:
     node_modules = ROOT_DIR + "/node_modules"  # relative to workdir
     STATICFILES_DIRS = [
         ("vendor/popperjs", f"{node_modules}/@popperjs/core/dist/umd"),

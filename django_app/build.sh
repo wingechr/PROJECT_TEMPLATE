@@ -10,5 +10,5 @@ npm install --no-save --omit=dev
 mkdir -p _local_data
 cp app/local_settings.example.py _local_data/local_settings.py
 python app/manage.py collectstatic --noinput
-python app/manage.py compress
+python app/manage.py compress --force
 # TODO:translations python app/manage.py compilemessages
