@@ -53,7 +53,7 @@ jobs:
           cp app/local_settings.example.py _local_data/local_settings.py
           # build
           python app/manage.py collectstatic --noinput
-          python app/manage.py compress
+          python app/manage.py compress --force
           # test
           python app/manage.py test
           popd
