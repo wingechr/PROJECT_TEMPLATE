@@ -104,7 +104,10 @@ REST_FRAMEWORK = {
         "rest_framework.throttling.AnonRateThrottle",
         "rest_framework.throttling.UserRateThrottle",
     ],
-    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+        "rest_framework.filters.OrderingFilter",
+    ],
     "DEFAULT_THROTTLE_RATES": {"anon": "24/day", "user": "86400/day"},
     "DEFAULT_PAGINATION_CLASS": None,
     "PAGE_SIZE": None,
