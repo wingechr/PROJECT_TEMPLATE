@@ -26,6 +26,10 @@ BASE_URL = "/"  # start and ends with /
 
 SECRET_KEY = "TODO:SECRET_KEY"
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "TODO:example.com"]
+CORS_ALLOWED_ORIGINS = [
+    # for instance in develop:
+    # "http://localhost:1234"
+]
 
 ADMIN_PASSWORD = "TODO:ADMIN_PASSWORD"
 ADMIN_TOKEN = "TODO:ADMIN_TOKEN"

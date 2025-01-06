@@ -12,6 +12,7 @@ from local_settings import (
     ADMIN_TOKEN,
     ALLOWED_HOSTS,
     BASE_URL,
+    CORS_ALLOWED_ORIGINS,
     DEFAULT_FROM_EMAIL,
     LOCAL_DATA_DIR,
     LOGFILE,
@@ -36,6 +37,7 @@ __all__ = [
     TESTUSER_MAIL,
     TESTUSER_NAME,
     TESTUSER_PASSWORD,
+    CORS_ALLOWED_ORIGINS,
 ]
 
 DEBUG = not PRODUCTION
@@ -59,6 +61,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # 3rd party
+    "corsheaders",
     "rest_framework",
     "rest_framework.authtoken",
     "drf_spectacular",  # open api schema
@@ -72,6 +75,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",  # must be first
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -84,6 +88,7 @@ MIDDLEWARE = [
     "htmlmin.middleware.MarkRequestMiddleware",
 ]
 
+# CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"]
 
 REST_FRAMEWORK = {
     # https://www.django-rest-framework.org/api-guide/permissions/
@@ -221,6 +226,9 @@ APPEND_SLASH = False
 
 # these are the default values
 # https://docs.djangoproject.com/en/5.1/ref/settings/
+
+# NOTE: using admin login restricts login to users with at least staff status
+# LOGIN_URL = BASE_URL + "admin/login/"
 LOGIN_URL = BASE_URL + "accounts/login/"
 LOGIN_REDIRECT_URL = BASE_URL + "accounts/profile/"
 # custom
