@@ -196,8 +196,9 @@ WSGI_APPLICATION = "wsgi.application"
 DATABASES = TEST_DATABASES if IS_TEST else PRODUCTION_DATABASES
 
 
-# data for app "data"  is in separate database
-DATABASE_ROUTERS = ["data.routers.DataAppDatabaseRouter"]
+DATABASE_ROUTERS = [
+    "main.routers.DatabaseRouter",
+]
 
 # LOCALE_PATHS = ["main/locale"]
 
