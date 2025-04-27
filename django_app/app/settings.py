@@ -259,7 +259,8 @@ HTML_MINIFY = not DEBUG  # we also want to test local minification + validation
 
 # https://django-compressor.readthedocs.io/en/stable/settings.html
 COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = not DEBUG  # offline in production
+COMPRESS_OFFLINE = not DEBUG
+COMPRESS_MTIME_DELAY = 0
 
 COMPRESS_FILTERS = {
     # do not minify js, we do it with parcel
