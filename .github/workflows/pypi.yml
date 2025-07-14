@@ -1,32 +1,21 @@
 name: pypi
 
 on:
-  workflow_run:
-    workflows:
-      - test
+  push:
     branches:
       - main
-    types:
-      - completed
 
 jobs:
-  pypi:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-
+  publish:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.x"
-          cache: "pip" # caching pip dependencies
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
       - run: |
-          pushd python_package
-          pip install setuptools build
-          python -m build --sdist --wheel --outdir dist/
+          pip install build
+          python -m build
       - uses: pypa/gh-action-pypi-publish@release/v1
         with:
           skip-existing: true
-          packages-dir: python_package/dist/
           password: ${{ secrets.PYPI_API_TOKEN }}

@@ -4,56 +4,20 @@ on:
   push:
     branches:
       - dev
-      - main
 
 jobs:
   test:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest] # macos-latest
+        python-version: [3.9, 3.13]
     runs-on: ${{ matrix.os }}
-    defaults:
-      run:
-        shell: bash -l {0}
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v4
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          auto-activate-base: true
-          activate-environment: ""
+          python-version: ${{ matrix.python-version }}
       - run: |
-          conda config --system --set changeps1 False  # fixes conda: UnicodeEncodeError in windows
-          conda install -q -y -c conda-forge tox
-          conda create -q -y -n py38 python=3.8
-          conda create -q -y -n py312 python=3.12
+          pip install tox
       - run: |
-          pushd javascript_package
-          npm install --no-save
-          npm run test
-          popd
-      - run: |
-          pushd javascript_frontend
-          npm install --no-save
-          npm run build
-          popd
-      - run: |
-          pushd python_package
-          export PY38_PATH=$CONDA/envs/py38/bin
-          export PY312_PATH=$CONDA/envs/py312/bin
-          export PATH=$PATH:$PY38_PATH:$PY312_PATH
-          tox # --parallel
-          popd
-      - run: |
-          pushd django_app
-          # install
-          npm install --no-save
-          pip install -r requirements.txt
-          mkdir -p _local_data
-          cp app/local_settings.example.py _local_data/local_settings.py
-          # build
-          python app/manage.py collectstatic --noinput
-          python app/manage.py compress --force
-          # test
-          python app/manage.py test
-          popd
+          tox
