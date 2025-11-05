@@ -5,6 +5,7 @@
 # development and build tools
 build
 bumpversion
+djlint
 ipykernel
 pre-commit
 python-dotenv

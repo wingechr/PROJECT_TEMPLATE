@@ -5,7 +5,7 @@ __all__ = [
     "ADMIN_TOKEN",
     "ALLOWED_HOSTS",
     "BASE_URL",
-    "DEBUG",
+    "PRODUCTION",
     "PRODUCTION_DATABASES",
     "TEST_DATABASES",
     "LOCAL_DATA_DIR",
@@ -16,7 +16,7 @@ __all__ = [
     "TESTUSER_MAIL",
 ]
 
-DEBUG = False
+PRODUCTION = False  # must set to True in deployment
 
 LOCAL_DATA_DIR = os.path.dirname(os.path.abspath(__file__))
 os.makedirs(LOCAL_DATA_DIR + "/database", exist_ok=True)
@@ -26,6 +26,10 @@ BASE_URL = "/"  # start and ends with /
 
 SECRET_KEY = "TODO:SECRET_KEY"
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "TODO:example.com"]
+CORS_ALLOWED_ORIGINS = [
+    # for instance in develop:
+    # "http://localhost:1234"
+]
 
 ADMIN_PASSWORD = "TODO:ADMIN_PASSWORD"
 ADMIN_TOKEN = "TODO:ADMIN_TOKEN"

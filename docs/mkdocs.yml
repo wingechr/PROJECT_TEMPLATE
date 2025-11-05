@@ -19,6 +19,7 @@ theme:
 
 # Extensions
 markdown_extensions:
+  - mdx_truly_sane_lists # important for nested lists formatted with prettier
   #- admonition
   #- attr_list
   #- def_list

@@ -12,10 +12,11 @@ from local_settings import (
     ADMIN_TOKEN,
     ALLOWED_HOSTS,
     BASE_URL,
-    DEBUG,
+    CORS_ALLOWED_ORIGINS,
     DEFAULT_FROM_EMAIL,
     LOCAL_DATA_DIR,
     LOGFILE,
+    PRODUCTION,
     PRODUCTION_DATABASES,
     SECRET_KEY,
     TEST_DATABASES,
@@ -36,8 +37,11 @@ __all__ = [
     TESTUSER_MAIL,
     TESTUSER_NAME,
     TESTUSER_PASSWORD,
+    CORS_ALLOWED_ORIGINS,
 ]
 
+DEBUG = not PRODUCTION
+IS_TEST = ("test" in sys.argv) and (not PRODUCTION)
 
 # ROOT_DIR: contains node_modules, django_app, _static
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -57,18 +61,21 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # 3rd party
+    "corsheaders",
     "rest_framework",
     "rest_framework.authtoken",
     "drf_spectacular",  # open api schema
     "drf_spectacular_sidecar",  # required for Django collectstatic discovery
+    "django_filters",
     "compressor",  # hashed static files
-    "htmlmin",  # TODO: error in debug?
+    "htmlmin",
     # our apps
     "main.apps.AppConfig",
     "data.apps.AppConfig",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",  # must be first
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -81,6 +88,7 @@ MIDDLEWARE = [
     "htmlmin.middleware.MarkRequestMiddleware",
 ]
 
+# CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"]
 
 REST_FRAMEWORK = {
     # https://www.django-rest-framework.org/api-guide/permissions/
@@ -100,6 +108,10 @@ REST_FRAMEWORK = {
     "DEFAULT_THROTTLE_CLASSES": [
         "rest_framework.throttling.AnonRateThrottle",
         "rest_framework.throttling.UserRateThrottle",
+    ],
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+        "rest_framework.filters.OrderingFilter",
     ],
     "DEFAULT_THROTTLE_RATES": {"anon": "24/day", "user": "86400/day"},
     "DEFAULT_PAGINATION_CLASS": None,
@@ -131,13 +143,17 @@ STATICFILES_IGNORE_PATTERNS = [
 ]
 
 # add node_modules folders: prefix => path
-node_modules = ROOT_DIR + "/node_modules"  # relative to workdir
-STATICFILES_DIRS = [
-    ("vendor/popperjs", f"{node_modules}/@popperjs/core/dist/umd"),
-    ("vendor/bootstrap", f"{node_modules}/bootstrap/dist"),
-    ("vendor/bootstrap-icons", f"{node_modules}/bootstrap-icons/font"),
-    ("vendor/fontawesome", f"{node_modules}/@fortawesome/fontawesome-free"),
-]
+# NOTE: we dont need this in production, because we use collected static files
+if not PRODUCTION:
+    node_modules = ROOT_DIR + "/node_modules"  # relative to workdir
+    STATICFILES_DIRS = [
+        ("vendor/popperjs", f"{node_modules}/@popperjs/core/dist/umd"),
+        ("vendor/bootstrap", f"{node_modules}/bootstrap/dist"),
+        ("vendor/bootstrap-icons", f"{node_modules}/bootstrap-icons/font"),
+        ("vendor/fontawesome", f"{node_modules}/@fortawesome/fontawesome-free"),
+    ]
+else:
+    STATICFILES_DIRS = []
 
 TEMPLATES = [
     {
@@ -177,12 +193,12 @@ WSGI_APPLICATION = "wsgi.application"
 
 # NOTE: using "TEST" keyword in database does not allow for choosing a different
 # port, so we do it like this
-IS_TEST = "test" in sys.argv
 DATABASES = TEST_DATABASES if IS_TEST else PRODUCTION_DATABASES
 
 
-# data for app "data"  is in separate database
-DATABASE_ROUTERS = ["data.routers.DataAppDatabaseRouter"]
+DATABASE_ROUTERS = [
+    "main.routers.DatabaseRouter",
+]
 
 # LOCALE_PATHS = ["main/locale"]
 
@@ -211,6 +227,9 @@ APPEND_SLASH = False
 
 # these are the default values
 # https://docs.djangoproject.com/en/5.1/ref/settings/
+
+# NOTE: using admin login restricts login to users with at least staff status
+# LOGIN_URL = BASE_URL + "admin/login/"
 LOGIN_URL = BASE_URL + "accounts/login/"
 LOGIN_REDIRECT_URL = BASE_URL + "accounts/profile/"
 # custom
@@ -240,7 +259,8 @@ HTML_MINIFY = not DEBUG  # we also want to test local minification + validation
 
 # https://django-compressor.readthedocs.io/en/stable/settings.html
 COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = not DEBUG  # offline in production
+COMPRESS_OFFLINE = not DEBUG
+COMPRESS_MTIME_DELAY = 0
 
 COMPRESS_FILTERS = {
     # do not minify js, we do it with parcel

@@ -1,3 +1,4 @@
+mdx_truly_sane_lists~=1.3 # important for nested lists formatted with prettier
 mistune~=2.0 # NOTE 3.x does not work with mkdocs-jupyter
 mkdocs~=1.6
 mkdocs-jupyter~=0.25

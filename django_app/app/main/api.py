@@ -9,6 +9,16 @@ User = get_user_model()
 __all__ = ["urlpatterns"]
 
 
+class Router(DefaultRouter):
+    # do not list endpoints, because it might be confusing:
+    # some endpoints are registered manually and will not show up
+    # instead, we use the openapi/swagger schema view
+    include_root_view = False
+
+
+api_router = Router()
+
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -57,7 +67,6 @@ class UserViewSet(viewsets.ModelViewSet):
         return Response(status=405)  # Method Not Allowed
 
 
-api_router = DefaultRouter()
 api_router.register("user", UserViewSet, basename="api-user")
 
 urlpatterns = api_router.urls  # for include in main urls

@@ -8,9 +8,9 @@ variables:
   # default is -ffdx
   GIT_CLEAN_FLAGS: -fd
 
-
 before_script:
-  - if [ -z "$DEPLOY_PATH" ]; then echo "Project variable DEPLOY_PATH is not defined"; exit 1; fi
+  - if [ -z "$DEPLOY_PATH" ]; then echo "Project variable DEPLOY_PATH is not
+    defined"; exit 1; fi
 
 stages:
   - stage_example
@@ -18,6 +18,12 @@ stages:
 job_example:
   only:
     - main
+    - schedules # Runs only on scheduled pipelines
   stage: stage_example
   script:
     - git status
+  #artifacts:
+  #  name: "build"
+  #  paths:
+  #    - build/
+  #  expire_in: 2 week
