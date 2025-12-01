@@ -1,7 +1,7 @@
 exclude: ^.*(.min.js|.min.css)$
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-case-conflict # checks for files that would conflict in case-insensitive filesystems.
       - id: check-merge-conflict # checks for files that contain merge conflict strings.
@@ -14,16 +14,16 @@ repos:
       - id: requirements-txt-fixer # sorts entries in requirements.txt.
       - id: trailing-whitespace # trims trailing whitespace.
   - repo: https://github.com/psf/black
-    rev: 25.1.0
+    rev: 25.11.0
     hooks:
       - id: black
   - repo: https://github.com/pycqa/isort
-    rev: 6.0.1
+    rev: 7.0.0
     hooks:
       - id: isort
         args: ["--profile", "black", "--filter-files"]
   - repo: https://github.com/pycqa/flake8
-    rev: 7.1.2
+    rev: 7.3.0
     hooks:
       - id: flake8
         additional_dependencies:
@@ -41,7 +41,7 @@ repos:
         additional_dependencies:
           - prettier-plugin-sql@0.18.1
   - repo: https://github.com/pre-commit/mirrors-eslint
-    rev: v9.22.0
+    rev: v10.0.0-alpha.1
     hooks:
       - id: eslint
         entry: npx eslint
