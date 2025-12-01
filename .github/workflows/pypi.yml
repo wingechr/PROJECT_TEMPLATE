@@ -24,3 +24,4 @@ jobs:
         with:
           skip-existing: true
           password: ${{ secrets.PYPI_API_TOKEN }}
+          packages_dir: python_package/dist
