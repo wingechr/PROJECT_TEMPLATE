@@ -20,6 +20,5 @@ jobs:
           pushd javascript_package
           npm config set //registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN
           npm publish --access public || exit 0
-        # TODO: don't run if package has not been updated
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

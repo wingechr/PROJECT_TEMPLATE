@@ -1,21 +1,7 @@
 import os
-from subprocess import PIPE, Popen
 
-from SCons.Script import AlwaysBuild, Environment, Export
-
-env = Environment()
-
-# get current branch
-git_ref = (
-    Popen(["git", "rev-parse", "--abbrev-ref", "HEAD"], stdout=PIPE)
-    .communicate()[0]
-    .decode()
-    .strip()
-)
-git_hash = (
-    Popen(["git", "rev-parse", "HEAD"], stdout=PIPE).communicate()[0].decode().strip()
-)
-
+from SCons.Script import Export  # type:ignore
+from SCons.Script import Environment, SConscript
 
 env = Environment(
     ENV=os.environ,
@@ -27,10 +13,7 @@ env = Environment(
 env.Decider("MD5-timestamp")
 env.Clean("all", ["$TMP", "$BLD"])
 
-# always save git buildinfo
-AlwaysBuild(env.Command("#$BLD/.buildinfo", [], "git rev-parse HEAD > $TARGET"))
 
+Export("env")  # export environment before including SConscript
 
-Export("env")
-
-# SConscript("src/SConscript")
+SConscript("gitinfo.SConscript")

@@ -13,6 +13,7 @@ pre-commit
 python-dotenv
 scons
 tox
+pytest
 twine
 uv
 vulture # find dead code

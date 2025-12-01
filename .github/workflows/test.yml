@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - dev
+      - main
 
 jobs:
   test:
@@ -16,5 +17,4 @@ jobs:
       - uses: actions/setup-python@v5
       - run: |
           pip install uv
-      - run: |
           uvx tox

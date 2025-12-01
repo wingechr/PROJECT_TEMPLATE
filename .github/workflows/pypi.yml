@@ -1,9 +1,13 @@
 name: pypi
 
 on:
-  push:
+  workflow_run:
+    workflows:
+      - test
     branches:
       - main
+    types:
+      - completed
 
 jobs:
   publish:
