@@ -4,16 +4,17 @@
 -r docs/requirements.txt
 black
 build
+setuptools
 bumpversion
 djlint
 ipykernel
 isort
 # development and build tools
 pre-commit
+pytest
 python-dotenv
 scons
 tox
-pytest
 twine
 uv
 vulture # find dead code
