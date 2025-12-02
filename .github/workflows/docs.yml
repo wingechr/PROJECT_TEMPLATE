@@ -16,4 +16,4 @@ jobs:
           cd docs
           pip install uv
           uv sync --group docs
-          uv mkdocs gh-deploy --force
+          uv run mkdocs gh-deploy --force

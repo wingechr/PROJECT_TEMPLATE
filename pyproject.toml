@@ -4,9 +4,11 @@ version = "0.0.0"
 description = "DESCRIPTION"
 license = "CC0-1.0"
 authors = [{ name = "c.winger" }]
+dependencies = ["click", "coloredlogs"]
 
 requires-python = ">=3.10"
 readme = "README.md"
+urls = { "Bug Tracker" = "https://github.com/blablub" }
 classifiers = [
   "Programming Language :: Python :: 3",
   "SPDX-License-Identifier :: CC0-1.0",
@@ -38,6 +40,10 @@ docs = [
 
 [tool.setuptools.packages.find]
 include = ["python_package"]
+
+
+[project.scripts]
+CLIENT = "client.__main__:main"
 
 [tool.tox]
 envlist = ["py310", "py314"]
