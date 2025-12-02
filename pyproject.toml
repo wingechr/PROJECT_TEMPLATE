@@ -55,6 +55,10 @@ deps = ["pytest"]
 commands = ["pytest"]
 py_modules = ["a"]
 
-[tool.poe.tasks]
-test = "tox"
-build = "uv build"
+[tool.poe.tasks.test]
+cmd = "tox"
+
+[tool.poe.tasks.build]
+cmd = "scons"
+help = "build assets"
+cwd = "assets"
