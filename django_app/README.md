@@ -2,8 +2,8 @@
 
 ## Development
 
-make sure that `_local_data` and `django_app` are in your `PYTHONPATH`, so that your
-IDE works properly
+make sure that `_local_data` and `django_app` are in your `PYTHONPATH`, so that
+your IDE works properly
 
 ## Deployment - Setup
 
@@ -14,7 +14,8 @@ CREATE USER $USER WITH PASSWORD '$PASSWORD';
 CREATE DATABASE $DATABASE OWNER $USER;
 ```
 
-- make sure user is also allowed in ` /etc/postgresql/$PGVERSION/main/pg_hba.conf`
+- make sure user is also allowed in
+  ` /etc/postgresql/$PGVERSION/main/pg_hba.conf`
 - test: `psql postgres://$USER:$PASSWORD@localhost:5432/$DATABASE`
 
 ### Webserver

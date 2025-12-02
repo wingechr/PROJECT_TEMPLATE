@@ -1,91 +1,64 @@
 {% load static %}
 {% load compress %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
   <head>
     <title>{{ SITE_TITLE }}</title>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="version" content="{{ VERSION }}" />
-
     <!--favicon -->
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="{% static 'apple-touch-icon.png' %}"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="48x48"
-      href="{% static 'favicon-48x48.png' %}"
-    />
+    <link rel="apple-touch-icon"
+          sizes="180x180"
+          href="{% static 'apple-touch-icon.png' %}" />
+    <link rel="icon"
+          type="image/png"
+          sizes="48x48"
+          href="{% static 'favicon-48x48.png' %}" />
     <link rel="manifest" href="{% static 'site.webmanifest' %}" />
-    <link
-      rel="mask-icon"
-      href="{% static 'safari-pinned-tab.svg' %}"
-      color="#343a40"
-    />
+    <link rel="mask-icon"
+          href="{% static 'safari-pinned-tab.svg' %}"
+          color="#343a40" />
     <meta name="apple-mobile-web-app-title" content="{{ SITE_TITLE }}" />
     <meta name="application-name" content="{{ SITE_TITLE }}" />
     <meta name="msapplication-TileColor" content="#343a40" />
     <meta name="theme-color" content="#343a40" />
-
     {% compress js %}
       <!-- load color mode switcher in head -->
       <script src="{% static 'color-modes.js' %}"></script>
     {% endcompress %}
-
     {% compress css %}
       <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}" />
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}"
-      />
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="{% static 'vendor\bootstrap-icons/bootstrap-icons.min.css' %}"
-      />
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="{% static 'vendor/fontawesome/css/all.min.css' %}"
-      />
+      <link rel="stylesheet"
+            type="text/css"
+            href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" />
+      <link rel="stylesheet"
+            type="text/css"
+            href="{% static 'vendor\bootstrap-icons/bootstrap-icons.min.css' %}" />
+      <link rel="stylesheet"
+            type="text/css"
+            href="{% static 'vendor/fontawesome/css/all.min.css' %}" />
     {% endcompress %}
-
-    {% block head %}
-    {% endblock %}
+    {% block head %}{% endblock %}
   </head>
-
   <body class="min-vh-100 d-flex flex-column">
     {% include 'main/navbar.html' %}
-
     {% if messages %}
       <div class="container">
         {% for message in messages %}
-          <div
-            class="alert {{ message.tags }} alert-dismissible fade show"
-            role="alert"
-          >
+          <div class="alert {{ message.tags }} alert-dismissible fade show"
+               role="alert">
             {{ message }}
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="alert"
-              aria-label="Close"
-            ></button>
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close"></button>
           </div>
         {% endfor %}
       </div>
     {% endif %}
-
-    {% block body %}
-    {% endblock %}
+    {% block body %}{% endblock %}
     {% compress js %}
       <script src="{% static 'vendor/popperjs/popper.min.js' %}"></script>
       <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>

@@ -43,7 +43,6 @@ repos:
       - id: eslint
         additional_dependencies:
           - eslint@9.25
-          - eslint-config-google@0.14.0
           - eslint-plugin-jsdoc@39.2.9
           - eslint-plugin-react@7.37.3
           - eslint-plugin-react-hooks@5.1.0

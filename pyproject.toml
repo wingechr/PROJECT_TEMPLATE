@@ -20,6 +20,7 @@ dev = [
   "bumpversion",
   "djlint",
   "ipykernel",
+  "poethepoet>=0.38.0",
   "pre-commit",
   "pytest",
   "tox",
@@ -53,3 +54,7 @@ requires = ["tox-uv>=1.0"]
 deps = ["pytest"]
 commands = ["pytest"]
 py_modules = ["a"]
+
+[tool.poe.tasks]
+test = "tox"
+build = "uv build"
