@@ -1,4 +1,4 @@
-exclude: ^.*(.min.js|.min.css)$
+exclude: ^$
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
@@ -13,15 +13,18 @@ repos:
       - id: mixed-line-ending # replaces or checks mixed line ending.
       - id: requirements-txt-fixer # sorts entries in requirements.txt.
       - id: trailing-whitespace # trims trailing whitespace.
+
   - repo: https://github.com/psf/black
     rev: 25.11.0
     hooks:
       - id: black
+
   - repo: https://github.com/pycqa/isort
     rev: 7.0.0
     hooks:
       - id: isort
         args: ["--profile", "black", "--filter-files"]
+
   - repo: https://github.com/pycqa/flake8
     rev: 7.3.0
     hooks:
@@ -33,6 +36,7 @@ repos:
             "--ignore=E20,W503",
             "--exclude=**/migrations/*.py",
           ] # black compatible
+
   - repo: https://github.com/pre-commit/mirrors-eslint
     rev: v10.0.0-alpha.0
     hooks:
@@ -50,10 +54,17 @@ repos:
     rev: v4.0.0-alpha.8
     hooks:
       - id: prettier
-        files: .*\.(json|md|yaml|yml)$
+        files: .*\.(json|md|yaml|yml|sql|html)$
+        exclude: .*templates/.*\.html$
+
   - repo: https://github.com/djlint/djLint
     # see https://djlint.com/docs/integrations/
     rev: v1.36.4
     hooks:
       - id: djlint-reformat-django
         files: .*templates/.*\.html$
+
+  - repo: https://github.com/ComPWA/taplo-pre-commit
+    rev: v0.9.3
+    hooks:
+      - id: taplo-format

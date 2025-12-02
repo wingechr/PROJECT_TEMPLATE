@@ -1,0 +1,49 @@
+[project]
+name = "PROJECT_TEMPLATE"
+version = "0.0.0"
+description = "DESCRIPTION"
+license = "CC0-1.0"
+authors = [{ name = "c.winger" }]
+
+requires-python = ">=3.10"
+readme = "README.md"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "SPDX-License-Identifier :: CC0-1.0",
+  "Operating System :: OS Independent",
+]
+
+[dependency-groups]
+dev = [
+  "bumpversion",
+  "djlint",
+  "ipykernel",
+  "pre-commit",
+  "pytest",
+  "tox",
+  "twine",
+  "vulture",
+]
+assets = ["scons"]
+docs = [
+  "mdx_truly_sane_lists", # important for nested lists formatted with prettier
+  "mistune",              # NOTE 3.x does not work with mkdocs-jupyter
+  "mkdocs",
+  "mkdocs-jupyter>=0.25", # 0.24 fails
+  "mkdocs-material",
+  "mkdocstrings",
+  "mkdocstrings-python",
+  "pymdown-extensions",
+]
+
+[tool.setuptools.packages.find]
+include = ["python_package"]
+
+[tool.tox]
+envlist = ["py310", "py314"]
+requires = ["tox-uv>=1.0"]
+
+[tool.tox.testenv]
+deps = ["pytest"]
+commands = ["pytest"]
+py_modules = ["a"]

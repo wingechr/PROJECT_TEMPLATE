@@ -4,5 +4,4 @@ MD013:
   line_length: 80
   tables: false # Allow longer lines in tables
   code_blocks: false # Allow longer lines in code blocks
-  heading: false # Allow longer headings
 MD026: false # trailing punctuation in heading

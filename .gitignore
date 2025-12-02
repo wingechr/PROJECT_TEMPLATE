@@ -1,59 +1,24 @@
-# Byte-compiled / optimized / DLL files
-__pycache__
-*.py[cod]
-*$py.class
-
-# Python
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
 *.egg-info
 
-# IDE
-.idea
-.vscode
-.spyderproject
-.spyproject
-*.code-workspace
+# Virtual environments
+.venv/
+venv/
+.env
+env
 
-# Scons
+
+## Node
+node_modules
+
+
+## Scons
 .sconsign.dblite
 
-# Environments
-env
-.env
-venv
-.venv
-node_modules
-.tox
-.env.*
-.env-*
-.venv.*
-.venv-*
-*.lock
-
-# Excel
-~*
-
-# cache
-.parcel-cache
-
-# build dirs
-temp
-tmp
-build
-dist
-site
-
-
-# testing
-/coverage
-
-# misc
-.DS_Store
-
-# npm
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# django
-_local_data
-_static
+## Mkdocs
+site/
