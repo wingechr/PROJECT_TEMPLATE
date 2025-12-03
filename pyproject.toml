@@ -11,7 +11,6 @@ readme = "README.md"
 urls = { "Bug Tracker" = "https://github.com/blablub" }
 classifiers = [
   "Programming Language :: Python :: 3",
-  "SPDX-License-Identifier :: CC0-1.0",
   "Operating System :: OS Independent",
 ]
 
@@ -42,6 +41,9 @@ docs = [
 [tool.setuptools.packages.find]
 include = ["python_package"]
 
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
 
 [project.scripts]
 CLIENT = "client.__main__:main"
