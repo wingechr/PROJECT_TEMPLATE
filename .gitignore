@@ -12,13 +12,20 @@ venv/
 .env
 env
 
-
 ## Node
 node_modules
-
 
 ## Scons
 .sconsign.dblite
 
 ## Mkdocs
 site/
+
+## Parcel
+.parcel-cache/
+
+## VSCode
+.vscode/
+
+# Tests
+.tox/
