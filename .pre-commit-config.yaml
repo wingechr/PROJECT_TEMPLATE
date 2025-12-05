@@ -45,14 +45,15 @@ repos:
         entry: npx eslint --fix
         files: .*\.(js|jsx|mjs|cjs|ts|tsx)$
 
-  #- repo: https://github.com/pre-commit/mirrors-prettier
-  #  rev: v4.0.0-alpha.8
-  #  hooks:
-  #    - id: prettier
-  #      language: node
-  #      files: .*\.(json|md|yaml|yml|sql|html)$
-  #      exclude: .*templates/.*\.html$
-  #
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v4.0.0-alpha.8
+    hooks:
+      - id: prettier
+        language: node
+        entry: npx prettier --write
+        files: .*\.(json|md|yaml|yml|sql|html)$
+        exclude: .*templates/.*\.html$
+
   - repo: https://github.com/djlint/djLint
     # see https://djlint.com/docs/integrations/
     rev: v1.36.4
