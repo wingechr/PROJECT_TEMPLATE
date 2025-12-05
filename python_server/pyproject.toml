@@ -32,7 +32,7 @@ test = [
   "local-settings",
   "migrate",
   "collectstatic",
-  "translate",
+  # "translate", # cannot use in standard test because needs gettext tool
   "compress",
   "django-test",
 ]
