@@ -17,7 +17,7 @@ class MyClass {
  * @returns {object}
  */
 function getInfo() {
-  return { version: __version__ };
+  return { version: VERSION };
 }
 
 export const Main = {

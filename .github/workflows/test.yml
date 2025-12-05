@@ -15,6 +15,37 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
+      - run: pip install uv
+      - uses: actions/setup-node@v3
+
+      #- run: |
+      #    pushd assets
+      #    uv tool run --from poethepoet poe build
+      #    popd
+
+      #- run: |
+      #    pushd docs
+      #    uv tool run --from poethepoet poe build
+      #    popd
+
       - run: |
-          pip install uv
-          uv run tox
+          pushd python_package
+          uv tool run --from poethepoet poe test
+          popd
+
+      - run: |
+          pushd python_server
+          uv tool run --from poethepoet poe test
+          popd
+
+      - run: |
+          pushd javascript_frontend
+          npm install
+          npm run build
+          popd
+
+      - run: |
+          pushd javascript_package
+          npm install
+          npm run test
+          popd

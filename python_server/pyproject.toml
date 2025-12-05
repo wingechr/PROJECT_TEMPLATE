@@ -15,46 +15,24 @@ dependencies = [
   "psycopg2-binary~=2.9",
 ]
 
-#!/bin/bash
-# Build: create venv and _static
 
-#test -e venv || python3 -m venv venv
-#. venv/bin/activate
-#pip install -r requirements.txt
-## node/npm
-#npm install --no-save --omit=dev
-# copy default settings
-#mkdir -p _local
-#cp app/local_settings.example.py _local/local_settings.py
-#python app/manage.py collectstatic --noinput
-#python app/manage.py compress --force
-# TODO:translations python app/manage.py compilemessages
+# SCRIPTS
 
-#!/bin/bash
-# requires build.sh to run first, requires variable DEPLOY_PATH
-
-#if [[ -z "${DEPLOY_PATH}" ]]; then
-#    echo "DEPLOY_PATH is not defined" >&2
-#    exit 1
-#fi
-#mkdir -p "$DEPLOY_PATH"
-#
-## copy app and build data
-#rsync -au --exclude "**/__pycache__" --delete app "$DEPLOY_PATH"
-#rsync -au --delete venv "$DEPLOY_PATH"
-#rsync -au --delete _static "$DEPLOY_PATH"
-#
-#pushd "$DEPLOY_PATH"
-#. venv/bin/activate
-## copy default settings if not exist
-#mkdir -p _local
-#test -e _local/local_settings.py || cp app/local_settings.example.py _local/local_settings.py
-## update deploy system
-## NOTE: ignore warnings that node_modules in the STATICFILES_DIRS setting does not exist
-## we have copied already all static files
-#python app/manage.py migrate
-#python app/manage.py create_default_users # does nothing if already exist
-#
-## restart
-#touch app/wsgi.py
-#popd
+[tool.poe.tasks]
+django-test = "python -m app.manage test" # tox is more complicated
+collectstatic = "python -m app.manage collectstatic --noinput"
+compress = "python -m app.manage compress --force"
+translate = "python -m app.manage compilemessages -v 0 -l en"
+migrate = "python -m app.manage migrate"
+local-dir = "mkdir -p _local"
+local-settings = "cp -n app/local_settings.example.py _local/local_settings.py"
+create-default-users = "python -m app.manage create_default_users"
+test = [
+  "local-dir",
+  "local-settings",
+  "migrate",
+  "collectstatic",
+  "translate",
+  "compress",
+  "django-test",
+]
