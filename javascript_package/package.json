@@ -13,13 +13,13 @@
   "author": "Christian Winger",
   "license": "CC0-1.0",
   "dependencies": {
-    "lodash": ">=4.17.21"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "chai": ">=6.2.1",
-    "chai-almost": ">=1.0.1",
-    "dom-storage": ">=2.1.0",
-    "jsdom": ">=27.2.0",
-    "mocha": ">=11.7.5"
+    "chai": "^6.2.1",
+    "chai-almost": "^1.0.1",
+    "dom-storage": "^2.1.0",
+    "jsdom": "^27.2.0",
+    "mocha": "^11.7.5"
   }
 }
