@@ -1,6 +1,6 @@
 {
   "name": "@wingechr/javascript-frontend",
-  "version": "0.0.2",
+  "version": "0.0.0",
   "private": false,
   "scripts": {
     "serve": "npx --no parcel serve --dist-dir tmp public/index.html",
