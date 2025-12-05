@@ -19,20 +19,15 @@ dependencies = [
 # SCRIPTS
 
 [tool.poe.tasks]
-django-test = "python -m app.manage test" # tox is more complicated
+django-test = "python -m app.manage test"                          # tox is more complicated
 collectstatic = "python -m app.manage collectstatic --noinput"
 compress = "python -m app.manage compress --force"
 translate = "python -m app.manage compilemessages -v 0 -l en"
 migrate = "python -m app.manage migrate"
-npm-packages = "npm install"
-local-dir = "mkdir -p _local"
-local-settings = "cp -n app/local_settings.example.py _local/local_settings.py"
 create-default-users = "python -m app.manage create_default_users"
+
 test = [
-  "local-dir",
-  "local-settings",
   "migrate",
-  "npm-packages",
   "collectstatic",
   # "translate", # cannot use in standard test because needs gettext tool
   "compress",
