@@ -2,18 +2,19 @@
 __pycache__/
 *.py[oc]
 build/
+*.egg-info
 dist/
 wheels/
-*.egg-info
+
 
 # Virtual environments
 .venv/
 venv/
 .env
-env
+
 
 ## Node
-node_modules
+node_modules/
 
 ## Scons
 .sconsign.dblite
@@ -29,3 +30,12 @@ site/
 
 # Tests
 .tox/
+.pytest_cache/
+
+# django
+_static/
+_local/
+
+## Lockfiles: NOTE: in productive repo, you want to commit uv.lock and package-lock.json
+package-lock.json
+uv.lock

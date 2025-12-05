@@ -1,6 +1,6 @@
 {
-  "name": "@local/javascript_package",
-  "version": "0.0.1",
+  "name": "@wingechr/javascript-package",
+  "version": "0.0.0",
   "private": false,
   "scripts": {
     "test": "npx --no mocha test/**/test*.mjs",

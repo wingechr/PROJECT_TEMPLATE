@@ -1,0 +1,42 @@
+[project]
+name = "wingechr-python-package"
+version = "0.0.0"
+description = "DESCRIPTION"
+license = "CC0-1.0"
+authors = [{ name = "c.winger" }]
+readme = "README.md"
+urls = {}
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+requires-python = ">=3.10"
+dependencies = ["click", "coloredlogs"]
+
+# BUILD
+
+[tool.setuptools.packages.find]
+include = ["python_package"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+python_package = ["data/*.*"]
+
+
+# TEST
+
+[tool.tox]
+envlist = ["py310", "py314"]
+requires = ["tox-uv>=1.0"]
+
+[tool.tox.testenv]
+deps = ["pytest"]
+commands = ["pytest"]
+
+# SCRIPTS
+
+[tool.poe.tasks]
+test = "uv run tox"
+build = "uv build"

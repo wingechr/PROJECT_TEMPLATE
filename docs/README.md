@@ -1,6 +1,6 @@
 # README
 
-## Build
+## Build:
 
 ```bash
 mkdocs build

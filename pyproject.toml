@@ -4,18 +4,15 @@ version = "0.0.0"
 description = "DESCRIPTION"
 license = "CC0-1.0"
 authors = [{ name = "c.winger" }]
-dependencies = ["click", "coloredlogs"]
+readme = "README.md"
+urls = { "Repository" = "https://github.com/wingechr/PROJECT_TEMPLATE" }
 
 requires-python = ">=3.10"
-readme = "README.md"
-urls = { "Bug Tracker" = "https://github.com/blablub" }
-classifiers = [
-  "Programming Language :: Python :: 3",
-  "Operating System :: OS Independent",
-]
-
-[dependency-groups]
-dev = [
+dependencies = [
+  "wingechr-assets @ file:///${PROJECT_ROOT}/assets",
+  "wingechr-docs @ file:///${PROJECT_ROOT}/docs",
+  "wingechr-python-package @ file:///${PROJECT_ROOT}/python_package",
+  "wingechr-python-server @ file:///${PROJECT_ROOT}/python_server",
   "bumpversion",
   "djlint",
   "ipykernel",
@@ -26,41 +23,3 @@ dev = [
   "twine",
   "vulture",
 ]
-assets = ["scons"]
-docs = [
-  "mdx_truly_sane_lists", # important for nested lists formatted with prettier
-  "mistune",              # NOTE 3.x does not work with mkdocs-jupyter
-  "mkdocs",
-  "mkdocs-jupyter>=0.25", # 0.24 fails
-  "mkdocs-material",
-  "mkdocstrings",
-  "mkdocstrings-python",
-  "pymdown-extensions",
-]
-
-[tool.setuptools.packages.find]
-include = ["python_package"]
-
-[build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
-
-[project.scripts]
-CLIENT = "client.__main__:main"
-
-[tool.tox]
-envlist = ["py310", "py314"]
-requires = ["tox-uv>=1.0"]
-
-[tool.tox.testenv]
-deps = ["pytest"]
-commands = ["pytest"]
-py_modules = ["a"]
-
-[tool.poe.tasks.test]
-cmd = "tox"
-
-[tool.poe.tasks.build]
-cmd = "scons"
-help = "build assets"
-cwd = "assets"

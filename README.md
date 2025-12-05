@@ -6,3 +6,5 @@
 [![license](https://img.shields.io/github/license/wingechr/PROJECT_TEMPLATE)](https://github.com/wingechr/PROJECT_TEMPLATE/blob/main/LICENSE)
 [![test](https://github.com/wingechr/PROJECT_TEMPLATE/actions/workflows/test.yml/badge.svg)](https://github.com/wingechr/PROJECT_TEMPLATE/actions/workflows/test.yml)
 [![snyk](https://snyk.io/test/github/wingechr/PROJECT_TEMPLATE/badge.svg)](https://snyk.io/test/github/wingechr/PROJECT_TEMPLATE)
+
+Monorepo template

@@ -1,0 +1,17 @@
+[project]
+name = "wingechr-docs"
+version = "0.0.0"
+dependencies = [
+  "mkdocs",
+  "mkdocs-jupyter>=0.25", # 0.24 fails
+  "mkdocs-material",
+  "mkdocstrings",
+  "mkdocstrings-python",
+  "pymdown-extensions",
+  "mdx_truly_sane_lists", # important for nested lists formatted with prettier
+  "mistune",              # NOTE 3.x does not work with mkdocs-jupyter
+
+]
+
+[tool.poe.tasks]
+build = "mkdocs build"
