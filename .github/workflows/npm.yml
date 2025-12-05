@@ -2,8 +2,6 @@ name: npm
 
 on:
   workflow_run:
-    branches:
-      - main
     workflows:
       - test
     types:
@@ -11,7 +9,9 @@ on:
 
 jobs:
   npm:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if:
+      ${{ github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'main' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

@@ -2,9 +2,6 @@ name: docs
 
 on:
   workflow_run:
-    branches:
-      - main
-      - dev
     workflows:
       - test
     types:
