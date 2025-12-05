@@ -38,5 +38,5 @@ commands = ["pytest"]
 # SCRIPTS
 
 [tool.poe.tasks]
-test = "uv run tox"
+test = "uv tool run tox"
 build = "uv build"
