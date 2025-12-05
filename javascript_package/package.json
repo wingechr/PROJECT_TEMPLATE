@@ -1,5 +1,5 @@
 {
-  "name": "@wingechr/javascript-package",
+  "name": "wingechr-javascript-package",
   "version": "0.0.0",
   "private": false,
   "scripts": {
@@ -13,13 +13,13 @@
   "author": "Christian Winger",
   "license": "CC0-1.0",
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash": ">=4.17.21"
   },
   "devDependencies": {
-    "chai": "^5.1.1",
-    "chai-almost": "^1.0.1",
-    "dom-storage": "^2.1.0",
-    "jsdom": "^24.1.0",
-    "mocha": "^10.7.3"
+    "chai": ">=6.2.1",
+    "chai-almost": ">=1.0.1",
+    "dom-storage": ">=2.1.0",
+    "jsdom": ">=27.2.0",
+    "mocha": ">=11.7.5"
   }
 }

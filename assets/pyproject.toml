@@ -1,7 +1,7 @@
 [project]
 name = "wingechr-assets"
 version = "0.0.0"
-dependencies = ["scons"]
+dependencies = ["scons>=4"]
 
 [tool.poe.tasks]
 build = "scons"
