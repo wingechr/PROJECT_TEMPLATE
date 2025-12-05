@@ -5,11 +5,10 @@ from django.http.request import HttpRequest
 from django.shortcuts import HttpResponse, redirect, render
 from drf_spectacular.utils import extend_schema, inline_serializer
 from main import __version__
+from main.forms import RegistrationForm, UserPasswordChangeForm, UserProfileForm
 from rest_framework import serializers
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
-from .forms import RegistrationForm, UserPasswordChangeForm, UserProfileForm
 
 
 def registration(request: HttpRequest) -> HttpResponse:

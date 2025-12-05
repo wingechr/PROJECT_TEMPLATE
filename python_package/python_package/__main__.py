@@ -9,7 +9,7 @@ except ModuleNotFoundError:
 
 from typing import Literal
 
-__version__ = "0.0.0"
+from . import __version__
 
 
 def setup_logging(
