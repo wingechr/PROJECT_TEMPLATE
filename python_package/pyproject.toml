@@ -1,7 +1,9 @@
 [project]
-name = "wingechr-PYTHON-PACKAGE"
-version = "0.1.0"
-description = "Add your description here"
+name = "wingechr-python-package"
+version = "0.0.0"
+description = "DESCRIPTION"
+license = "CC0-1.0"
+authors = [{ name = "c.winger" }]
 readme = "README.md"
 urls = {}
 classifiers = [
