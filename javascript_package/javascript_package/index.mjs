@@ -1,4 +1,4 @@
-const __version__ = "0.0.0";
+const VERSION = "0.0.0";
 
 class MyClass {
   constructor(data) {
@@ -17,7 +17,7 @@ class MyClass {
  * @returns {object}
  */
 function getInfo() {
-  return { version: __version__ };
+  return { version: VERSION };
 }
 
 export const Main = {

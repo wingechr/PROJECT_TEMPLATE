@@ -1,10 +1,14 @@
 name: test
 
 on:
-  push:
+  workflow_run:
+    workflows:
+      - pre-commit
     branches:
-      - dev
       - main
+      - dev
+    types:
+      - completed
 
 jobs:
   test:
@@ -15,6 +19,44 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - run: pip install uv
+      - uses: actions/setup-node@v3
+
+      #- run: |
+      #    pushd assets
+      #    uv tool run --from poethepoet poe build
+      #    popd
+
+      #- run: |
+      #    pushd docs
+      #    uv tool run --from poethepoet poe build
+      #    popd
+
       - run: |
-          pip install uv
-          uvx tox
+          pushd python_package
+          uv tool run --from poethepoet poe test
+          popd
+
+      - run: |
+          pushd python_server
+          npm install
+          mkdir -p _local
+          cp app/local_settings.example.py _local/local_settings.py
+          uv sync
+          uv tool run --from poethepoet poe test
+          popd
+
+      - run: |
+          pushd javascript_frontend
+          npm install
+          npm run build
+          popd
+
+      - run: |
+          pushd javascript_package
+          npm install
+          npm run test
+          popd

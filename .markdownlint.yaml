@@ -1,0 +1,7 @@
+MD051: false # Link fragments should be valid
+MD041: false # First line in a file should be a top-level heading
+MD013:
+  line_length: 80
+  tables: false # Allow longer lines in tables
+  code_blocks: false # Allow longer lines in code blocks
+MD026: false # trailing punctuation in heading

@@ -1,0 +1,37 @@
+[project]
+name = "wingechr-python-server"
+version = "0.0.0"
+
+requires-python = ">=3.10"
+dependencies = [
+  "django>5,<6",
+  "django-compressor~=4.6",
+  "django-cors-headers~=4.6",
+  "django-filter~=24.3",
+  "django-htmlmin~=0.11",
+  "djangorestframework~=3.16",
+  "drf-spectacular[sidecar]~=0.28",
+  "html5validator~=0.4",
+  "psycopg2-binary~=2.9",
+]
+
+[tool.setuptools.packages.find]
+include = ["app"]
+
+# SCRIPTS
+
+[tool.poe.tasks]
+django-test = "python -m app.manage test"                          # tox is more complicated
+collectstatic = "python -m app.manage collectstatic --noinput"
+compress = "python -m app.manage compress --force"
+translate = "python -m app.manage compilemessages -v 0 -l en"
+migrate = "python -m app.manage migrate"
+create-default-users = "python -m app.manage create_default_users"
+
+test = [
+  "migrate",
+  "collectstatic",
+  # "translate", # cannot use in standard test because needs gettext tool
+  "compress",
+  "django-test",
+]

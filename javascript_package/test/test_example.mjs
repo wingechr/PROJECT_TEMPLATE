@@ -6,6 +6,7 @@ import path from "path";
 
 import { Main } from "../javascript_package/index.mjs";
 
+// eslint-disable-next-line react-hooks/rules-of-hooks
 use(chaiAlmost(0.0001));
 
 const __filename = fileURLToPath(import.meta.url);

@@ -1,23 +1,3 @@
 # README
 
-## Develop
-
-```bash
-bumpversion patch # patch|minor|major
-```
-
-## Test
-
-```bash
-python -m unittest
-# or
-tox
-```
-
-## Build
-
-```bash
-python -m build --sdist --wheel --outdir dist/
-twine upload --repository testpypi dist/*
-twine upload dist/*
-```
+[![pypi](https://img.shields.io/pypi/v/wingechr-PYTHON-PACKAGE.svg)](https://pypi.org/project/wingechr-PYTHON-PACKAGE)

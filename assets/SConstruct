@@ -16,4 +16,4 @@ env.Clean("all", ["$TMP", "$BLD"])
 
 Export("env")  # export environment before including SConscript
 
-SConscript("gitinfo.SConscript")
+SConscript("SConscript")

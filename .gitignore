@@ -1,59 +1,41 @@
-# Byte-compiled / optimized / DLL files
-__pycache__
-*.py[cod]
-*$py.class
-
-# Python
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
 *.egg-info
+dist/
+wheels/
 
-# IDE
-.idea
-.vscode
-.spyderproject
-.spyproject
-*.code-workspace
 
-# Scons
+# Virtual environments
+.venv/
+venv/
+.env
+
+
+## Node
+node_modules/
+
+## Scons
 .sconsign.dblite
 
-# Environments
-env
-.env
-venv
-.venv
-node_modules
-.tox
-.env.*
-.env-*
-.venv.*
-.venv-*
-*.lock
+## Mkdocs
+site/
 
-# Excel
-~*
+## Parcel
+.parcel-cache/
 
-# cache
-.parcel-cache
+## VSCode
+.vscode/
 
-# build dirs
-temp
-tmp
-build
-dist
-site
-
-
-# testing
-/coverage
-
-# misc
-.DS_Store
-
-# npm
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Tests
+.tox/
+.pytest_cache/
 
 # django
-_local_data
-_static
+_static/
+_local/
+
+## Lockfiles: NOTE: in productive repo, you want to commit uv.lock and package-lock.json
+package-lock.json
+uv.lock
