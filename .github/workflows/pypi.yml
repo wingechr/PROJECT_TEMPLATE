@@ -2,10 +2,10 @@ name: pypi
 
 on:
   workflow_run:
-    workflows:
-      - test
     branches:
       - main
+    workflows:
+      - test
     types:
       - completed
 

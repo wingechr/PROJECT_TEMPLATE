@@ -2,11 +2,11 @@ name: docs
 
 on:
   workflow_run:
-    workflows:
-      - test
     branches:
       - main
       - dev
+    workflows:
+      - test
     types:
       - completed
 
@@ -20,4 +20,5 @@ jobs:
       - run: pip install uv
       - run: |
           cd docs
+          uv sync
           uv run mkdocs gh-deploy --force
