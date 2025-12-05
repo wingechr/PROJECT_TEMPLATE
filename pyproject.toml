@@ -1,6 +1,6 @@
 [project]
 name = "PROJECT_TEMPLATE"
-version = "0.0.0"
+version = "0.1.0"
 description = "DESCRIPTION"
 license = "CC0-1.0"
 authors = [{ name = "c.winger" }]
