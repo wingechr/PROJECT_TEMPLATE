@@ -1,10 +1,14 @@
 name: test
 
 on:
-  push:
+  workflow_run:
+    workflows:
+      - pre-commit
     branches:
-      #- dev
       - main
+      - dev
+    types:
+      - completed
 
 jobs:
   test:
