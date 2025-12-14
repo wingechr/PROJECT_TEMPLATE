@@ -20,8 +20,8 @@ job_example:
     - main
     - schedules # Runs only on scheduled pipelines
   stage: stage_example
-  script:
-    - git status
+  script: |
+    git status
   #artifacts:
   #  name: "build"
   #  paths:
