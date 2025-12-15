@@ -12,7 +12,9 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "prettier": "^3.7.4",
-    "prettier-plugin-sql": "^0.19.2"
+    "prettier-plugin-sql": "^0.19.2",
+    "cross-env": "^10.1.0",
+    "shx": "^0.4.0"
   },
   "workspaces": [
     "wingechr-javascript_frontend",
