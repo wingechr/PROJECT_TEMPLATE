@@ -40,8 +40,7 @@ repos:
           - flake8-isort
         args: [
             "--max-line-length=88",
-            "--ignore=E20,W503",
-            # "--extend-ignore=E203,I001,I005,D101,D103,D105,B023,S603,S608,S101,S310,E402",
+            "--extend-ignore=E20,W503,E203,I001,I005,D101,D103,D105,B023,S603,S608,S101,S310,E402,D202",
             "--exclude=**/migrations/*.py",
             # "--docstring-convention=numpy",
           ] # black compatible

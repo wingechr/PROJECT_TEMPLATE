@@ -1,4 +1,5 @@
-# coding: utf-8
+"""Tests for docstring tests."""
+
 import doctest
 import unittest
 
@@ -6,9 +7,10 @@ import python_package as pkg
 
 
 class TestDoctests(unittest.TestCase):
-    def run_doctest(self, module):
+    def _run_doctest(self, module):
         report = doctest.testmod(module)
         self.assertFalse(report.failed)
 
     def test_modules(self):
-        self.run_doctest(pkg)
+        """Run doctests in modules."""
+        self._run_doctest(pkg)

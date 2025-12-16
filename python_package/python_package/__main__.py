@@ -1,3 +1,5 @@
+"""Main script."""
+
 import logging
 
 import click

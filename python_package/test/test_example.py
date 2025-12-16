@@ -1,4 +1,5 @@
-# coding: utf-8
+"""Example unit tests."""
+
 import unittest
 
 from python_package import get_info
@@ -6,19 +7,20 @@ from python_package import get_info
 
 class TestTemplate(unittest.TestCase):
     def setUp(self):
-        pass
+        """Set up for each method."""
 
     def tearDown(self):
-        pass
+        """Tear down for each method."""
 
     @classmethod
     def setUpClass(cls):
-        pass
+        """Set up once for all methods in class."""
 
     @classmethod
     def tearDownClass(cls):
-        pass
+        """Tear down once for all methods in class."""
 
     def test_get_info(self):
+        """Test get_info() function."""
         result = get_info()
         self.assertEqual(set(result), {"version", "python", "platform"})

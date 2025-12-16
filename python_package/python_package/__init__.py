@@ -1,4 +1,4 @@
-"""MODULE DESCRIPTION"""
+"""MODULE DESCRIPTION."""
 
 import platform
 import sys

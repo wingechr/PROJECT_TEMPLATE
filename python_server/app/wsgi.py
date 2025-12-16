@@ -1,4 +1,5 @@
-# coding: utf-8
+"""Main wsgi entrypoint."""
+
 import manage  # keep in here so that paths are set corectly
 from django.core.wsgi import get_wsgi_application
 
