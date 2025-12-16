@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+"""Main command entry point."""
 
 import os
 import sys

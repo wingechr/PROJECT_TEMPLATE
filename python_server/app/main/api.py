@@ -1,3 +1,5 @@
+"""Register models in REST api."""
+
 from django.contrib.auth import get_user_model
 from drf_spectacular.utils import extend_schema
 from rest_framework import serializers, viewsets
@@ -21,6 +23,8 @@ api_router = Router()
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
+        """Model meta attributes."""
+
         model = User
         fields = [
             "username",
@@ -41,7 +45,7 @@ class UserViewSet(viewsets.ModelViewSet):
     many = False
 
     def get_queryset(self):
-        """IMPORTANT! only return current user"""
+        """Filter for current user."""
         queryset = self.queryset
         queryset = queryset.filter(pk=self.request.user.pk)
         return queryset

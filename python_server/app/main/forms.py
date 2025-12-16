@@ -1,3 +1,5 @@
+"""Define forms."""
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import (
     PasswordChangeForm,
@@ -13,6 +15,8 @@ class RegistrationForm(UserCreationForm):
     usable_password = None
 
     class Meta:
+        """Model meta attributes."""
+
         model = get_user_model()
         fields = [
             "username",
@@ -33,6 +37,8 @@ class UserPasswordChangeForm(PasswordChangeForm):
     )
 
     class Meta:
+        """Model meta attributes."""
+
         model = get_user_model()
 
 
@@ -41,5 +47,7 @@ class UserProfileForm(UserChangeForm):
     password = None
 
     class Meta:
+        """Model meta attributes."""
+
         model = get_user_model()
         fields = ["username", "email", "language"]

@@ -1,3 +1,5 @@
+"""Register models in REST api."""
+
 from django_filters import rest_framework as filters
 from drf_spectacular.utils import extend_schema
 from rest_framework import serializers, status, viewsets
@@ -13,12 +15,16 @@ class DataFilter(filters.FilterSet):
     key = filters.CharFilter(field_name="key", lookup_expr="eq")
 
     class Meta:
+        """Model meta attributes."""
+
         model = Data
         fields = ["key"]
 
 
 class DataSerializer(serializers.ModelSerializer):
     class Meta:
+        """Model meta attributes."""
+
         model = Data
         fields = "__all__"
 

@@ -1,6 +1,10 @@
+"""Define views (request -> response) here."""
+
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import AbstractBaseUser
+from django.core.exceptions import PermissionDenied
 from django.http.request import HttpRequest
 from django.shortcuts import HttpResponse, redirect, render
 from drf_spectacular.utils import extend_schema, inline_serializer
@@ -9,6 +13,12 @@ from main.forms import RegistrationForm, UserPasswordChangeForm, UserProfileForm
 from rest_framework import serializers
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+
+def _get_authenticated_user(request: HttpRequest) -> AbstractBaseUser:
+    if not request.user.is_authenticated:
+        raise PermissionDenied()
+    return request.user  # type:ignore (is_authenticated)
 
 
 def registration(request: HttpRequest) -> HttpResponse:
@@ -32,12 +42,13 @@ def registration(request: HttpRequest) -> HttpResponse:
 
 @login_required()
 def profile(request: HttpRequest) -> HttpResponse:
-    user = request.user
     # NOTE: user data and password should be handled in separate forms
+
+    user = _get_authenticated_user(request)
 
     if request.method == "POST":
         form = UserProfileForm(request.POST, instance=user)
-        form_passwd = UserPasswordChangeForm(request.user, request.POST)
+        form_passwd = UserPasswordChangeForm(user, request.POST)
 
         # check if user entererd anything in new password fields
         password_changed = any(
@@ -69,7 +80,7 @@ def profile(request: HttpRequest) -> HttpResponse:
 
     else:
         form = UserProfileForm(instance=user)
-        form_passwd = UserPasswordChangeForm(request.user)
+        form_passwd = UserPasswordChangeForm(user)
 
     return render(
         request,
@@ -98,6 +109,7 @@ class InfoAPIView(APIView):
         description="system information",
         tags=["api"],  # otherwise its in group "default"
     )
-    def get(self, request):
+    def get(self, request: HttpRequest) -> HttpResponse:
+        """Return app info."""
         data = {"version": __version__}
         return Response(data)

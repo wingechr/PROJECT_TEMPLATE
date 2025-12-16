@@ -1,6 +1,6 @@
-from django.db import models
+"""Create your models here."""
 
-# Create your models here.
+from django.db import models
 
 
 class Data(models.Model):
@@ -9,5 +9,7 @@ class Data(models.Model):
     value = models.TextField(blank=True, null=True)
 
     class Meta:
+        """Model meta attributes."""
+
         managed = False  # do not change table with migrations
         db_table = "data"  # custom table name

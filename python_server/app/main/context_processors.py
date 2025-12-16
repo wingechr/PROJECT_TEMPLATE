@@ -1,3 +1,5 @@
+"""Add variables toevery context passed to templates."""
+
 from django.conf import settings
 from main import __version__
 

@@ -1,3 +1,5 @@
+"""Register models for admin interface."""
+
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth import get_user_model

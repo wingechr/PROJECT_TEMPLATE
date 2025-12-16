@@ -1,3 +1,5 @@
+"""Unit tests."""
+
 import os
 from tempfile import NamedTemporaryFile
 
@@ -13,6 +15,7 @@ from rest_framework.test import APIClient
 
 class TestBaseAuth(TestCase):
     def setUp(self):
+        """Set up for each method."""
         call_command("create_default_users")
         # users created by create_default_users
         User = get_user_model()
@@ -20,20 +23,18 @@ class TestBaseAuth(TestCase):
         self.user_regular = User.objects.get(email=settings.TESTUSER_MAIL)
 
         self.client_superuser = APIClient()
-        # self.client_superuser.force_authenticate(user=self.user_superuser)
         self.client_superuser.force_login(user=self.user_superuser)
 
         self.client_regular = APIClient()
-        # self.client_regular.force_authenticate(user=self.user_regular)
         self.client_regular.force_login(user=self.user_regular)
 
         self.client_anonymous = APIClient()
-        # self.request_factory = APIRequestFactory()
 
 
 class TestPageAuth(TestBaseAuth):
 
     def test_authenticate(self):
+        """Test authenticate."""
         url_staff = reverse("admin:index")
         # staff/admin user can admin page
         res = self.client_superuser.get(url_staff)
@@ -58,11 +59,14 @@ class TestPageAuth(TestBaseAuth):
 
 
 class ValidateHtml(TestBaseAuth):
-    """NOTE: when using htmx, validation fails
+    """Validate that html is valid.
+
+    NOTE: When using htmx, validation fails
     (Attribute "hx-get" not allowed on element "div" at this point)
     """
 
     def setUp(self):
+        """Set up for each method."""
         super().setUp()
         self.validator = Validator(
             ignore=[],
@@ -72,7 +76,7 @@ class ValidateHtml(TestBaseAuth):
         )
 
     def test_index(self):
-
+        """Test index.html."""
         url = reverse("index")
         res = self.client_regular.get(url)
         self.assertEqual(res.status_code, 200)
@@ -94,6 +98,7 @@ class ValidateHtml(TestBaseAuth):
 
 class TestApi(TestBaseAuth):
     def test_api_login_get_token(self):
+        """Test token retrieval."""
         path = reverse("api-login")
         username = settings.ADMIN_NAME
         password = settings.ADMIN_PASSWORD
@@ -105,6 +110,7 @@ class TestApi(TestBaseAuth):
         self.assertEqual(token, settings.ADMIN_TOKEN)
 
     def test_api_info(self):
+        """Test example function,"""
         path = reverse("api-info")
         res = self.client_anonymous.get(path)
         # anonymous not allowed for any APIViews
