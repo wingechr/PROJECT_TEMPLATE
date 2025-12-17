@@ -22,6 +22,7 @@ dependencies = [
   "tox~=4.32",
   "twine~=6.2",
   "vulture~=2.14",
+  "ruff>=0.14.9",
 ]
 
 [dependency-groups]
@@ -39,3 +40,66 @@ dev = [
   "flake8-isort>=7.0.0",
   "isort>=7.0.0",
 ]
+
+
+[tool.ruff]
+line-length = 88
+exclude = ["**/migrations/*.py"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.ruff.lint]
+select = [
+  # pycodestyle
+  "E",
+  # Pyflakes
+  "F",
+  # pyupgrade
+  "UP",
+  # flake8-bugbear: opinionated bug & design warnings
+  "B",
+  # flake8-simplify
+  "SIM",
+  # isort: imports
+  "I",
+  # flake8-bandit: Security issues
+  "S",
+  # flake8-builtins
+  "A",
+  # flake8-comprehensions
+  "C4",
+  # pydocstyle
+  "D",
+]
+ignore = [
+  "B023",
+  "B017",
+  "D101",
+  "D103",
+  "D105",
+  "D202",
+  "D400",
+  "D415",
+  "D211",
+  "D213",
+  "D203",
+  "E20",
+  "E203",
+  "E402",
+  "I001",
+  #"I005",
+  "S101",
+  "S310",
+  "S603",
+  "S608",
+  #"W503",
+]
+
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+force-sort-within-sections = true

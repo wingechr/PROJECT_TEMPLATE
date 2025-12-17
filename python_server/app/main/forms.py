@@ -10,7 +10,6 @@ from django.forms import CharField, PasswordInput
 
 
 class RegistrationForm(UserCreationForm):
-
     # remove radio buttons: "Password-based authentication:"
     usable_password = None
 

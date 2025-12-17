@@ -32,7 +32,6 @@ class TestBaseAuth(TestCase):
 
 
 class TestPageAuth(TestBaseAuth):
-
     def test_authenticate(self):
         """Test authenticate."""
         url_staff = reverse("admin:index")
@@ -82,7 +81,7 @@ class ValidateHtml(TestBaseAuth):
         self.assertEqual(res.status_code, 200)
 
         # TODO: html5validator only can do files, can I do this without temp files?
-        tmpfile = NamedTemporaryFile(
+        tmpfile = NamedTemporaryFile(  # noqa: SIM115
             "wb", suffix=".html", delete=False
         )  # must delete manually
         tmpfile.write(res.content)

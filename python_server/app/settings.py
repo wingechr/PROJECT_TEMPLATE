@@ -241,7 +241,7 @@ APPEND_SLASH = False
 # https://docs.djangoproject.com/en/5.1/ref/settings/
 
 # NOTE: using admin login restricts login to users with at least staff status
-# LOGIN_URL = BASE_URL + "admin/login/" # noqa:E800
+# LOGIN_URL = BASE_URL + "admin/login/"
 LOGIN_URL = BASE_URL + "accounts/login/"
 LOGIN_REDIRECT_URL = BASE_URL + "accounts/profile/"
 # custom

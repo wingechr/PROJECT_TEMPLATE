@@ -23,7 +23,7 @@ urlpatterns = []
 
 
 urlpatterns += [
-    # path("accounts/", include("django.contrib.auth.urls")),# noqa: E800
+    # path("accounts/", include("django.contrib.auth.urls")),
     #  manually: # from django.contrib.auth import views as auth_views
     # show and handle login (GET/POST), default template accounts/login.html
     path(
@@ -99,8 +99,8 @@ urlpatterns += [path("admin/", admin.site.urls)]
 
 # Currently, we dont have media
 # urlpatterns += [
-#    re_path(f"{settings.MEDIA_URL.strip('/')}(?P<path>.*)$", views.media, name="media") # noqa: E800,E501
-# ] # noqa: E800
+#    re_path(f"{settings.MEDIA_URL.strip('/')}(?P<path>.*)$", views.media, name="media")
+# ]
 
 # ------------------------------------------------------------------------------------
 # STATIC
@@ -141,7 +141,7 @@ urlpatterns += [
     path(
         "api/schema/",
         login_required(SpectacularSwaggerView.as_view(url_name="schema")),
-        # SpectacularRedocView.as_view(url_name="schema"), # noqa: E800
+        # SpectacularRedocView.as_view(url_name="schema"),
         name="api-schema-ui",
     ),
 ]
