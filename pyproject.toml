@@ -25,7 +25,6 @@ dependencies = [
   "ruff>=0.14.9",
 ]
 
-
 [tool.ruff]
 line-length = 88
 exclude = ["**/migrations/*.py"]
@@ -38,52 +37,41 @@ line-ending = "auto"
 
 [tool.ruff.lint]
 select = [
-  # pycodestyle
-  "E",
-  # Pyflakes
-  "F",
-  # pyupgrade
-  "UP",
-  # flake8-bugbear: opinionated bug & design warnings
-  "B",
-  # flake8-simplify
-  "SIM",
-  # isort: imports
-  "I",
-  # flake8-bandit: Security issues
-  "S",
-  # flake8-builtins
-  "A",
-  # flake8-comprehensions
-  "C4",
-  # pydocstyle
-  "D",
+  "E",   # pycodestyle
+  "F",   # Pyflakes
+  "UP",  # pyupgrade
+  "B",   # flake8-bugbear: opinionated bug & design warnings
+  "SIM", # flake8-simplify
+  "I",   # isort: imports
+  "S",   # flake8-bandit: Security issues
+  "A",   # flake8-builtins
+  "C4",  # flake8-comprehensions
+  "D",   # pydocstyle
 ]
 ignore = [
-  "B023",
-  "B017",
-  "D101",
-  "D103",
-  "D105",
-  "D202",
-  "D400",
-  "D415",
-  "D211",
-  "D213",
-  "D203",
-  "E20",
-  "E203",
-  "E402",
-  "I001",
-  #"I005",
-  "S101",
-  "S310",
-  "S603",
-  "S608",
-  #"W503",
+  "B017", # assert-raises-exception
+  "D105", # Missing docstring in magic method
+  "D107", # undocumented-public-init
+  "D202", # blank-line-after-function
+  "D203", # incorrect-blank-line-before-class
+  "D211", # blank-line-before-class
+  "D213", # multi-line-summary-second-line
+  "D400", # First line should end with a period
+  "D415", # missing-terminal-punctuation
+  #"S101", # assert
+  "S113", # request-without-timeout
+  "S310", # suspicious-url-open-usage
+  "S603", # subprocess-without-shell-equals-true
+  #"S608", # hardcoded-sql-expression
 ]
-
 
 [tool.ruff.lint.isort]
 combine-as-imports = true
 force-sort-within-sections = true
+
+
+[tool.djlint]
+indent = 2
+format_css = false
+format_js = false
+max_line_length = 80
