@@ -8,11 +8,15 @@ readme = "README.md"
 urls = { "Repository" = "https://github.com/wingechr/PROJECT_TEMPLATE" }
 
 requires-python = ">=3.10"
-dependencies = [
+dependenccies = [
   "wingechr-assets @ file:///${PROJECT_ROOT}/assets",
   "wingechr-docs @ file:///${PROJECT_ROOT}/docs",
   "wingechr-python-package @ file:///${PROJECT_ROOT}/python_package",
   "wingechr-python-server @ file:///${PROJECT_ROOT}/python_server",
+]
+
+[dependency-groups]
+dev = [
   "bumpversion~=0.6",
   "djlint~=1.36",
   "ipykernel~=6.31",
