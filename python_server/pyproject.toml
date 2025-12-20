@@ -13,7 +13,7 @@ dependencies = [
   "drf-spectacular[sidecar]~=0.28",
   "html5validator~=0.4",
   "psycopg2-binary~=2.9",
-  "requests",
+  "requests>=2.32.5",
 ]
 
 [tool.setuptools.packages.find]
