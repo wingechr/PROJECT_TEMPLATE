@@ -27,8 +27,6 @@ jobs:
       - run: pip install uv
       - uses: actions/setup-node@v3
 
-      - run: apt install gettext # for django translate
-
       #- run: |
       #    pushd assets
       #    uv tool run --from poethepoet poe build
