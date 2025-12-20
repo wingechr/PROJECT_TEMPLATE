@@ -1,3 +1,4 @@
+/* unfortunately, we cannot integrate this into package.json*/
 import prettier from "eslint-plugin-prettier";
 import jsdoc from "eslint-plugin-jsdoc";
 import react from "eslint-plugin-react";
@@ -37,7 +38,7 @@ export default [
       "max-len": [
         "error",
         {
-          code: 90,
+          code: 88,
         },
       ],
       camelcase: 0,
@@ -50,6 +51,7 @@ export default [
         {
           endOfLine: "auto",
           trailingComma: "es5",
+          printWidth: 88,
         },
       ],
       // React rules

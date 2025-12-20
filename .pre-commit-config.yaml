@@ -42,8 +42,7 @@ repos:
         additional_dependencies:
           - prettier@^3.7.4
           - prettier-plugin-sql@^0.19.2
-        files: .*\.(json|md|yaml|yml|sql|html)$
-        exclude: .*templates/.*\.html$
+        #files: .*\.(json|md|yaml|yml|sql)$
         args: ["--write"]
 
   - repo: https://github.com/djlint/djLint
@@ -51,7 +50,7 @@ repos:
     rev: v1.36.4
     hooks:
       - id: djlint-reformat-django
-        files: .*templates/.*\.html$
+        files: .*/templates/.*\.html$
 
   - repo: https://github.com/ComPWA/taplo-pre-commit
     rev: v0.9.3

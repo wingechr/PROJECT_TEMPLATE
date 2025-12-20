@@ -10,7 +10,8 @@ from django.forms import CharField, PasswordInput
 
 
 class RegistrationForm(UserCreationForm):
-    # remove radio buttons: "Password-based authentication:"
+    """remove radio buttons: 'Password-based authentication'"""
+
     usable_password = None
 
     class Meta:
@@ -27,7 +28,8 @@ class RegistrationForm(UserCreationForm):
 
 
 class UserPasswordChangeForm(PasswordChangeForm):
-    # overwrite from PasswordChangeForm
+    """overwrite from PasswordChangeForm"""
+
     old_password = CharField(
         label="Old password",
         strip=False,
@@ -42,7 +44,8 @@ class UserPasswordChangeForm(PasswordChangeForm):
 
 
 class UserProfileForm(UserChangeForm):
-    # Overwrite from UserChangeForm
+    """Overwrite from UserChangeForm"""
+
     password = None
 
     class Meta:

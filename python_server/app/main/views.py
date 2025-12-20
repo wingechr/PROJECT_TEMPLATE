@@ -22,6 +22,8 @@ def _get_authenticated_user(request: HttpRequest) -> AbstractBaseUser:
 
 
 def registration(request: HttpRequest) -> HttpResponse:
+    """register new user."""
+
     if request.method == "POST":
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -42,7 +44,10 @@ def registration(request: HttpRequest) -> HttpResponse:
 
 @login_required()
 def profile(request: HttpRequest) -> HttpResponse:
-    # NOTE: user data and password should be handled in separate forms
+    """get user profile.
+
+    NOTE: user data and password should be handled in separate forms
+    """
 
     user = _get_authenticated_user(request)
 
@@ -94,10 +99,13 @@ def profile(request: HttpRequest) -> HttpResponse:
 
 @login_required()
 def index(request: HttpRequest) -> HttpResponse:
+    """main view"""
     return render(request, template_name="main/index.html")
 
 
 class InfoAPIView(APIView):
+    """Info Api View"""
+
     @extend_schema(
         responses={
             200: inline_serializer(

@@ -26,6 +26,7 @@ dev = [
   "twine~=6.2",
   "vulture~=2.14",
   "ruff>=0.14.9",
+  "coverage>=7.13.0",
 ]
 
 [tool.ruff]
@@ -60,6 +61,8 @@ ignore = [
   "D211", # blank-line-before-class
   "D213", # multi-line-summary-second-line
   "D400", # First line should end with a period
+  "D401", # non-imperative-mood
+  "D403", # first-word-uncapitalized
   "D415", # missing-terminal-punctuation
   #"S101", # assert
   "S113", # request-without-timeout
@@ -71,10 +74,3 @@ ignore = [
 [tool.ruff.lint.isort]
 combine-as-imports = true
 force-sort-within-sections = true
-
-
-[tool.djlint]
-indent = 2
-format_css = false
-format_js = false
-max_line_length = 80

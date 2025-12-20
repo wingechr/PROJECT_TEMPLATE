@@ -14,6 +14,8 @@ from rest_framework.test import APIClient
 
 
 class TestBaseAuth(TestCase):
+    """Test Base Auth"""
+
     def setUp(self):
         """Set up for each method."""
         call_command("create_default_users")
@@ -32,6 +34,8 @@ class TestBaseAuth(TestCase):
 
 
 class TestPageAuth(TestBaseAuth):
+    """Test Page Auth"""
+
     def test_authenticate(self):
         """Test authenticate."""
         url_staff = reverse("admin:index")
@@ -96,6 +100,8 @@ class ValidateHtml(TestBaseAuth):
 
 
 class TestApi(TestBaseAuth):
+    """Test Api"""
+
     def test_api_login_get_token(self):
         """Test token retrieval."""
         path = reverse("api-login")

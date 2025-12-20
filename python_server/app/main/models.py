@@ -6,6 +6,8 @@ from django.db.models import CharField
 
 
 class User(AbstractUser):
+    """User model"""
+
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = ["email"]
 

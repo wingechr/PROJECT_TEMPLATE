@@ -1,2 +1,3 @@
-# django template
+# because of django template, we use djlint for html
+#*.html
 **/templates/**/*.html

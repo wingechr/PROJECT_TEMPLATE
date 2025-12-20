@@ -7,6 +7,8 @@ import python_package as pkg
 
 
 class TestDoctests(unittest.TestCase):
+    """Test doctests"""
+
     def _run_doctest(self, module):
         report = doctest.testmod(module)
         self.assertFalse(report.failed)

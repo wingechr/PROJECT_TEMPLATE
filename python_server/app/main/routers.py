@@ -7,6 +7,8 @@ from django.apps import apps
 
 
 class DatabaseRouter:
+    """Route models to differnt databases."""
+
     def __init__(self):
         """Instance init."""
         self.app_label_to_db = {}

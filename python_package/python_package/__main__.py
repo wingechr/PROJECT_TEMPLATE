@@ -18,11 +18,12 @@ def setup_logging(
     level: Literal[
         "DEBUG", "INFO", "WARNING", "ERROR", "d", "i", "w", "e", 10, 20, 30, 40
     ] = "WARNING",
-    name: str = None,
-    logfile: str = None,
+    name: str | None = None,
+    logfile: str | None = None,
     fmt: str = "[%(asctime)s %(levelname)7s] %(message)s",
     datefmt: str = "%Y-%m-%d %H:%M:%S",
 ) -> None:
+    """setup logging"""
     logger = logging.getLogger(name)
 
     # assert at least one streaming handler

@@ -1,7 +1,7 @@
 """Main wsgi entrypoint."""
 
-import manage  # keep in here so that paths are set corectly
 from django.core.wsgi import get_wsgi_application
+import manage  # keep in here so that paths are set corectly
 
 __all__ = ["application", "manage"]
 

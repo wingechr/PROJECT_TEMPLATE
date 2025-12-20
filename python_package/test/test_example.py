@@ -6,6 +6,8 @@ from python_package import get_info
 
 
 class TestTemplate(unittest.TestCase):
+    """Test Template"""
+
     def setUp(self):
         """Set up for each method."""
 

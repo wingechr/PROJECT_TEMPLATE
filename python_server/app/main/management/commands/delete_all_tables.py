@@ -5,6 +5,8 @@ from django.db import connection
 
 
 class Command(BaseCommand):
+    """Management command"""
+
     help = "Reset the database by dropping all tables"  # noqa:A003
 
     def handle(self, *args, **options):

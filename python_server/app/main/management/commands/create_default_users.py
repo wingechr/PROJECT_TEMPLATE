@@ -13,10 +13,11 @@ def create_user(
     username: str,
     password: str,
     email: str,
-    token: str = None,
+    token: str | None = None,
     is_superuser: bool = False,
     is_staff: bool = False,
 ):
+    """create user"""
     try:
         User.objects.create_user(  # use create_user! (password hashing and so on)
             username,

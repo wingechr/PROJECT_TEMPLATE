@@ -10,11 +10,12 @@ User = get_user_model()
 admin.site.site_header = settings.SITE_TITLE
 admin.site.site_title = settings.SITE_TITLE
 admin.site.index_title = settings.SITE_TITLE
-admin.site.site_url = None  # remove "View Site" link
+admin.site.site_url = None  #  type:ignore removes "View Site" link
 
 
-# We need special user admin class to properly handle password encryption
 class UserAdmin(DefaultUserAdmin):
+    """We need special user admin class to properly handle password encryption"""
+
     # add language in new section "Additional info"
     fieldsets = DefaultUserAdmin.fieldsets + (
         ("Additional info", {"fields": ("language",)}),
