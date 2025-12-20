@@ -17,9 +17,9 @@ class UserAdmin(DefaultUserAdmin):
     """We need special user admin class to properly handle password encryption"""
 
     # add language in new section "Additional info"
-    fieldsets = tuple(DefaultUserAdmin.fieldsets or []) + [
+    fieldsets = list(DefaultUserAdmin.fieldsets or []) + [
         ("Additional info", {"fields": ("language",)}),
-    ]  # type:ignore
+    ]
 
     # add language,email in creation
     add_fieldsets = DefaultUserAdmin.add_fieldsets + (
