@@ -1,10 +1,10 @@
 """Register app."""
 
-from django.apps import AppConfig
+from django import apps
 from django.conf import settings
 
 
-class AppConfig(AppConfig):
+class AppConfig(apps.AppConfig):
     """app meta data"""
 
     name = "main"

@@ -10,6 +10,7 @@ from django.test import TestCase
 from django.urls import reverse
 from html5validator import Validator
 from main import __version__
+from requests import Response
 from rest_framework.test import APIClient
 
 
@@ -40,23 +41,24 @@ class TestPageAuth(TestBaseAuth):
         """Test authenticate."""
         url_staff = reverse("admin:index")
         # staff/admin user can admin page
-        res = self.client_superuser.get(url_staff)
+        res: Response
+        res = self.client_superuser.get(url_staff)  # type:ignore
         self.assertEqual(res.status_code, 200, res.content)
 
         # regular and anonylous user can NOT admin page
-        res = self.client_regular.get(url_staff)
+        res = self.client_regular.get(url_staff)  # type:ignore
         self.assertEqual(res.status_code, 302, res.content)  # 302: redirect to login
-        res = self.client_anonymous.get(url_staff)
+        res = self.client_anonymous.get(url_staff)  # type:ignore
         self.assertEqual(res.status_code, 302, res.content)  # 302: redirect to login
         self.assertTrue("login" in res.url, res.url)
 
         url_w_login = reverse("index")
         # authorized user can admin page
-        res = self.client_regular.get(url_w_login)
+        res = self.client_regular.get(url_w_login)  # type:ignore
         self.assertEqual(res.status_code, 200, res.content)
 
         # anonylous user can NOT admin page
-        res = self.client_anonymous.get(url_w_login)
+        res = self.client_anonymous.get(url_w_login)  # type:ignore
         self.assertEqual(res.status_code, 302, res.content)  # 302: redirect to login
         self.assertTrue("login" in res.url, res.url)
 
@@ -80,8 +82,9 @@ class ValidateHtml(TestBaseAuth):
 
     def test_index(self):
         """Test index.html."""
+        res: Response
         url = reverse("index")
-        res = self.client_regular.get(url)
+        res = self.client_regular.get(url)  # type:ignore
         self.assertEqual(res.status_code, 200)
 
         # TODO: html5validator only can do files, can I do this without temp files?
@@ -104,28 +107,30 @@ class TestApi(TestBaseAuth):
 
     def test_api_login_get_token(self):
         """Test token retrieval."""
+        res: Response
         path = reverse("api-login")
         username = settings.ADMIN_NAME
         password = settings.ADMIN_PASSWORD
         # anonymous allowed for login
         res = self.client_anonymous.post(
             path, data={"username": username, "password": password}
-        )
+        )  # type:ignore
         token = res.json()["token"]
         self.assertEqual(token, settings.ADMIN_TOKEN)
 
     def test_api_info(self):
         """Test example function,"""
+        res: Response
         path = reverse("api-info")
-        res = self.client_anonymous.get(path)
+        res = self.client_anonymous.get(path)  # type:ignore
         # anonymous not allowed for any APIViews
         self.assertEqual(res.status_code, 401)
-        res = self.client_regular.get(path)
+        res = self.client_regular.get(path)  # type:ignore
         version = res.json()["version"]
         self.assertEqual(version, __version__)
         # also get user endpoint
         path = reverse("api-user-list")
-        res = self.client_regular.get(path)
+        res = self.client_regular.get(path)  # type:ignore
         # [0]: returns list of 1 item
         username = res.json()[0]["username"]
         self.assertEqual(username, settings.TESTUSER_NAME)

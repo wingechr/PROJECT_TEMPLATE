@@ -5,7 +5,8 @@
   <div class="container">
     <a class="navbar-brand text-primary" href="{% url 'index' %}">
       <img src="{% static 'favicon.svg' %}?v={{ VERSION }}"
-           style="height:1.5em"
+           width="1.5em"
+           height="1.5em"
            class="me-1"
            alt="The logo of the website" />
       <span class="fw-bold">{{ SITE_TITLE }}</span></a>
@@ -19,9 +20,9 @@
       <ul class="navbar-nav mb-2 mb-lg-0 flex-grow-1">
         <!-- dummy to expand and move rest to the right -->
         <li class="nav-item mx-auto"></li>
-        {% include 'main/navbar-language-switcher.html' %}
-        {% include 'main/navbar-theme-switcher.html' %}
-        {% include 'main/navbar-user.html' %}
+        {% include "main/navbar-language-switcher.html" %}
+        {% include "main/navbar-theme-switcher.html" %}
+        {% include "main/navbar-user.html" %}
       </ul>
     </div>
   </div>

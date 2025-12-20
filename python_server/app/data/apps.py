@@ -1,9 +1,9 @@
 """Register app."""
 
-from django.apps import AppConfig
+from django import apps
 
 
-class AppConfig(AppConfig):
+class AppConfig(apps.AppConfig):
     """app meta data"""
 
     name = "data"

@@ -40,9 +40,9 @@ def setup_logging(
 
     # set level (logger and handlers)
     if isinstance(level, str):
-        level = level[0].upper()
-        level = {"D": "DEBUG", "I": "INFO", "W": "WARNING", "E": "ERROR"}[level]
-        level = getattr(logging, level)
+        level_str = level[0].upper()
+        level_str = {"D": "DEBUG", "I": "INFO", "W": "WARNING", "E": "ERROR"}[level_str]
+        level = getattr(logging, level_str)
 
     logger.setLevel(level)
     for h in logger.handlers:

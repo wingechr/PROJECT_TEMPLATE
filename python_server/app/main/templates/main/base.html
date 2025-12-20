@@ -5,6 +5,8 @@
   <head>
     <title>{{ SITE_TITLE }}</title>
     <meta charset="utf-8" />
+    <meta name="description" content="description" />
+    <meta name="keywords" content="" />
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="version" content="{{ VERSION }}" />
@@ -40,10 +42,11 @@
             type="text/css"
             href="{% static 'vendor/fontawesome/css/all.min.css' %}" />
     {% endcompress %}
-    {% block head %}{% endblock %}
+    {% block head %}
+    {% endblock head %}
   </head>
   <body class="min-vh-100 d-flex flex-column">
-    {% include 'main/navbar.html' %}
+    {% include "main/navbar.html" %}
     {% if messages %}
       <div class="container">
         {% for message in messages %}
@@ -58,11 +61,14 @@
         {% endfor %}
       </div>
     {% endif %}
-    {% block body %}{% endblock %}
+    {% block body %}
+    {% endblock body %}
     {% compress js %}
       <script src="{% static 'vendor/popperjs/popper.min.js' %}"></script>
       <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
     {% endcompress %}
-    {% block script %}<!-- template script after main app has loaded -->{% endblock %}
+    {% block script %}
+      <!-- template script after main app has loaded -->
+    {% endblock script %}
   </body>
 </html>
