@@ -1,7 +1,10 @@
 """Unit tests."""
 
+from __future__ import annotations  # ensures annotations are deferred
+
 import os
 from tempfile import NamedTemporaryFile
+from typing import TYPE_CHECKING
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -10,8 +13,10 @@ from django.test import TestCase
 from django.urls import reverse
 from html5validator import Validator
 from main import __version__
-from requests import Response
 from rest_framework.test import APIClient
+
+if TYPE_CHECKING:
+    from requests import Response
 
 
 class TestBaseAuth(TestCase):
