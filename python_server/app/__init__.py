@@ -1,1 +1,1 @@
-# required for tests to be found
+"""Main module for server app."""

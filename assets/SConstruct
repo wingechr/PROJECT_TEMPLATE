@@ -1,7 +1,12 @@
+"""Main build file."""
+
 import os
 
-from SCons.Script import Export  # type:ignore
-from SCons.Script import Environment, SConscript
+from SCons.Script import (
+    Environment,
+    Export,  # type:ignore
+    SConscript,
+)
 
 env = Environment(
     ENV=os.environ,

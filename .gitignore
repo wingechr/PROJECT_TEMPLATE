@@ -36,6 +36,9 @@ site/
 _static/
 _local/
 
+# ruff
+.ruff_cache
+
 ## Lockfiles: NOTE: in productive repo, you want to commit uv.lock and package-lock.json
 package-lock.json
 uv.lock

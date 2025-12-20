@@ -1,21 +1,26 @@
+"""Delete all tables."""
+
 from django.core.management.base import BaseCommand
 from django.db import connection
 
 
 class Command(BaseCommand):
-    help = "Reset the database by dropping all tables"
+    """Management command"""
+
+    help = "Reset the database by dropping all tables"  # noqa:A003
 
     def handle(self, *args, **options):
+        """Handle actual operations."""
         db_backend = connection.vendor
 
         if db_backend == "postgresql":
-            self.drop_tables_postgresql()
+            self._drop_tables_postgresql()
         elif db_backend == "sqlite":
-            self.drop_tables_sqlite()
+            self._drop_tables_sqlite()
         else:
             raise NotImplementedError(db_backend)
 
-    def drop_tables_postgresql(self):
+    def _drop_tables_postgresql(self):
         with connection.cursor() as cursor:
             # Drop all tables for PostgreSQL using dynamic SQL
             cursor.execute(
@@ -32,7 +37,7 @@ class Command(BaseCommand):
             """
             )
 
-    def drop_tables_sqlite(self):
+    def _drop_tables_sqlite(self):
         with connection.cursor() as cursor:
             # Get all tables from the SQLite database
             cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")

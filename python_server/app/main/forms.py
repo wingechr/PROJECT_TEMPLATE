@@ -1,3 +1,5 @@
+"""Define forms."""
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import (
     PasswordChangeForm,
@@ -8,11 +10,13 @@ from django.forms import CharField, PasswordInput
 
 
 class RegistrationForm(UserCreationForm):
+    """remove radio buttons: 'Password-based authentication'"""
 
-    # remove radio buttons: "Password-based authentication:"
     usable_password = None
 
     class Meta:
+        """Model meta attributes."""
+
         model = get_user_model()
         fields = [
             "username",
@@ -24,7 +28,8 @@ class RegistrationForm(UserCreationForm):
 
 
 class UserPasswordChangeForm(PasswordChangeForm):
-    # overwrite from PasswordChangeForm
+    """overwrite from PasswordChangeForm"""
+
     old_password = CharField(
         label="Old password",
         strip=False,
@@ -33,13 +38,18 @@ class UserPasswordChangeForm(PasswordChangeForm):
     )
 
     class Meta:
+        """Model meta attributes."""
+
         model = get_user_model()
 
 
 class UserProfileForm(UserChangeForm):
-    # Overwrite from UserChangeForm
+    """Overwrite from UserChangeForm"""
+
     password = None
 
     class Meta:
+        """Model meta attributes."""
+
         model = get_user_model()
         fields = ["username", "email", "language"]

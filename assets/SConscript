@@ -1,4 +1,4 @@
-from SCons.Script import Environment, Import  # type:ignore
+from SCons.Script import Environment, Import  # noqa: D100 # type: ignore
 
 env = Environment()
 Import("env")  # this will overwrite env

@@ -1,3 +1,5 @@
+"""Create default users."""
+
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
@@ -11,10 +13,11 @@ def create_user(
     username: str,
     password: str,
     email: str,
-    token: str = None,
+    token: str | None = None,
     is_superuser: bool = False,
     is_staff: bool = False,
 ):
+    """create user"""
     try:
         User.objects.create_user(  # use create_user! (password hashing and so on)
             username,
@@ -41,6 +44,7 @@ class Command(BaseCommand):
     """Create admin user if not exist"""
 
     def handle(self, *args, **options):
+        """Handle actual operations."""
         # create admin user
         create_user(
             username=settings.ADMIN_NAME,

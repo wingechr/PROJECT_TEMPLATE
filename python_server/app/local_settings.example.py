@@ -1,3 +1,5 @@
+"""Local settings for deployment. Do not commit."""
+
 import os
 
 __all__ = [
@@ -24,18 +26,17 @@ os.makedirs(LOCAL_DATA_DIR + "/database", exist_ok=True)
 BASE_URL = "/"  # start and ends with /
 
 
-SECRET_KEY = "TODO:SECRET_KEY"
+SECRET_KEY = "TODO:SECRET_KEY"  # noqa:S105 don't commitin production
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "TODO:example.com"]
 CORS_ALLOWED_ORIGINS = [
-    # for instance in develop:
-    # "http://localhost:1234"
+    # for instance: "http://localhost:1234"
 ]
 
-ADMIN_PASSWORD = "TODO:ADMIN_PASSWORD"
-ADMIN_TOKEN = "TODO:ADMIN_TOKEN"
+ADMIN_PASSWORD = "TODO:ADMIN_PASSWORD"  # noqa:S105 don't commitin production
+ADMIN_TOKEN = "TODO:ADMIN_TOKEN"  # noqa:S105 don't commitin production
 ADMIN_EMAIL = "TODO:ADMIN_EMAIL@example.com"
 DEFAULT_FROM_EMAIL = ADMIN_EMAIL
-TESTUSER_PASSWORD = "TODO:TESTUSER_PASSWORD"
+TESTUSER_PASSWORD = "TODO:TESTUSER_PASSWORD"  # noqa:S105 don't commitin production
 ADMIN_NAME = "admin"
 TESTUSER_NAME = "test"
 TESTUSER_MAIL = "test@example.com"
@@ -64,7 +65,7 @@ _DEFAULT_DATABASE_POSTGRES = {
 }
 _TEST_DATABASE_POSTGRES = {
     "ENGINE": "django.db.backends.postgresql",
-    # "NAME": "test",
+    "NAME": "test",
     "USER": "test",
     "PASSWORD": "test",
     "HOST": "localhost",
@@ -81,9 +82,15 @@ PRODUCTION_DATABASES = {
     "default": _DEFAULT_DATABASE_SQLITE,
     "data": _DATA_DATABASE_SQLITE,
 }
-TEST_DATABASES = {
-    "default": _TEST_DATABASE_SQLITE,
-    # "data": _DATA_DATABASE_SQLITE,
-}
+TEST_DATABASES = {"default": _TEST_DATABASE_SQLITE}
 
 LOGFILE = LOCAL_DATA_DIR + "/logs/django.log"
+
+
+# use local postfix
+EMAIL_HOST = "localhost"
+EMAIL_PORT = 25
+EMAIL_HOST_USER = ""
+EMAIL_HOST_PASSWORD = ""  # noqa:S105 don't commitin production
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False

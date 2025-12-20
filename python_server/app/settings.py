@@ -1,11 +1,11 @@
+"""DJango app settings."""
+
 import logging
 import os
 import sys
 
 from django.contrib.messages import constants as messages
-
-# local_settings.py in LOCAL_DATA_DIR
-from local_settings import (
+from local_settings import (  # local_settings.py in LOCAL_DATA_DIR in PYTHON_PATH
     ADMIN_EMAIL,
     ADMIN_NAME,
     ADMIN_PASSWORD,
@@ -14,6 +14,12 @@ from local_settings import (
     BASE_URL,
     CORS_ALLOWED_ORIGINS,
     DEFAULT_FROM_EMAIL,
+    EMAIL_HOST,
+    EMAIL_HOST_PASSWORD,
+    EMAIL_HOST_USER,
+    EMAIL_PORT,
+    EMAIL_USE_SSL,
+    EMAIL_USE_TLS,
     LOCAL_DATA_DIR,
     LOGFILE,
     PRODUCTION,
@@ -25,19 +31,25 @@ from local_settings import (
     TESTUSER_PASSWORD,
 )
 
-# imported but used elsewhere
+# imported but used else where
 __all__ = [
-    ADMIN_EMAIL,
-    ADMIN_NAME,
-    ADMIN_PASSWORD,
-    ADMIN_TOKEN,
-    ALLOWED_HOSTS,
-    DEFAULT_FROM_EMAIL,
-    SECRET_KEY,
-    TESTUSER_MAIL,
-    TESTUSER_NAME,
-    TESTUSER_PASSWORD,
-    CORS_ALLOWED_ORIGINS,
+    "ADMIN_EMAIL",
+    "ADMIN_NAME",
+    "ADMIN_PASSWORD",
+    "ADMIN_TOKEN",
+    "ALLOWED_HOSTS",
+    "DEFAULT_FROM_EMAIL",
+    "SECRET_KEY",
+    "TESTUSER_MAIL",
+    "TESTUSER_NAME",
+    "TESTUSER_PASSWORD",
+    "CORS_ALLOWED_ORIGINS",
+    "EMAIL_HOST",
+    "EMAIL_PORT",
+    "EMAIL_HOST_USER",
+    "EMAIL_HOST_PASSWORD",
+    "EMAIL_USE_TLS",
+    "EMAIL_USE_SSL",
 ]
 
 DEBUG = not PRODUCTION
@@ -88,7 +100,7 @@ MIDDLEWARE = [
     "htmlmin.middleware.MarkRequestMiddleware",
 ]
 
-# CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"]
+CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"]
 
 REST_FRAMEWORK = {
     # https://www.django-rest-framework.org/api-guide/permissions/
@@ -200,7 +212,7 @@ DATABASE_ROUTERS = [
     "main.routers.DatabaseRouter",
 ]
 
-# LOCALE_PATHS = ["main/locale"]
+LOCALE_PATHS = ["main/locale"]
 
 USE_I18N = True  # internationalization
 USE_L10N = True  # localization
@@ -209,7 +221,7 @@ USE_TZ = True
 # Languages available for the app
 LANGUAGES = [
     ("en", "English"),
-    # ("de", "German"),
+    ("de", "German"),
 ]
 
 
@@ -238,13 +250,7 @@ LOGOUT_REDIRECT_URL = BASE_URL  # index
 
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-# use local postfix
-EMAIL_HOST = "localhost"
-EMAIL_PORT = 25
-EMAIL_HOST_USER = ""
-EMAIL_HOST_PASSWORD = ""
-EMAIL_USE_TLS = False
-EMAIL_USE_SSL = False
+
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 

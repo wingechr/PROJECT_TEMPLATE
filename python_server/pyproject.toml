@@ -21,7 +21,7 @@ include = ["app"]
 # SCRIPTS
 
 [tool.poe.tasks]
-django-test = "python -m app.manage test"                          # tox is more complicated
+django-test = "python -m app.manage test"
 collectstatic = "python -m app.manage collectstatic --noinput"
 compress = "python -m app.manage compress --force"
 translate = "python -m app.manage compilemessages -v 0 -l en"
@@ -35,3 +35,9 @@ test = [
   "compress",
   "django-test",
 ]
+
+[tool.djlint]
+indent = 2
+format_css = false
+format_js = false
+max_line_length = 88

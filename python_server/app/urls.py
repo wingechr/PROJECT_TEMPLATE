@@ -1,3 +1,5 @@
+"""Url routing."""
+
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
@@ -6,10 +8,10 @@ from django.urls import include, path, re_path
 from django.views.static import serve
 from drf_spectacular.renderers import OpenApiJsonRenderer
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
-
-# from main.api import api_router
 from main.views import InfoAPIView, index, profile, registration
 from rest_framework.authtoken.views import obtain_auth_token
+
+# from main.api import api_router # noqa
 
 __all__ = ["urlpatterns"]
 

@@ -6,13 +6,16 @@ license = "CC0-1.0"
 authors = [{ name = "c.winger" }]
 readme = "README.md"
 urls = { "Repository" = "https://github.com/wingechr/PROJECT_TEMPLATE" }
-
 requires-python = ">=3.10"
 dependencies = [
   "wingechr-assets @ file:///${PROJECT_ROOT}/assets",
   "wingechr-docs @ file:///${PROJECT_ROOT}/docs",
   "wingechr-python-package @ file:///${PROJECT_ROOT}/python_package",
   "wingechr-python-server @ file:///${PROJECT_ROOT}/python_server",
+]
+
+[dependency-groups]
+dev = [
   "bumpversion~=0.6",
   "djlint~=1.36",
   "ipykernel~=6.31",
@@ -22,4 +25,56 @@ dependencies = [
   "tox~=4.32",
   "twine~=6.2",
   "vulture~=2.14",
+  "ruff>=0.14.9",
+  "coverage>=7.13.0",
 ]
+
+[tool.ruff]
+line-length = 88
+exclude = ["**/migrations/*.py"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.ruff.lint]
+select = [
+  "E",   # pycodestyle
+  "F",   # Pyflakes
+  "UP",  # pyupgrade
+  "B",   # flake8-bugbear: opinionated bug & design warnings
+  "SIM", # flake8-simplify
+  "I",   # isort: imports
+  "S",   # flake8-bandit: Security issues
+  "A",   # flake8-builtins
+  "C4",  # flake8-comprehensions
+  "D",   # pydocstyle
+]
+ignore = [
+  "B017", # assert-raises-exception
+  "D105", # Missing docstring in magic method
+  "D107", # undocumented-public-init
+  "D202", # blank-line-after-function
+  "D203", # incorrect-blank-line-before-class
+  "D211", # blank-line-before-class
+  "D213", # multi-line-summary-second-line
+  "D400", # First line should end with a period
+  "D401", # non-imperative-mood
+  "D403", # first-word-uncapitalized
+  "D415", # missing-terminal-punctuation
+  #"S101", # assert
+  "S113", # request-without-timeout
+  "S310", # suspicious-url-open-usage
+  "S603", # subprocess-without-shell-equals-true
+  #"S608", # hardcoded-sql-expression
+]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+force-sort-within-sections = true
+
+
+[tool.djlint]
+ignore = "H025"

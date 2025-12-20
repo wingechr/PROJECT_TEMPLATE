@@ -1,3 +1,5 @@
+"""Main script."""
+
 import logging
 
 import click
@@ -16,11 +18,12 @@ def setup_logging(
     level: Literal[
         "DEBUG", "INFO", "WARNING", "ERROR", "d", "i", "w", "e", 10, 20, 30, 40
     ] = "WARNING",
-    name: str = None,
-    logfile: str = None,
+    name: str | None = None,
+    logfile: str | None = None,
     fmt: str = "[%(asctime)s %(levelname)7s] %(message)s",
     datefmt: str = "%Y-%m-%d %H:%M:%S",
 ) -> None:
+    """setup logging"""
     logger = logging.getLogger(name)
 
     # assert at least one streaming handler
@@ -37,9 +40,9 @@ def setup_logging(
 
     # set level (logger and handlers)
     if isinstance(level, str):
-        level = level[0].upper()
-        level = {"D": "DEBUG", "I": "INFO", "W": "WARNING", "E": "ERROR"}[level]
-        level = getattr(logging, level)
+        level_str = level[0].upper()
+        level_str = {"D": "DEBUG", "I": "INFO", "W": "WARNING", "E": "ERROR"}[level_str]
+        level = getattr(logging, level_str)
 
     logger.setLevel(level)
     for h in logger.handlers:
