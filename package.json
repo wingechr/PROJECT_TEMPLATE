@@ -19,13 +19,5 @@
   "workspaces": [
     "wingechr-javascript_frontend",
     "wingechr-javascript_package"
-  ],
-  "prettier": {
-    "proseWrap": "always",
-    "printWidth": 88,
-    "trailingComma": "es5",
-    "plugins": [
-      "prettier-plugin-sql"
-    ]
-  }
+  ]
 }
