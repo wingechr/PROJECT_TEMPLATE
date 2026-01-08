@@ -13,10 +13,15 @@ classifiers = [
 requires-python = ">=3.10"
 dependencies = ["click~=8.3", "coloredlogs~=15.0"]
 
+
 [project.scripts]
 wingechr-python-package-cli = "python_package.__main__:main"
 
 # BUILD
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 include = ["python_package"]
