@@ -29,3 +29,6 @@ dev = [
   "ruff>=0.14.9",
   "coverage>=7.13.0",
 ]
+
+[tool.poe.tasks]
+gp = { shell = "git add . && pre-commit run && git add .", envfile = ".env", cwd = "." }
