@@ -2,7 +2,6 @@
 line-length = 88
 exclude = ["**/migrations/*.py"]
 
-
 [format]
 quote-style = "double"
 indent-style = "space"
@@ -23,7 +22,6 @@ select = [
   "C4",  # flake8-comprehensions
   "D",   # pydocstyle
 ]
-
 ignore = [
   "B017", # assert-raises-exception
   "D105", # Missing docstring in magic method
@@ -36,12 +34,14 @@ ignore = [
   "D401", # non-imperative-mood
   "D403", # first-word-uncapitalized
   "D415", # missing-terminal-punctuation
+  "D412", # otherwise docstring tests will be badly formatted - we need empty line
   #"S101", # assert
   "S113", # request-without-timeout
   "S310", # suspicious-url-open-usage
   "S603", # subprocess-without-shell-equals-true
   #"S608", # hardcoded-sql-expression
 ]
+
 
 [lint.isort]
 combine-as-imports = true
