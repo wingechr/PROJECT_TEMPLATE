@@ -1,6 +1,6 @@
 [project]
 name = "PROJECT_TEMPLATE"
-version = "0.1.0"
+version = "0.0.0"
 description = "DESCRIPTION"
 license = "CC0-1.0"
 authors = [{ name = "c.winger" }]
@@ -17,18 +17,47 @@ workspaces = [
   "wingechr-python-server @ file:///${PROJECT_ROOT}/python_server",
 ]
 dev = [
-  "bumpversion~=0.6",
   "djlint~=1.36",
   "ipykernel~=6.31",
   "poethepoet~=0.38",
   "pre-commit~=4.5",
-  "pytest~=9.0",
-  "tox~=4.32",
   "twine~=6.2",
-  "vulture~=2.14",
-  "ruff>=0.14.9",
+  "vulture>=2.16",
+  "ruff>=0.15",
   "coverage>=7.13.0",
+  "bump-my-version>=1.4",
 ]
+test = [
+  "tox-uv>=1.33",    # for uv-venv-runner
+  "pytest>=9.0",
+  "tox>=4.47",
+  "pytest-cov>=7.0",
+
+]
+
+[tool.bumpversion]
+current_version = "0.0.0"
+commit = true
+tag = true
+message = "version: {current_version} → {new_version}"
+pre_commit_hooks = ["uv lock", "git add uv.lock"]
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+search = 'version = "{current_version}"'
+replace = 'version = "{new_version}"'
+
+[tool.tox]
+envlist = ["py310", "py314"]
+
+[tool.tox.env_run_base]
+runner = "uv-venv-lock-runner" # use tox-uv
+commands = [["pytest"]]
+
 
 [tool.poe.tasks]
 gp = { shell = "git add . && pre-commit run && git add .", envfile = ".env", cwd = "." }
+cov = "uv run -p3.11 pytest -v --cov=datatools --cov-report=term-missing --cov-report=html:htmlcov --cov-report=xml:coverage.xml"
+test = "uv run tox"
+build = "uv build"
+bump = "bump-my-version bump"
