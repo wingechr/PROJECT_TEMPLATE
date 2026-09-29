@@ -1,0 +1,16 @@
+[workspace]
+authors = ["c.winger <c.winger@oeko.de>"]
+channels = ["conda-forge"]
+name = "TODO:NAME"
+platforms = ["win-64", "linux-64"]
+version = "0.0.0"
+
+[tasks]
+[tasks.build]
+cmd = "python -m main"
+env = { PYTHONPATH = "src" }
+inputs = ["src/**/*"]
+outputs = ["build/**/*"]
+
+[dependencies]
+python = "3.14.*"
