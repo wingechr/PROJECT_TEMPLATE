@@ -15,7 +15,7 @@ repos:
       - id: trailing-whitespace # trims trailing whitespace.
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.9
+    rev: v0.16.10
     hooks:
       # Run the linter.
       - id: ruff-check
@@ -24,7 +24,7 @@ repos:
       - id: ruff-format
 
   - repo: https://github.com/pre-commit/mirrors-eslint
-    rev: v10.0.0-alpha.1
+    rev: v10.11.0
     hooks:
       - id: eslint
         additional_dependencies:
@@ -47,7 +47,7 @@ repos:
 
   - repo: https://github.com/djlint/djLint
     # see https://djlint.com/docs/integrations/
-    rev: v1.36.4
+    rev: v1.46.4
     hooks:
       - id: djlint-reformat-django
         files: .*/templates/.*\.html$
